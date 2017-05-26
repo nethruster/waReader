@@ -66,13 +66,18 @@ module.exports = {
     new CopyWebpackPlugin([
         { from: 'media', to: 'media' }
     ]),
-    new ExtractTextPlugin("styles.css"),
+    new ExtractTextPlugin("wareader.styles.css"),
     new HtmlWebpackPlugin({
         minify: {
             collapseWhitespace: true
         },
         hash: true,
         template: './index.html'
-    })
+    }),
+    // new webpack.DefinePlugin({
+    //   'process.env': {
+    //     NODE_ENV: '"production"'
+    //   }
+    // })
   ]
 };
