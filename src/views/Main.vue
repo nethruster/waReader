@@ -1,11 +1,19 @@
 <template>
     <div id="main-wrapper" class="flex flex-dc flex-cross-center">
-        waReader
+        <wrHeader />
+        <wrBody />
     </div>
 </template>
 
 <script>
+    import wrHeader from './components/wrHeader.vue'
+    import wrBody from './components/wrBody.vue'
+
     export default {
-        name: 'Home'
+        name: 'Home',
+        components: {
+            wrHeader,
+            wrBody
+        }
     }
 </script>
