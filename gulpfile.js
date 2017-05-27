@@ -8,7 +8,6 @@ const gulp         = require('gulp'),
       source       = require("vinyl-source-stream"),
       buffer       = require("vinyl-buffer"),
       babelify     = require('babelify'),
-      gulpCopy     = require('gulp-copy'),
       browserify   = require("browserify"),
       browserSync = require('browser-sync').create(),
       autoprefixer = require('gulp-autoprefixer');
@@ -35,7 +34,7 @@ gulp.task("buildjs", function () {
     .pipe(buffer())
     .pipe(uglify())
     .pipe(gulp.dest("./dist/"))
-    .pipe(browserSync.stream());;
+    .pipe(browserSync.stream());
 });
 
 gulp.task('sass:watch', () => {
@@ -51,7 +50,7 @@ gulp.task('vue:watch', () => {
     gulp.watch('./src/views/**/*.vue', ['buildjs']);
 });
 
-gulp.task('serve', ['sass:watch', 'js:watch', 'vue:watch'], function() {
+gulp.task('serve', ['build', 'sass:watch', 'js:watch', 'vue:watch'], function() {
     browserSync.init({
         server: "./dist"
     });
@@ -61,7 +60,7 @@ gulp.task('serve', ['sass:watch', 'js:watch', 'vue:watch'], function() {
 
 gulp.task('build', ['sass', 'buildjs'], () => {
     return gulp.src('./src/index.html')
-        .pipe(gulpCopy('./dist/', { prefix: 1 }))
+        .pipe(gulp.dest("./dist/"))
         .pipe(browserSync.stream());
 });
 

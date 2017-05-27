@@ -34,6 +34,10 @@ body {
     font-weight: 300;
     position: absolute;
     overflow: hidden;
+    color: #fff;
+    background-color: #dfdfdf;
+    background-image: var(--wbrand-bg-colour);
+    font-family: Roboto, sans-serif;
 }
 
 ol,
@@ -79,6 +83,8 @@ img {
 
 svg {
     fill: currentColor;
+    width: 24px;
+    height: auto;
 }
 
 svg:not(:root) {

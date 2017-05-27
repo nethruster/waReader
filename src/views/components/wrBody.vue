@@ -1,13 +1,16 @@
 <template>
-    <div class="wr-body flex flex-cross-center flex-sb">
-       <p>
-            waReader-body
-       </p>
+    <div class="wr-body flex flex-full-center">
+      <uploadFile />
     </div>
 </template>
 
 <script>
+    import uploadFile from './uploadFile.vue'
+
     export default {
-        name: 'wrBody'
+        name: 'wrBody',
+        components: {
+            uploadFile
+        }
     }
 </script>

@@ -1,4 +1,15 @@
-/* 
+/**
  * Libs and defaults 
  */
 @import './lib/lib';
+
+/**
+ * App layout
+ *
+ */
+@import './layout/layout';
+
+/**
+ * Components
+ */
+@import './components/components';
