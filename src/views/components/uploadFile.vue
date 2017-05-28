@@ -27,7 +27,17 @@
                     fr = new FileReader();
 
                 fr.onload = (event) => {
-                    this.populateData(Helpers.parseTextFile(event.target.result)); 
+                    try {
+                        this.populateData(Helpers.parseTextFile(event.target.result)); 
+                    } catch(err) {
+                        if(err === "The text has no lines") {
+
+                        } else if(err === "The text has no menssages") {
+
+                        } else {
+                            
+                        }
+                    }
                 }
 
                 fr.readAsText(file);
