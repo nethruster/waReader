@@ -27,10 +27,6 @@ const replaceEmojiWithImg = function (text) {
   return twemoji.parse(text, getEmojiUrl);
 }
 
-const parseChatLine = function(line) {
-  return addAnchorLinksToUrls(replaceEmojiWithImg(line));
-}
-
 /**
  * Parses the content of a Whatsapp txt chat export file and returns 
  * the data in an object
@@ -38,6 +34,7 @@ const parseChatLine = function(line) {
  * @return object
  */
 const parseTextFile = function (text) {
+  text = replaceEmojiWithImg(addAnchorLinksToUrls(text));
   var linesArray = text.split('\n'),
       messages   = [],
       userList   = [];
@@ -71,7 +68,6 @@ const parseTextFile = function (text) {
 
 export default {
   parseTextFile,
-  parseChatLine,
   replaceEmojiWithImg,
   addAnchorLinksToUrls
 }
