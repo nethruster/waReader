@@ -25,7 +25,7 @@
         data: function() {
             return {
                 parseChatLine: Helpers.parseChatLine,
-                userColours: this.assignUserColours(),
+                userColours: [],
                 colours: [
                     '#35cd96',
                     '#6bcbef',
@@ -50,14 +50,20 @@
                 ]
             }
         },
+        created: function() {
+             this.userColours = this.assignUserColours();
+        },
         methods: {
             assignUserColours: function() {
-                var userColoursArr = [];
+                var userColoursArr = [],
+                    coloursLength = this.colours.length;
+
                 for(let user in this.chatData.users) {
-                        userColoursArr[user] = Math.floor((Math.random() * 20) + 1);
-                    }
-                return userColoursArr;
+                    userColoursArr[user] = Math.floor((Math.random() * coloursLength) + 1);
                 }
+
+                return userColoursArr;
             }
+        }
     }
 </script>
