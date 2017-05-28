@@ -1,0 +1,23 @@
+.wr-chat-view {
+    width: 100%;
+    height: 100%;
+}
+
+.wr-chat-participants {
+    padding: calc(var(--base-pm) * 2) 0;
+    height: 100%;
+    background-color: #fff;
+}
+
+.wr-chat-participant {
+    padding: var(--base-pm) calc(var(--base-pm) * 6);
+    margin:  var(--base-pm) 0;
+}
+
+.wr-chat-participant-picture {
+    width: 44px;
+    height: 44px;
+    background-color: #000;
+    color: #fff;
+    border-radius: 50%;
+}

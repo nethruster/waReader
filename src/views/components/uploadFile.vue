@@ -22,11 +22,12 @@
         props: ['populateData'],
         methods: {
             getFile: function() {
-                    file = document.getElementById("file").files[0],
+                var fileInput = document.getElementById("file"),
+                    file = fileInput.files[0],
                     fr = new FileReader();
 
                 fr.onload = (event) => {
-                    this.populateData(Helpers.parseTextFile(event.target.result));
+                    this.populateData(Helpers.parseTextFile(event.target.result)); 
                 }
 
                 fr.readAsText(file);
