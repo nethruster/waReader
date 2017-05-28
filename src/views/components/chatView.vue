@@ -4,9 +4,9 @@
             <chatParticipant v-for="(user, key) in chatData.users" :user="user" :userColours="userColours" :colours="colours" :index="key"/>
         </div>
         <div class="wr-chat-messages">
-            <!-- <div v-for="msg in chatData.messages">
-               <span v-html="parseChatLine(msg.msg)"></span>
-            </div> -->
+            <div v-for="msg in chatData.messages">
+               <span v-html="msg.msg"></span>
+            </div>
         </div>
     </div>
 </template>
