@@ -12,6 +12,9 @@
 .wr-chat-participant {
     padding: var(--base-pm) calc(var(--base-pm) * 6);
     margin:  var(--base-pm) 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .wr-chat-participant-picture {
@@ -20,4 +23,9 @@
     background-color: #000;
     color: #fff;
     border-radius: 50%;
+}
+
+.wr-chat-messages {
+    overflow-y: auto;
+    width: 100%;
 }
