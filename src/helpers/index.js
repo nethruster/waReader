@@ -70,7 +70,7 @@ const parseTextFile = function (text) {
           msg: lineData[14],
           user: ''
         };
-        console.log(msgObj);
+
         messages.push(msgObj);
 
       } else {
