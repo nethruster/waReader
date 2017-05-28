@@ -28,4 +28,30 @@
 .wr-chat-messages {
     overflow-y: auto;
     width: 100%;
+    background-image: url(./media/bg.png);
+    background-repeat: repeat;
+}
+
+.wr-chat-message {
+    padding-left: 9%;
+    padding-right: 9%;
+    margin-bottom: 2px;
+    width: 100%;
+}
+
+.wr-chat-bubble {
+    background-color: #fff;
+    padding: calc(var(--base-pm) / 2) var(--base-pm);
+    border-radius: 8px;
+    box-shadow: 0 1px 0.5px rgba(0,0,0,0.13);
+}
+
+.wr-chat-message-text {
+    font-size: .95em;
+    white-space: pre-wrap;
+}
+
+.wr-chat-message-author {
+    font-size: .85em;
+    font-weight: 500;
 }

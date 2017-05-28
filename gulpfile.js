@@ -58,10 +58,16 @@ gulp.task('serve', ['build', 'sass:watch', 'js:watch', 'vue:watch'], function() 
     gulp.watch("./index.html").on('change', browserSync.reload);
 });
 
-gulp.task('build', ['sass', 'buildjs'], () => {
+gulp.task('buildassets', () => {
+    return gulp.src('./src/media/*')
+        .pipe(gulp.dest("./dist/media/"))
+});
+
+gulp.task('build', ['sass', 'buildjs', 'buildassets'], () => {
     return gulp.src('./src/index.html')
         .pipe(gulp.dest("./dist/"))
         .pipe(browserSync.stream());
 });
+
 
 gulp.task('default',  ['serve']);

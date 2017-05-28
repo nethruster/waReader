@@ -35,33 +35,53 @@ const replaceEmojiWithImg = function (text) {
  * @return object
  */
 const parseTextFile = function (text) {
+
+  /* Replace html emoji entities by their image equivalent 
+   * And then surround urls with anchor tags
+   */
   text = replaceEmojiWithImg(addAnchorLinksToUrls(text));
+
   var linesArray = text.split('\n'),
       messages   = [],
       userList   = [];
+
   if(linesArray.length === 0) throw "The text has no lines";
       
   linesArray.forEach((line) => {
     if (/^(((\d+)(\/)(\d+)(\/)(\d+))(, )((\d+)(:)(\d+)( (AM|PM))?)( - )([^:]*)(:)(\s)(.*))/g.test(line)) {
       let lineData = /^(((\d+)(\/)(\d+)(\/)(\d+))(, )((\d+)(:)(\d+)( (AM|PM))?)( - )([^:]*)(:)(\s)(.*))/g.exec(line);
       let datetimeFormatString = lineData[13] == "" ? "M/D/YY H:m" : "M/D/YY h:m A";
-      let obj = {
+      let msgObj = {
         datetime: moment(`${lineData[2]} ${lineData[9]}`, datetimeFormatString),
         msg: lineData[19],
         user: lineData[16]
       };
 
-      messages.push(obj);
+      messages.push(msgObj);
 
-      if (!userList.includes(obj.user)) {
-        userList.push(obj.user);
+      if (!userList.includes(msgObj.user)) {
+        userList.push(msgObj.user);
       }
 
     } else {
-      messages[messages.length - 1].msg += `\n${line}`;
+      if(/^(((\d+)(\/)(\d+)(\/)(\d+))(, )((\d+)(:)(\d+))( - )(.*))/g.test(line)) {
+        let lineData = /^(((\d+)(\/)(\d+)(\/)(\d+))(, )((\d+)(:)(\d+))( - )(.*))/g.exec(line);
+        let msgObj = {
+          date: lineData[2],
+          msg: lineData[14],
+          user: ''
+        };
+
+        messages.push(msgObj);
+
+      } else {
+        messages[messages.length - 1].msg += `\n${line}`;
+      }
     }
   });
+
   if(messages.length === 0) throw "The text has no menssages";
+
   return {
     users: userList,
     messages: messages
