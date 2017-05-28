@@ -18,7 +18,6 @@
 
 html {
     box-sizing: border-box;
-    cursor: default;
     -ms-text-size-adjust: 100%;
     -webkit-text-size-adjust: 100%;
     font-family: sans-serif; 
@@ -44,7 +43,6 @@ ol,
 ul {
     list-style: none;
     margin: 0;
-    padding: 0;
 }
 
 h1,
@@ -59,21 +57,9 @@ a {
     text-decoration: none;
 }
 
-audio,
 img,
-svg,
-video {
+svg {
     vertical-align: middle;
-}
-
-audio,
-video {
-    display: inline-block;
-}
-
-audio:not([controls]) {
-    display: none;
-    height: 0;
 }
 
 img {
@@ -92,19 +78,12 @@ svg:not(:root) {
 }
 
 button,
-input,
-select,
-textarea {
+input{
     margin: 0;
     background-color: transparent;
     color: inherit;
     font-size: inherit;
     line-height: inherit;
-}
-
-textarea {
-    overflow: auto;
-    resize: vertical;
 }
 
 [type="search"] {
@@ -125,9 +104,7 @@ textarea {
 a,
 button,
 input,
-label,
-select,
-textarea,
+label
 [tabindex] {
     -ms-touch-action: manipulation;
     touch-action: manipulation;

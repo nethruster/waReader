@@ -4,7 +4,7 @@ import twemoji from "twemoji";
 /**
  * Replaces urls with link tags within the passed text
  * @param string text
- * @return string result
+ * @return string
  */
 const addAnchorLinksToUrls = function (text) {
   return anchorme(text);
@@ -21,7 +21,7 @@ function getEmojiUrl(iconId, options) {
 /**
  * Replaces emoji characters with their image equivalent
  * @param string text 
- * @return string result
+ * @return string
  */
 const replaceEmojiWithImg = function (text) {
   return twemoji.parse(text, getEmojiUrl);
