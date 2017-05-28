@@ -1,0 +1,28 @@
+<template>
+   <div class="wr-chat-message flex flex-cross-center">
+        <div class="wr-chat-bubble" v-if="!msg.user == ''">
+            <span class="wr-chat-message-author" v-if="chatData.users.length > 2 && chatData.messages[index > 0 ? index - 1 : 1].user != msg.user" v-bind:style="{color: this.colour}">{{msg.user}}</span>
+            <p class="wr-chat-message-text" v-html="msg.msg"></p>
+        </div>
+        <div v-else>
+            <p class="wr-chat-message-text" v-html="msg.msg"></p>
+        </div>
+   </div>
+</template>
+
+<script>
+    export default {
+        name: 'chatMessage',
+        props: ['chatData', 'msg', 'index', 'userColours', 'colours'],
+        data: function() {
+            return {
+                colour: this.getUserColour()
+            }
+        },
+        methods: {
+            getUserColour: function() {
+                return this.colours[this.userColours[this.msg.user]];
+            }
+        }
+    }
+</script>

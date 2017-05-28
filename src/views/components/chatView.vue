@@ -1,12 +1,10 @@
 <template>
     <div class="wr-chat-view flex">
         <div class="wr-chat-participants">
-            <chatParticipant v-for="(user, key) in chatData.users" :user="user" :userColours="userColours" :colours="colours" :index="key"/>
+            <chatParticipant v-for="(user, key) in chatData.users" :user="user" :userColours="userColours" :colours="colours" :index="key" />
         </div>
         <div class="wr-chat-messages">
-            <div v-for="msg in chatData.messages">
-               <span v-html="msg.msg"></span>
-            </div>
+            <chatMessage v-for="(msg, key) in chatData.messages" :chatData="chatData" :msg="msg" :userColours="userColours" :colours="colours" :index="key" />
         </div>
     </div>
 </template>
@@ -15,17 +13,19 @@
     import Helpers from './../../helpers/index';
 
     import chatParticipant from './chatParticipant.vue';
+    import chatMessage from './chatMessage.vue';
     
     export default {
         name: 'chatView',
         props: ['chatData'],
         components: {
-            chatParticipant
+            chatParticipant,
+            chatMessage
         },
         data: function() {
             return {
                 parseChatLine: Helpers.parseChatLine,
-                userColours: [],
+                userColours: {},
                 colours: [
                     '#35cd96',
                     '#6bcbef',
@@ -55,11 +55,11 @@
         },
         methods: {
             assignUserColours: function() {
-                var userColoursArr = [],
+                var userColoursArr = {},
                     coloursLength = this.colours.length;
 
                 for(let user in this.chatData.users) {
-                    userColoursArr[user] = Math.floor((Math.random() * coloursLength) + 1);
+                    userColoursArr[this.chatData.users[user]] = Math.floor((Math.random() * coloursLength) + 1);
                 }
 
                 return userColoursArr;

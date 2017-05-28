@@ -16,7 +16,7 @@
         },
         methods: {
             getUserColour: function() {
-                return this.colours[this.userColours[this.index]];
+                return this.colours[this.userColours[this.user]];
             }
         }
     }
