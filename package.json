@@ -33,6 +33,8 @@
     "vueify": "^9.4.1"
   },
   "dependencies": {
+    "anchorme": "^1.1.2",
+    "twemoji": "^2.3.0",
     "vue": "^2.3.3"
   }
 }
