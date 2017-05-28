@@ -38,6 +38,7 @@ const parseTextFile = function (text) {
   var linesArray = text.split('\n'),
       messages   = [],
       userList   = [];
+  if(linesArray.length === 0) throw "The text has no lines";
       
   linesArray.forEach((line) => {
     if (/^(((\d+)(\/)(\d+)(\/)(\d+))(, )((\d+)(:)(\d+))( - )([^:]*)(:)(\s)(.*))/g.test(line)) {
@@ -59,6 +60,7 @@ const parseTextFile = function (text) {
       messages[messages.length - 1].msg += `\n${line}`;
     }
   });
+  if(messages.length === 0) throw "The text has no menssages";
   return {
     users: userList,
     messages: messages
