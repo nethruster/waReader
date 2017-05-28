@@ -1,6 +1,7 @@
 <template>
     <div id="main-wrapper" class="flex flex-dc flex-full-center">
         <wrBody />
+        <transition id="toast-wrapper"></transition>
     </div>
 </template>
 
