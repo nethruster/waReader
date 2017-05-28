@@ -1,4 +1,5 @@
 import anchorme from "anchorme";
+import moment from 'moment';
 import twemoji from "twemoji";
 
 /**
@@ -41,13 +42,13 @@ const parseTextFile = function (text) {
   if(linesArray.length === 0) throw "The text has no lines";
       
   linesArray.forEach((line) => {
-    if (/^(((\d+)(\/)(\d+)(\/)(\d+))(, )((\d+)(:)(\d+))( - )([^:]*)(:)(\s)(.*))/g.test(line)) {
-      let lineData = /^(((\d+)(\/)(\d+)(\/)(\d+))(, )((\d+)(:)(\d+))( - )([^:]*)(:)(\s)(.*))/g.exec(line);
-
+    if (/^(((\d+)(\/)(\d+)(\/)(\d+))(, )((\d+)(:)(\d+)( (AM|PM))?)( - )([^:]*)(:)(\s)(.*))/g.test(line)) {
+      let lineData = /^(((\d+)(\/)(\d+)(\/)(\d+))(, )((\d+)(:)(\d+)( (AM|PM))?)( - )([^:]*)(:)(\s)(.*))/g.exec(line);
+      let datetimeFormatString = lineData[13] == "" ? "M/D/YY H:m" : "M/D/YY h:m A";
       let obj = {
-        date: lineData[2],
-        msg: lineData[17],
-        user: lineData[14]
+        datetime: moment(`${lineData[2]} ${lineData[9]}`, datetimeFormatString),
+        msg: lineData[19],
+        user: lineData[16]
       };
 
       messages.push(obj);
