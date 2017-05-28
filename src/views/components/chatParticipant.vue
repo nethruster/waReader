@@ -1,6 +1,6 @@
 <template>
    <div class="wr-chat-participant flex flex-cross-center">
-    <span class="wr-chat-participant-picture flex flex-full-center" v-bind:style="{backgroundColor: this.colour}">{{user.charAt(0).toUpperCase()}}</span>&nbsp;&nbsp;
+    <span class="wr-chat-participant-picture flex flex-full-center" :style="{backgroundColor: this.colour}">{{user.charAt(0).toUpperCase()}}</span>&nbsp;&nbsp;
     <div v-html="user"></div>
    </div>
 </template>

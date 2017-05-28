@@ -35,7 +35,6 @@
 .wr-chat-message {
     padding-left: 9%;
     padding-right: 9%;
-    margin-bottom: 2px;
     width: 100%;
 }
 
@@ -44,6 +43,10 @@
     padding: calc(var(--base-pm) / 2) var(--base-pm);
     border-radius: 8px;
     box-shadow: 0 1px 0.5px rgba(0,0,0,0.13);
+    margin-bottom: 2px;
+    &.lastByUser {
+        margin-bottom: 12px;
+    }
 }
 
 .wr-chat-message-text {

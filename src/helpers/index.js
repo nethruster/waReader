@@ -7,7 +7,12 @@ import twemoji from "twemoji";
  * @return string
  */
 const addAnchorLinksToUrls = function (text) {
-  return anchorme(text);
+  return anchorme(text, {
+    attributes: [{
+        name: "target",
+        value: "_blank"
+      }]
+    });
 }
 
 /**
