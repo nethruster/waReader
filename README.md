@@ -9,5 +9,5 @@ npm install
 npm run dev
 
 # build for production with minification and autoprefixer
-npm run dist
+npm run build
 ```
