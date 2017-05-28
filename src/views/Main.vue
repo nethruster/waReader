@@ -5,7 +5,7 @@
 </template>
 
 <script>
-    import wrBody from './components/wrBody.vue'
+    import wrBody from './components/wrBody.vue';
 
     export default {
         name: 'Home',

@@ -15,16 +15,18 @@
 </template>
 
 <script>
+    import Helpers from './../../helpers/index.js';
+
     export default {
         name: 'uploadFile',
+        props: ['populateData'],
         methods: {
             getFile: function() {
-                var fileInput = document.getElementById("file"),
-                    file = fileInput.files[0],
+                    file = document.getElementById("file").files[0],
                     fr = new FileReader();
-                    
-                fr.onload = function(event) {
-                    console.log(event.target.result);
+
+                fr.onload = (event) => {
+                    this.populateData(Helpers.parseTextFile(event.target.result));
                 }
 
                 fr.readAsText(file);
