@@ -4,11 +4,14 @@
 }
 
 .wr-chat-participants {
-    padding: calc(var(--base-pm) * 2) 0;
     height: 100%;
     background-color: #fff;
+    flex: 1;
+}
+
+.wr-chat-participants-list {
+    height: calc(100% - var( --chat-header-height));
     overflow-y: auto;
-    max-width: 290px;
 }
 
 .wr-chat-participant {
@@ -33,10 +36,21 @@
 }
 
 .wr-chat-messages {
-    overflow-y: auto;
     width: 100%;
     background-image: url(./media/bg.png);
     background-repeat: repeat;
+    flex: 4;
+
+    .wr-chat-header {
+        border-left: 1px solid rgba(0,0,0,0.08);
+    }
+}
+
+.wr-chat-messages-list {
+    overflow-y: auto;
+    width: 100%;
+    padding: var(--base-pm) 0;
+    height: calc(100% - var(--chat-header-height));
 }
 
 .wr-chat-message {
@@ -47,6 +61,7 @@
 
 .wr-chat-bubble {
     background-color: #fff;
+    color: #262626;
     padding: calc(var(--base-pm) / 1.5) var(--base-pm);
     border-radius: 8px;
     box-shadow: 0 1px 0.5px rgba(0,0,0,0.13);
@@ -80,4 +95,13 @@
     padding: calc(var(--base-pm) / 2) var(--base-pm);
     margin: var(--base-pm) auto;
     font-size: .9em;
+}
+
+.wr-chat-header {
+    background-color: #eee;
+    height: var( --chat-header-height);
+    padding: 0 var(--base-pm);
+    border-bottom: 1px solid rgba(0,0,0, .1);
+    text-transform: uppercase;
+    font-weight: 400;
 }

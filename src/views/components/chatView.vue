@@ -1,10 +1,20 @@
 <template>
     <div class="wr-chat-view flex">
         <div class="wr-chat-participants">
-            <chatParticipant v-for="(user, key) in chatData.users" :user="user" :userColours="userColours" :colours="colours" :index="key" />
+            <div class="wr-chat-header flex flex-full-center">
+                {{ chatData.users.length }} chat members
+            </div>
+            <div class="wr-chat-participants-list">
+                <chatParticipant v-for="(user, key) in chatData.users" :user="user" :userColours="userColours" :colours="colours" :index="key" />
+            </div>
         </div>
         <div class="wr-chat-messages">
-            <chatMessage v-for="(msg, key) in chatData.messages" :chatData="chatData" :msg="msg" :userColours="userColours" :colours="colours" :index="key" />
+            <div class="wr-chat-header flex flex-cross-center">
+                Chat messages
+            </div>
+            <div class="wr-chat-messages-list">
+                <chatMessage v-for="(msg, key) in chatData.messages" :chatData="chatData" :msg="msg" :userColours="userColours" :colours="colours" :index="key" />
+            </div>
         </div>
     </div>
 </template>
