@@ -69,18 +69,19 @@ const parseTextFile = function (text) {
       }
 
     } else {
-      if(/^(((\d+)(\/)(\d+)(\/)(\d+))(, )((\d+)(:)(\d+))( - )(.*))/g.test(line)) {
-        let lineData = /^(((\d+)(\/)(\d+)(\/)(\d+))(, )((\d+)(:)(\d+))( - )(.*))/g.exec(line);
+      if(/^(((\d+)(\/)(\d+)(\/)(\d+))(, )((\d+)(:)(\d+)( (AM|PM))?)( - )(.*))/g.test(line)) {
+        let lineData = /^(((\d+)(\/)(\d+)(\/)(\d+))(, )((\d+)(:)(\d+)( (AM|PM))?)( - )(.*))/g.exec(line);
+        let datetimeFormatString = lineData[13] == "" ? "M/D/YY H:m" : "M/D/YY h:m A";
         let msgObj = {
-          date: lineData[2],
-          msg: lineData[14],
+          date: moment(`${lineData[2]} ${lineData[9]}`, datetimeFormatString),
+          msg: lineData[16],
           user: ''
         };
 
         messages.push(msgObj);
 
       } else {
-        messages[messages.length - 1].msg += `\n${line}`;
+        messages[messages.length > 0 ? messages.length - 1 : 0].msg += `\n${line}`;
       }
     }
   });

@@ -4,7 +4,7 @@
             <span class="wr-chat-message-author" v-if="chatData.users.length > 2 && chatData.messages[index > 0 ? index - 1 : 1].user != msg.user" :style="{color: this.colour}">{{msg.user}}</span>
             <p class="wr-chat-message-text" v-html="msg.msg"></p>
         </div>
-        <div v-else>
+        <div class="wr-chat-sys-message" v-else>
             <p class="wr-chat-message-text" v-html="msg.msg"></p>
         </div>
    </div>

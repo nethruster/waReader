@@ -1,7 +1,7 @@
 <template>
-   <div class="wr-chat-participant flex flex-cross-center">
-    <span class="wr-chat-participant-picture flex flex-full-center" :style="{backgroundColor: this.colour}">{{user.charAt(0).toUpperCase()}}</span>&nbsp;&nbsp;
-    <div v-html="user"></div>
+   <div class="wr-chat-participant flex-cross-center">
+    <span class="wr-chat-participant-picture flex flex-full-center" :style="{backgroundColor: this.colour}">{{ getUserLetter() }}</span>&nbsp;&nbsp;
+    <div class="wr-chat-participant-name" v-html="user"></div>
    </div>
 </template>
 
@@ -17,6 +17,14 @@
         methods: {
             getUserColour: function() {
                 return this.colours[this.userColours[this.user]];
+            },
+            getUserLetter: function() {
+                if(!this.user.includes('+')) {
+                    return this.user.charAt(0).toUpperCase();
+                } else {
+                    return "&";
+                }
+                
             }
         }
     }
