@@ -1,6 +1,5 @@
 import anchorme from "anchorme";
 import moment from 'moment';
-import twemoji from "twemoji";
 
 /**
  * Replaces urls with link tags within the passed text
@@ -14,23 +13,6 @@ const addAnchorLinksToUrls = function (text) {
         value: "_blank"
       }]
     });
-}
-
-/**
- * Gets the source of the image for the passed emoji id
- * Callback function
- */
-function getEmojiUrl(iconId, options) {
-  return `https://twemoji.maxcdn.com/svg/${iconId}.svg`;
-}
-
-/**
- * Replaces emoji characters with their image equivalent
- * @param string text 
- * @return string
- */
-const replaceEmojiWithImg = function (text) {
-  return twemoji.parse(text, getEmojiUrl);
 }
 
 /**
@@ -64,10 +46,8 @@ function getDateFormat(firstn, postm) {
  */
 const parseTextFile = function (text) {
 
-  /* Replace html emoji entities by their image equivalent 
-   * And then surround urls with anchor tags
-   */
-  text = replaceEmojiWithImg(addAnchorLinksToUrls(text));
+  // Surround urls with anchor tags
+  text = addAnchorLinksToUrls(text);
 
   var linesArray = text.split('\n'),
       messages   = [],
