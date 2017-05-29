@@ -70,6 +70,7 @@
     font-size: .96em;
     line-height: 20px;
     word-wrap: break-word;
+    position: relative;
 
     &.lastByUser {
         margin-bottom: 12px;
@@ -79,7 +80,21 @@
 .wr-chat-message-text {
     cursor: text;
     white-space: pre-wrap;
+}
 
+.wr-chat-message-text::after {
+    content: " \00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0";
+    display: inline;
+}
+
+.wr-chat-message-datetime {
+    position: absolute;
+    display: inline-block;
+    right: 8px;
+    bottom: 2px;
+    font-size: .78em;
+    color: rgba(0,0,0,.45);
+    font-weight: 400;
 }
 
 .wr-chat-message-author {

@@ -69,7 +69,7 @@
                     coloursLength = this.colours.length;
 
                 for(let user in this.chatData.users) {
-                    userColoursArr[this.chatData.users[user]] = Math.floor((Math.random() * coloursLength) + 1);
+                    userColoursArr[this.chatData.users[user]] = Math.floor(Math.random() * coloursLength);
                 }
 
                 return userColoursArr;

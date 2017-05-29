@@ -34,6 +34,29 @@ const replaceEmojiWithImg = function (text) {
 }
 
 /**
+ * Computes the date format depending on the chat date format
+ * returns the correspondent format
+ * @param string firstn - first number of the date 
+ * @param string postm - AM/PM
+ * @return string
+ */
+function getDateFormat(firstn, postm) {
+  if(firstn > 12) {
+    if(postm == "") {
+      return "DD/MM/YYYY HH:mm";
+    } else {
+      return "DD/MM/YYYY hh:mm A";
+    }
+  } else {
+    if(postm == "") {
+      return "MM/DD/YYYY HH:mm";
+    } else {
+      return "MM/DD/YYYY hh:mm A";
+    }
+  }
+}
+
+/**
  * Parses the content of a Whatsapp txt chat export file and returns 
  * the data in an object
  * @param string text
@@ -55,9 +78,9 @@ const parseTextFile = function (text) {
   linesArray.forEach((line) => {
     if (/^(((\d+)(\/)(\d+)(\/)(\d+))(, )((\d+)(:)(\d+)( (AM|PM))?)( - )([^:]*)(:)(\s)(.*))/g.test(line)) {
       let lineData = /^(((\d+)(\/)(\d+)(\/)(\d+))(, )((\d+)(:)(\d+)( (AM|PM))?)( - )([^:]*)(:)(\s)(.*))/g.exec(line);
-      let datetimeFormatString = lineData[13] == "" ? "M/D/YY H:m" : "M/D/YY h:m A";
+      let datetimeFormatString = getDateFormat(lineData[3], lineData[13]);
       let msgObj = {
-        datetime: moment(`${lineData[2]} ${lineData[9]}`, datetimeFormatString),
+        datetime: moment(`${lineData[2]} ${lineData[9]}`, datetimeFormatString).format("DD/MM/YYYY HH:mm"),
         msg: lineData[19],
         user: lineData[16]
       };
@@ -71,9 +94,9 @@ const parseTextFile = function (text) {
     } else {
       if(/^(((\d+)(\/)(\d+)(\/)(\d+))(, )((\d+)(:)(\d+)( (AM|PM))?)( - )(.*))/g.test(line)) {
         let lineData = /^(((\d+)(\/)(\d+)(\/)(\d+))(, )((\d+)(:)(\d+)( (AM|PM))?)( - )(.*))/g.exec(line);
-        let datetimeFormatString = lineData[13] == "" ? "M/D/YY H:m" : "M/D/YY h:m A";
+        let datetimeFormatString = getDateFormat(lineData[3], lineData[13]);
         let msgObj = {
-          date: moment(`${lineData[2]} ${lineData[9]}`, datetimeFormatString),
+          date: moment(`${lineData[2]} ${lineData[9]}`, datetimeFormatString).format("DD/MM/YYYY HH:mm"),
           msg: lineData[16],
           user: ''
         };
@@ -95,7 +118,5 @@ const parseTextFile = function (text) {
 }
 
 export default {
-  parseTextFile,
-  replaceEmojiWithImg,
-  addAnchorLinksToUrls
+  parseTextFile
 }

@@ -30,10 +30,15 @@ body {
     margin: 0;
     width: 100%;
     height: 100%;
-    font-weight: 300;
+    font-weight: 400;
     position: absolute;
     overflow: hidden;
-    color: #fff;
+    color: #4b4b4b;
+    text-rendering: optimizeLegibility;
+    font-feature-settings: "kern";
+    -webkit-font-feature-settings: "kern";
+    -moz-font-feature-settings: "kern";
+    -moz-font-feature-settings: "kern=1";
     background-color: #dfdfdf;
     background-image: var(--wbrand-bg-colour);
     font-family: Roboto, 'Noto Sans', apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
