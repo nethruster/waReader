@@ -58,8 +58,12 @@ p {
 a {
     background-color: transparent;
     -webkit-text-decoration-skip: objects;
-    color: currentColor;
-    text-decoration: none;
+    color: lighten(#4b4b4b, 15%);
+    text-decoration: underline;
+}
+
+a:hover {
+    color: lighten(#4b4b4b, 30%);
 }
 
 img,

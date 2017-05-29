@@ -1,5 +1,5 @@
 <template>
-   <div class="wr-chat-participant flex-cross-center">
+   <div :class="['wr-chat-participant', 'flex-cross-center', 'pointer', {'wr-chat-self-participant': this.user == this.selfUser == true}]" v-on:click="this.handleClick">
     <span class="wr-chat-participant-picture flex flex-full-center" :style="{backgroundColor: this.colour}">{{ getUserLetter() }}</span>&nbsp;&nbsp;
     <div class="wr-chat-participant-name" v-html="user"></div>
    </div>
@@ -8,7 +8,7 @@
 <script>
     export default {
         name: 'chatParticipant',
-        props: ['user', 'index', 'userColours', 'colours'],
+        props: ['user', 'index', 'userColours', 'colours', 'selfUser', 'setSelfUser'],
         data: function() {
             return {
                 colour: this.getUserColour()
@@ -25,6 +25,11 @@
                     return "&";
                 }
                 
+            },
+            handleClick: function() {
+                if(this.selfUser != this.user) {
+                    this.setSelfUser(this.user);
+                }
             }
         }
     }

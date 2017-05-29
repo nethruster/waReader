@@ -5,7 +5,7 @@
                 {{ chatData.users.length }} chat members
             </div>
             <div class="wr-chat-participants-list">
-                <chatParticipant v-for="(user, key) in chatData.users" :user="user" :userColours="userColours" :colours="colours" :index="key" />
+                <chatParticipant v-for="(user, key) in chatData.users" :user="user" :userColours="userColours" :colours="colours" :index="key" :selfUser="selfUser" :setSelfUser="setSelfUser" />
             </div>
         </div>
         <div class="wr-chat-messages">
@@ -13,7 +13,7 @@
                 Chat messages
             </div>
             <div class="wr-chat-messages-list">
-                <chatMessage v-for="(msg, key) in chatData.messages" :chatData="chatData" :msg="msg" :userColours="userColours" :colours="colours" :index="key" />
+                <chatMessage v-for="(msg, key) in chatData.messages" :chatData="chatData" :msg="msg" :userColours="userColours" :colours="colours" :index="key" :selfUser="selfUser" />
             </div>
         </div>
     </div>
@@ -36,6 +36,7 @@
             return {
                 parseChatLine: Helpers.parseChatLine,
                 userColours: {},
+                selfUser: '',
                 colours: [
                     '#35cd96',
                     '#6bcbef',
@@ -62,6 +63,9 @@
         },
         created: function() {
              this.userColours = this.assignUserColours();
+             if(this.chatData.users.length === 2) {
+                this.setSelfUser(this.chatData.users[0]);
+            }
         },
         methods: {
             assignUserColours: function() {
@@ -73,6 +77,9 @@
                 }
 
                 return userColoursArr;
+            },
+            setSelfUser: function(user) {
+                this.selfUser = user;
             }
         }
     }

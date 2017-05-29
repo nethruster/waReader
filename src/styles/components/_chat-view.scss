@@ -15,8 +15,7 @@
 }
 
 .wr-chat-participant {
-    padding: 0 calc(var(--base-pm) * 2);
-    margin:  var(--base-pm) 0;
+    padding: var(--base-pm) calc(var(--base-pm) * 2);
     width: 100%;
     display: inline-flex;
 }
@@ -119,4 +118,16 @@
     border-bottom: 1px solid rgba(0,0,0, .1);
     text-transform: uppercase;
     font-weight: 400;
+}
+
+.wr-chat-self {
+    justify-content: flex-end;
+    
+    .wr-chat-bubble {
+        background-color: #dcf8c6;
+    }
+}
+
+.wr-chat-self-participant {
+    background-color: #dcf8c6;
 }
