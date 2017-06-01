@@ -1,0 +1,39 @@
+.loader {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    &.is-loading {
+        opacity: 1;
+        visibility: visible;
+        pointer-events: initial;
+        position: relative;
+        margin: 0 auto;
+        width: $width;
+        &:before {
+            content: '';
+            display: block;
+            padding-top: 100%;
+        }
+    }
+}
+
+.circular {
+    animation: rotate 2s linear infinite;
+    height: 100%;
+    transform-origin: center center;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+}
+
+.path {
+    stroke-dasharray: 1, 200;
+    stroke-dashoffset: 0;
+    animation: dash 1.5s ease-in-out infinite;
+    stroke-linecap: round;
+    stroke: #fff;
+}
