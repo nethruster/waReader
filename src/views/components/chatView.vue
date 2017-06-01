@@ -4,6 +4,11 @@
             <div class="wr-chat-header flex flex-full-center">
                 {{ chatData.users.length }} chat members
             </div>
+            <div class="wr-chat-header brand-bg flex flex-full-center pointer" v-on:click="handleBackCLick">
+                <svg viewBox="0 0 24 24">
+                    <path d="M20,11V13H8L13.5,18.5L12.08,19.92L4.16,12L12.08,4.08L13.5,5.5L8,11H20Z" />
+                </svg>&nbsp;Load new chat
+            </div>
             <div class="wr-chat-participants-list">
                 <chatParticipant v-for="(user, key) in chatData.users" :user="user" :userColours="userColours" :colours="colours" :index="key" :selfUser="selfUser" :setSelfUser="setSelfUser" />
             </div>
@@ -80,6 +85,9 @@
             },
             setSelfUser: function(user) {
                 this.selfUser = user;
+            },
+            handleBackCLick: function() {
+                location.reload(true);
             }
         }
     }

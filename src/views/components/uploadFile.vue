@@ -37,15 +37,14 @@
         },
         methods: {
             getFile: function() {
-                var fileInput = document.getElementById("file"),
-                    file = fileInput.files[0],
-                    fr;
+                var fileInput = document.getElementById("file");
 
                 if(fileInput.files.length > 0) {
                     this.isLoading = true;
                     this.buttonText = 'Procesing chat&nbsp;';
-
-                    fr = new FileReader();
+                    
+                    var file = fileInput.files[0],
+                        fr = new FileReader();
 
                     fr.readAsText(file);
 
