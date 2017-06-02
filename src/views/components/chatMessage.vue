@@ -1,7 +1,7 @@
 <template>
    <div :class="['wr-chat-message', 'flex', 'flex-cross-center', {'wr-chat-self': msg.user == selfUser == true}]">
         <div class="wr-chat-bubble" v-if="!(msg.user === '')" :class="{'lastByUser': msg.user != chatData.messages[index < chatData.messages.length - 1 ? index + 1 : 0].user == true}">
-            <span class="wr-chat-message-author" v-if="chatData.users.length > 2 && chatData.messages[index > 0 ? index - 1 : 1].user != msg.user" :style="{color: this.colour}">{{msg.user}}</span>
+            <span class="wr-chat-message-author" v-if="chatData.users.length > 2 && (msg.user != chatData.messages[index > 0 ? index - 1 : 0].user || msg == chatData.messages[0])" :style="{color: this.colour}">{{msg.user}}</span>
             <div class="wr-chat-message-text" v-html="msg.msg"></div>
             <p class="wr-chat-message-datetime">{{ msg.datetime }}</p>
         </div>
