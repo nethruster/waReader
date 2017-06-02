@@ -8,12 +8,16 @@
 <script>
     import uploadFile from './uploadFile.vue'
     import chatView from './chatView.vue';
+    import mdripple from '../../helpers/mdripple.js';
 
     export default {
         name: 'wrBody',
         components: {
             uploadFile,
             chatView
+        },
+        mounted: function () {
+            mdripple();
         },
         data: function() {
             return {

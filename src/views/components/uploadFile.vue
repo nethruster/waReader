@@ -2,14 +2,14 @@
     <div class="upload-file-wrapper flex-dc flex flex-full-center">
         <p>Upload a Whatpsapp Text (.txt) file and view it in a nice, clean readeable format.</p>
         <input type="file" id="file" name="file" class="upload-file-input" accept=".txt">
-        <label for="file" class="upload-file-label pointer flex-full-center">
+        <label for="file" class="upload-file-label pointer flex-full-center" ripple="ripple">
             <span>Choose file</span>&nbsp;
             <svg viewBox="0 0 24 24">
                 <path d="M9,16V10H5L12,3L19,10H15V16H9M5,20V18H19V20H5Z" />
             </svg>
         </label>
-        <div class="flex flex-full-center">   
-        <button class="upload-file-button pointer" v-on:click.prevent="getFile">
+        <div class="flex flex-full-center">
+        <button class="upload-file-button pointer" :disabled="isLoading ? '' : disabled" v-on:click.prevent="getFile" ripple="ripple">
             <span class="flex flex-cross-center">
                 <p v-html="this.buttonText"></p>
                 <div id="upload-file-loader" :class="['loader', {'is-loading': isLoading}]">
@@ -50,7 +50,7 @@
 
                     fr.onload = (event) => {
                         try {
-                            setTimeout(this.populateData(Helpers.parseTextFile(event.target.result)), 700);
+                            setTimeout(this.populateData(Helpers.parseTextFile(event.target.result)), 1200);
                         } catch(err) {
                             this.isLoading = false;
                             this.buttonText = 'Submit&nbsp;';

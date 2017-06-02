@@ -18,3 +18,11 @@
         stroke-dashoffset: -124px;
     }
 }
+
+// MD ripple
+@keyframes ripple {
+    to {
+        opacity: 0;
+        transform: scale(2);
+    }
+}

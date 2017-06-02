@@ -59,8 +59,8 @@ gulp.task('serve', ['build', 'sass:watch', 'js:watch', 'vue:watch'], function() 
 });
 
 gulp.task('buildassets', () => {
-    return gulp.src('./src/media/*')
-        .pipe(gulp.dest("./dist/media/"))
+    return gulp.src('./src/assets/*')
+        .pipe(gulp.dest("./dist/assets/"))
 });
 
 gulp.task('build', ['sass', 'buildjs', 'buildassets'], () => {

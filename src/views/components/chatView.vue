@@ -4,18 +4,18 @@
             <div class="wr-chat-header flex flex-full-center">
                 {{ chatData.users.length }} chat members
             </div>
-            <div class="wr-chat-header brand-bg flex flex-full-center pointer" v-on:click="handleBackCLick">
+            <div class="wr-chat-header brand-bg flex flex-full-center pointer" v-on:click="handleBackCLick" ripple="ripple">
                 <svg viewBox="0 0 24 24">
                     <path d="M20,11V13H8L13.5,18.5L12.08,19.92L4.16,12L12.08,4.08L13.5,5.5L8,11H20Z" />
                 </svg>&nbsp;Load new chat
             </div>
             <div class="wr-chat-participants-list">
-                <chatParticipant v-for="(user, key) in chatData.users" :user="user" :colour="colours[userColours[user]]" :index="key" :selfUser="selfUser" :setSelfUser="setSelfUser" />
+                <chatParticipant v-for="(user, key) in chatData.users" :user="user" :colour="colours[userColours[user]]" :index="key" :selfUser="selfUser" :setSelfUser="setSelfUser" ripple="ripple" />
             </div>
         </div>
         <div class="wr-chat-messages">
             <div class="wr-chat-header flex flex-cross-center">
-                Chat messages
+                {{ chatData.messages.length }} Chat messages
             </div>
             <div class="wr-chat-messages-list">
                 <chatMessage v-for="(msg, key) in chatData.messages" :showAuthor="msg.user != chatData.messages[key > 0 ? key - 1 : 0].user || msg == chatData.messages[0]" :isLastByUser="msg.user != chatData.messages[key < chatData.messages.length - 1 ? key + 1 : 0].user ? true : false" :msg="msg" :colour="colours[userColours[msg.user]]" :index="key" :selfUser="selfUser" :isGroupChat="chatData.messages.length > 2 ? true : false" />
@@ -29,6 +29,8 @@
 
     import chatParticipant from './chatParticipant.vue';
     import chatMessage from './chatMessage.vue';
+
+    import mdripple from '../../helpers/mdripple.js';
     
     export default {
         name: 'chatView',
@@ -36,6 +38,9 @@
         components: {
             chatParticipant,
             chatMessage
+        },
+        mounted: function () {
+            mdripple();
         },
         data: function() {
             return {
