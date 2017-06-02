@@ -8,16 +8,8 @@
 <script>
     export default {
         name: 'chatParticipant',
-        props: ['user', 'index', 'userColours', 'colours', 'selfUser', 'setSelfUser'],
-        data: function() {
-            return {
-                colour: this.getUserColour()
-            }
-        },
+        props: ['user', 'index', 'colour', 'selfUser', 'setSelfUser'],
         methods: {
-            getUserColour: function() {
-                return this.colours[this.userColours[this.user]];
-            },
             getUserLetter: function() {
                 if(!this.user.includes('+')) {
                     return this.user.charAt(0).toUpperCase();

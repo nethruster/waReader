@@ -10,7 +10,7 @@
                 </svg>&nbsp;Load new chat
             </div>
             <div class="wr-chat-participants-list">
-                <chatParticipant v-for="(user, key) in chatData.users" :user="user" :userColours="userColours" :colours="colours" :index="key" :selfUser="selfUser" :setSelfUser="setSelfUser" />
+                <chatParticipant v-for="(user, key) in chatData.users" :user="user" :colour="colours[userColours[user]]" :index="key" :selfUser="selfUser" :setSelfUser="setSelfUser" />
             </div>
         </div>
         <div class="wr-chat-messages">
@@ -18,7 +18,7 @@
                 Chat messages
             </div>
             <div class="wr-chat-messages-list">
-                <chatMessage v-for="(msg, key) in chatData.messages" :chatData="chatData" :msg="msg" :userColours="userColours" :colours="colours" :index="key" :selfUser="selfUser" />
+                <chatMessage v-for="(msg, key) in chatData.messages" :showAuthor="msg.user != chatData.messages[key > 0 ? key - 1 : 0].user || msg == chatData.messages[0]" :isLastByUser="msg.user != chatData.messages[key < chatData.messages.length - 1 ? key + 1 : 0].user ? true : false" :msg="msg" :colour="colours[userColours[msg.user]]" :index="key" :selfUser="selfUser" :isGroupChat="chatData.messages.length > 2 ? true : false" />
             </div>
         </div>
     </div>
