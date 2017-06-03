@@ -15,7 +15,7 @@
         </div>
         <div class="wr-chat-messages">
             <div class="wr-chat-header flex flex-cross-center">
-                {{messageCount}}/{{ chatData.messages.length }} Chat messages
+               Chat with {{chatTitle}} - {{messageCount}}/{{ chatData.messages.length }} messages
             </div>
             <div class="wr-chat-messages-list" v-infinite-scroll="loadMore" infinite-scroll-disabled="busy" infinite-scroll-distance="400">
                 <chatMessage v-for="(msg, key) in tempData" :showAuthor="msg.user != tempData[key > 0 ? key - 1 : 0].user || msg == tempData[0]" :isLastByUser="msg.user != tempData[key < tempData.length - 1 ? key + 1 : 0].user ? true : false" :msg="msg" :colour="colours[userColours[msg.user]]" :index="key" :selfUser="selfUser" :isGroupChat="isGroupChat" />
@@ -34,7 +34,7 @@
     
     export default {
         name: 'chatView',
-        props: ['chatData'],
+        props: ['chatData', 'chatTitle'],
         components: {
             chatParticipant,
             chatMessage
@@ -77,10 +77,6 @@
         },
         created: function() {
             this.userColours = this.assignUserColours();
-
-            if(this.chatData.users.length === 2) {
-                this.setSelfUser(this.chatData.users[0]);
-            }
         },
         methods: {
             assignUserColours: function() {

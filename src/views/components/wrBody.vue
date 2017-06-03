@@ -1,7 +1,7 @@
 <template>
     <div class="wr-body flex flex-full-center">
       <uploadFile :populateData="populateData" v-if="Object.keys(this.chatData).length === 0" />
-      <chatView :chatData="chatData" v-else />
+      <chatView :chatData="chatData" :chatTitle="chatTitle" v-else />
     </div>
 </template>
 
@@ -21,12 +21,14 @@
         },
         data: function() {
             return {
-                chatData: {}
+                chatData: {},
+                chatTitle: ''
             }
         },
         methods: {
-            populateData: function(data) {
+            populateData: function(data, chatTitle) {
                 this.chatData = data;
+                this.chatTitle = /(^WhatsApp Chat with )?(.+)(.txt)/g.exec(chatTitle)[2];
             }
         }
     }

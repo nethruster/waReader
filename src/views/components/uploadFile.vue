@@ -50,7 +50,7 @@
 
                     fr.onload = (event) => {
                         try {
-                            setTimeout(this.populateData(Helpers.parseTextFile(event.target.result)), 1200);
+                            setTimeout(this.populateData(Helpers.parseTextFile(event.target.result), file.name), 1200);
                         } catch(err) {
                             this.isLoading = false;
                             this.buttonText = 'Submit&nbsp;';
