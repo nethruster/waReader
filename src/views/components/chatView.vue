@@ -16,13 +16,9 @@
         <div class="wr-chat-messages">
             <div class="wr-chat-header flex flex-cross-center">
                Chat with {{chatTitle}}
-               <input type="text" v-model="messageSearchQuery" v-on:input="filterMessages">
             </div>
             <div class="wr-chat-messages-list" v-infinite-scroll="loadMore" infinite-scroll-disabled="busy" infinite-scroll-distance="400" v-if="messageSearchQuery == ''">
                 <chatMessage v-for="(msg, key) in tempData" :showAuthor="msg.user != tempData[key > 0 ? key - 1 : 0].user || msg == tempData[0]" :isLastByUser="msg.user != tempData[key < tempData.length - 1 ? key + 1 : 0].user ? true : false" :msg="msg" :colour="colours[userColours[msg.user]]" :index="key" :selfUser="selfUser" :isGroupChat="isGroupChat" />
-            </div>
-            <div class="wr-chat-messages-list" v-else>
-               <chatMessage v-for="(msg, key) in filteredMessages" :showAuthor="msg.user != filteredMessages[key > 0 ? key - 1 : 0].user || msg == filteredMessages[0]" :isLastByUser="msg.user != filteredMessages[key < filteredMessages.length - 1 ? key + 1 : 0].user ? true : false" :msg="msg" :colour="colours[userColours[msg.user]]" :index="key" :selfUser="selfUser" :isGroupChat="isGroupChat" />
             </div>
         </div>
     </div>
@@ -112,11 +108,6 @@
                     
                     this.busy = false;
                 }, 100);
-            },
-            filterMessages: function() {
-                this.filteredMessages = this.chatData.messages.filter((message) => {
-                    return message.msg.includes(this.messageSearchQuery);
-                })
             }
         }
     }
