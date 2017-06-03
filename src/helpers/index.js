@@ -91,6 +91,8 @@ const parseTextFile = function (text) {
 
   if(messages.length === 0) throw "The text has no menssages";
 
+  userList.sort();
+
   return {
     users: userList,
     messages: messages

@@ -5,7 +5,7 @@
 # install dependencies
 npm install
 
-# run development mode with hot reload at localhost:8080
+# run development mode with hot reload at localhost:3000
 npm run dev
 
 # build for production with minification and autoprefixer

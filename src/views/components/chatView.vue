@@ -15,9 +15,9 @@
         </div>
         <div class="wr-chat-messages">
             <div class="wr-chat-header flex flex-cross-center">
-                {{ chatData.messages.length }} Chat messages
+                {{messageCount}}/{{ chatData.messages.length }} Chat messages
             </div>
-            <div class="wr-chat-messages-list" v-infinite-scroll="loadMore" infinite-scroll-disabled="busy" infinite-scroll-distance="100">
+            <div class="wr-chat-messages-list" v-infinite-scroll="loadMore" infinite-scroll-disabled="busy" infinite-scroll-distance="400">
                 <chatMessage v-for="(msg, key) in tempData" :showAuthor="msg.user != tempData[key > 0 ? key - 1 : 0].user || msg == tempData[0]" :isLastByUser="msg.user != tempData[key < tempData.length - 1 ? key + 1 : 0].user ? true : false" :msg="msg" :colour="colours[userColours[msg.user]]" :index="key" :selfUser="selfUser" :isGroupChat="isGroupChat" />
             </div>
         </div>
@@ -48,8 +48,9 @@
                 selfUser: '',
                 isGroupChat: this.chatData.messages.length > 2 ? true : false,
                 tempData: [],             // Used to store lazy loading messages (messages are pushed here progressively)
-                count: 0,                 // Message counter for lazy loading control,
-                scrollMessagesToLoad: 25, // Ammount of messages to load each time we lazy load new messages
+                messageCount: 0,          // Message counter for lazy loading control,
+                scrollMessagesToLoad: 30, // Ammount of messages to load each time we lazy load new messages,
+                busy: false,
                 colours: [
                     '#35cd96',
                     '#6bcbef',
@@ -102,13 +103,13 @@
                 this.busy = true;
 
                 setTimeout(() => {
-                    for (var i = 0; i < this.scrollMessagesToLoad && this.count < this.chatData.messages.length; i++) {
-                        this.tempData.push(this.chatData.messages[this.count]);
-                        this.count++;
+                    for (var i = 0; i < this.scrollMessagesToLoad && this.messageCount < this.chatData.messages.length; i++) {
+                        this.tempData.push(this.chatData.messages[this.messageCount]);
+                        this.messageCount++;
                     }
                     
                     this.busy = false;
-                }, 200);
+                }, 100);
             }
         }
     }
