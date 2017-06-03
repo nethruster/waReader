@@ -17,7 +17,7 @@
             <div class="wr-chat-header flex flex-cross-center">
                Chat with {{chatTitle}}
             </div>
-            <div class="wr-chat-messages-list" v-infinite-scroll="loadMore" infinite-scroll-disabled="busy" infinite-scroll-distance="400" v-if="messageSearchQuery == ''">
+            <div class="wr-chat-messages-list" v-infinite-scroll="loadMore" infinite-scroll-disabled="busy" infinite-scroll-distance="400">
                 <chatMessage v-for="(msg, key) in tempData" :showAuthor="msg.user != tempData[key > 0 ? key - 1 : 0].user || msg == tempData[0]" :isLastByUser="msg.user != tempData[key < tempData.length - 1 ? key + 1 : 0].user ? true : false" :msg="msg" :colour="colours[userColours[msg.user]]" :index="key" :selfUser="selfUser" :isGroupChat="isGroupChat" />
             </div>
         </div>
@@ -48,11 +48,9 @@
                 selfUser: '',
                 isGroupChat: this.chatData.messages.length > 2 ? true : false,
                 tempData: [],             // Used to store lazy loading messages (messages are pushed here progressively)
-                filteredMessages: [],
                 messageCount: 0,          // Message counter for lazy loading control,
                 scrollMessagesToLoad: 30, // Ammount of messages to load each time we lazy load new messages,
                 busy: false,
-                messageSearchQuery: '',
                 colours: [
                     '#35cd96',
                     '#6bcbef',
