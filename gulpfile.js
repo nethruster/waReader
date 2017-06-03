@@ -9,7 +9,7 @@ const gulp         = require('gulp'),
       buffer       = require("vinyl-buffer"),
       babelify     = require('babelify'),
       browserify   = require("browserify"),
-      browserSync = require('browser-sync').create(),
+      browserSync  = require('browser-sync').create(),
       autoprefixer = require('gulp-autoprefixer');
 
 gulp.task('sass', () => {
