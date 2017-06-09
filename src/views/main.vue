@@ -1,7 +1,7 @@
 <template>
     <div id="main-wrapper" class="flex flex-dc flex-full-center">
         <wrBody />
-        <transition id="toast-wrapper"></transition>
+        <transition><!-- Toast element is supposed to go here, TODO: add the element with id: 'toast-wrapper' --></transition>
     </div>
 </template>
 

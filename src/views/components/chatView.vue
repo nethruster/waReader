@@ -18,7 +18,7 @@
                Chat with {{chatTitle}}
             </div>
             <div class="wr-chat-messages-list" v-infinite-scroll="loadMore" infinite-scroll-disabled="busy" infinite-scroll-distance="400">
-                <chatMessage v-for="(msg, key) in tempData" :showAuthor="msg.user != tempData[key > 0 ? key - 1 : 0].user || msg == tempData[0]" :isLastByUser="msg.user != tempData[key < tempData.length - 1 ? key + 1 : 0].user ? true : false" :msg="msg" :colour="colours[userColours[msg.user]]" :index="key" :selfUser="selfUser" :isGroupChat="isGroupChat" />
+                <chatMessage v-for="(msg, key) in tempData" :showAuthor="msg == tempData[0] || msg.user != tempData[key > 0 ? key - 1 : 0].user" :isLastByUser="msg.user != tempData[key < tempData.length - 1 ? key + 1 : 0].user" :msg="msg" :colour="colours[userColours[msg.user]]" :index="key" :selfUser="selfUser" :isGroupChat="isGroupChat" />
             </div>
         </div>
     </div>
@@ -46,7 +46,7 @@
             return {
                 userColours: {},          // Assigned user colours (each user has a random colour assigned)
                 selfUser: '',
-                isGroupChat: this.chatData.messages.length > 2 ? true : false,
+                isGroupChat: this.chatData.users.length > 2,
                 tempData: [],             // Used to store lazy loading messages (messages are pushed here progressively)
                 messageCount: 0,          // Message counter for lazy loading control,
                 scrollMessagesToLoad: 30, // Ammount of messages to load each time we lazy load new messages,
@@ -103,7 +103,7 @@
                         this.tempData.push(this.chatData.messages[this.messageCount]);
                         this.messageCount++;
                     }
-                    
+
                     this.busy = false;
                 }, 100);
             }

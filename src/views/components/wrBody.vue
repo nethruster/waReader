@@ -28,7 +28,7 @@
         methods: {
             populateData: function(data, chatTitle) {
                 this.chatData = data;
-                this.chatTitle = /(^WhatsApp Chat with )?(.+)(.txt)/g.exec(chatTitle)[2];
+                this.chatTitle = /(^WhatsApp Chat with )?(.+)(.txt)/g.exec(chatTitle)[2]; // This is not at all stable, I'll probably remove it
             }
         }
     }
