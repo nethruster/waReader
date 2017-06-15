@@ -39,7 +39,7 @@
     
     export default {
         name: 'chatView',
-        props: ['chatData', 'chatTitle'],
+        props: ['chatData', 'chatTitle', 'showToast'],
         components: {
             InfiniteLoading,
             chatParticipant,
@@ -96,6 +96,7 @@
             },
             setSelfUser: function(user) {
                 this.selfUser = user;
+                this.showToast(`You are now ${user}`, 'info');
             },
             handleBackClick: function() {
                 location.reload(true);

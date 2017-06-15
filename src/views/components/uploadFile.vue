@@ -28,7 +28,7 @@
 
     export default {
         name: 'uploadFile',
-        props: ['populateData'],
+        props: ['populateData', 'showToast'],
         data: function() {
             return {
                 isLoading: false,
@@ -54,17 +54,16 @@
                         } catch(err) {
                             this.isLoading = false;
                             this.buttonText = 'Submit&nbsp;';
-                            if(err === "The text has no lines") {
-
-                            } else if(err === "The text has no menssages") {
-
-                            } else {
-
+                            if(err == "The text has no lines") {
+                                this.showToast('This file is empty', 'error');
+                            } else if(err == "The text has no messages") {
+                                this.showToast('This file is invalid', 'error');
                             }
                         }
                     }
                 } else {
                     // No files selected
+                   this.showToast('Please, choose a file', 'error');
                 }
             }
         }

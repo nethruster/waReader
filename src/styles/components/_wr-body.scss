@@ -6,3 +6,9 @@
     height: 100%;
     max-height: 900px;
 }
+
+@media (max-width: 1400px) {
+    .wr-body {
+        max-height: 100%;
+    }
+}

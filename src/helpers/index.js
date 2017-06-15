@@ -46,14 +46,14 @@ function getDateFormat(firstn, postm) {
  */
 const parseTextFile = function (text) {
 
+    if(!text) throw "The text has no lines";
+
   // Surround urls with anchor tags
   text = addAnchorLinksToUrls(text);
 
   var linesArray = text.split('\n'),
       messages   = [],
       userList   = [];
-
-  if(linesArray.length === 0) throw "The text has no lines";
       
   linesArray.forEach((line) => {
     if (/^(((\d+)(\/)(\d+)(\/)(\d+))(, )((\d+)(:)(\d+)( (AM|PM))?)( - )([^:]*)(:)(\s)(.*))/g.test(line)) { // Normal user message
@@ -89,7 +89,7 @@ const parseTextFile = function (text) {
     }
   });
 
-  if(messages.length === 0) throw "The text has no menssages";
+  if(messages.length === 0) throw "The text has no messages";
 
   userList.sort();
 
