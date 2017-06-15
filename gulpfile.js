@@ -17,7 +17,7 @@ gulp.task('sass', () => {
         .pipe(sass({ outputStyle: 'compressed' }).on('error', sass.logError))
         .pipe(autoprefixer())
         .pipe(gulp.dest('./dist/'))
-        .pipe(browserSync.stream());;
+        .pipe(browserSync.stream());
 });
 
 gulp.task("buildjs", function () {

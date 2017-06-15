@@ -14,17 +14,22 @@
             </div>
         </div>
         <div class="wr-chat-messages">
-            <div class="wr-chat-header flex flex-cross-center">
-               Chat with {{chatTitle}}
+            <div class="wr-chat-header flex flex-cross-center flex-sb">
+            <span class="chat-info flex flex-main-center flex-dc">
+               Chat with {{chatTitle}} <small>{{tempData.length}} / {{chatData.messages.length}} messages</small>
+            </span>
             </div>
-            <div class="wr-chat-messages-list" v-infinite-scroll="loadMore" infinite-scroll-disabled="busy" infinite-scroll-distance="400">
+            <div class="wr-chat-messages-list" ref="messages">
                 <chatMessage v-for="(msg, key) in tempData" :showAuthor="msg == tempData[0] || msg.user != tempData[key > 0 ? key - 1 : 0].user" :isLastByUser="msg.user != tempData[key < tempData.length - 1 ? key + 1 : 0].user" :msg="msg" :colour="colours[userColours[msg.user]]" :index="key" :selfUser="selfUser" :isGroupChat="isGroupChat" />
+                <infinite-loading :distance="120" :direction="direction" :on-infinite="onInfinite" ref="infiniteLoading" spinner="spiral"></infinite-loading>
             </div>
         </div>
     </div>
 </template>
 
 <script>
+    import InfiniteLoading from 'vue-infinite-loading';
+
     import Helpers from './../../helpers/index';
 
     import chatParticipant from './chatParticipant.vue';
@@ -36,6 +41,7 @@
         name: 'chatView',
         props: ['chatData', 'chatTitle'],
         components: {
+            InfiniteLoading,
             chatParticipant,
             chatMessage
         },
@@ -48,9 +54,8 @@
                 selfUser: '',
                 isGroupChat: this.chatData.users.length > 2,
                 tempData: [],             // Used to store lazy loading messages (messages are pushed here progressively)
-                messageCount: 0,          // Message counter for lazy loading control,
-                scrollMessagesToLoad: 30, // Ammount of messages to load each time we lazy load new messages,
-                busy: false,
+                scrollMessagesToLoad: 25, // Ammount of messages to load each time we lazy load new messages,
+                direction: 'bottom',
                 colours: [
                     '#35cd96',
                     '#6bcbef',
@@ -95,17 +100,15 @@
             handleBackClick: function() {
                 location.reload(true);
             },
-            loadMore: function() {
-                this.busy = true;
-
-                setTimeout(() => {
-                    for (let i = 0; i < this.scrollMessagesToLoad && this.messageCount < this.chatData.messages.length; i++) {
-                        this.tempData.push(this.chatData.messages[this.messageCount]);
-                        this.messageCount++;
+            onInfinite: function() {
+                setTimeout( function () {
+                    if(this.tempData.length < this.chatData.messages.length) {
+                        this.tempData = this.tempData.concat(this.chatData.messages.slice(this.tempData.length, this.tempData.length + this.scrollMessagesToLoad));
+                        this.$refs.infiniteLoading.$emit('$InfiniteLoading:loaded');
+                    } else {
+                        this.$refs.infiniteLoading.$emit('$InfiniteLoading:complete');
                     }
-
-                    this.busy = false;
-                }, 100);
+                }.bind(this), 100);
             }
         }
     }
