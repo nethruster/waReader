@@ -20,8 +20,8 @@
             </span>
             </div>
             <div class="wr-chat-messages-list" ref="messages">
-                <chatMessage v-for="(msg, key) in tempData" :showAuthor="msg == tempData[0] || msg.user != tempData[key > 0 ? key - 1 : 0].user" :isLastByUser="msg.user != tempData[key < tempData.length - 1 ? key + 1 : 0].user" :msg="msg" :colour="colours[userColours[msg.user]]" :index="key" :selfUser="selfUser" :isGroupChat="isGroupChat" />
-                <infinite-loading :distance="120" :direction="direction" :on-infinite="onInfinite" ref="infiniteLoading" spinner="spiral"></infinite-loading>
+                <chatMessage v-for="(msg, key) in tempData" :showAuthor="msg === tempData[0] || msg.user !== tempData[key > 0 ? key - 1 : 0].user" :isLastByUser="msg.user !== tempData[key < tempData.length - 1 ? key + 1 : 0].user" :msg="msg" :colour="colours[userColours[msg.user]]" :index="key" :selfUser="selfUser" :isGroupChat="isGroupChat" />
+                <infinite-loading :distance="120" :on-infinite="onInfinite" ref="infiniteLoading" spinner="spiral"></infinite-loading>
             </div>
         </div>
     </div>
@@ -55,7 +55,6 @@
                 isGroupChat: this.chatData.users.length > 2,
                 tempData: [],             // Used to store lazy loading messages (messages are pushed here progressively)
                 scrollMessagesToLoad: 25, // Ammount of messages to load each time we lazy load new messages,
-                direction: 'bottom',
                 colours: [
                     '#35cd96',
                     '#6bcbef',
