@@ -1,0 +1,28 @@
+@media (max-width: 950px) {
+    .wr-chat-participants {
+        position: absolute;
+        transform: translateX(-100%);
+        z-index: 400;
+        pointer-events: none;
+        max-width: 310px;
+
+        &.active {
+            transform: translateX(0);
+            pointer-events: initial;
+        }
+    }
+
+    .chat-info {
+        text-align: center;
+        font-size: .86em;
+    }
+
+    .wr-participats-sidebar-open,
+    .wr-participats-sidebar-close {
+        display: block;
+    }
+
+    .wr-chat-bubble {
+        font-size: .83em;
+    }
+}

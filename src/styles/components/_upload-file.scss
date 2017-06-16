@@ -23,6 +23,10 @@ input[type="file"] {
     }
 }
 
+.upload-file-wrapper {
+    padding: var(--base-pm);
+}
+
 .upload-file-label {
     font-size: .9em;
 }
@@ -38,6 +42,7 @@ input[type="file"] {
     -webkit-appearance: none;
     border: none;
     background-color: #08c65b;
+    flex: 1;
 
     &:hover {
         background-color: #0cb757;

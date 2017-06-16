@@ -89,12 +89,16 @@ svg:not(:root) {
 }
 
 button,
-input {
+input,
+svg,
+a {
     margin: 0;
     background-color: transparent;
     color: inherit;
     font-size: inherit;
     line-height: inherit;
+    outline: none;
+    webkit-tap-highlight-color: transparent;
 }
 
 [type="search"] {

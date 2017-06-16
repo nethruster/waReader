@@ -2,6 +2,7 @@
     height: 100%;
     background-color: #fff;
     flex: 1;
+    transition: transform .4s var(--easeOutExpo);
 }
 
 .wr-chat-participants-list {
@@ -14,7 +15,7 @@
     width: 100%;
     display: inline-flex;
 
-    transition: background-color .2s ease-in-out;
+    transition: background-color .2s var(--easeOutExpo);
 }
 
 .wr-chat-participant-picture {
@@ -34,4 +35,26 @@
 .wr-chat-self-participant,
 .wr-chat-participant:hover {
     background-color: #dcf8c6;
+}
+
+.wr-chat-drawer-overlay {
+    width: 100vw;
+    height: 100vh;
+    position: absolute;
+    pointer-events: none;
+    z-index: 50;
+    top: 0;
+    left: 0;
+    background-color: rgba(0,0,0, 0);
+    transition: background-color .3s;
+
+    &.active {
+        background-color: rgba(0,0,0, .4);
+        pointer-events: initial;
+    }
+}
+
+.wr-participats-sidebar-open,
+.wr-participats-sidebar-close {
+    display: none;
 }

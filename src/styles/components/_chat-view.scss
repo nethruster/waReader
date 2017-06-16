@@ -12,5 +12,31 @@
     font-weight: 400;
 }
 
+.chat-info {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    margin: 0 var(--base-pm);
+    flex: 1;
+}
+
+.print-view-button {
+    @extend .button;
+    max-width: 155px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    -webkit-appearance: none;
+    border: none;
+    background-color: transparent;
+    flex: 1;
+    color: #08c65b;
+
+    &:hover {
+        box-shadow: none;
+        background-color: rgba(0,0,0, .05);
+    }
+}
+
 @import 'chat-view/chat-participant';
 @import 'chat-view/chat-message';
