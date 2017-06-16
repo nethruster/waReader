@@ -9,4 +9,5 @@ body {
     overflow-y: auto;
 }
 
+@import './components/chat-view/chat-message';
 @import './components/chat-view/chat-message-print';
