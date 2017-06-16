@@ -18,6 +18,7 @@
             <span class="chat-info flex flex-main-center flex-dc">
                Chat with {{chatTitle}} <small>{{tempData.length}} / {{chatData.messages.length}} messages</small>
             </span>
+            <button v-on:click="openPrintView">Print</button>
             </div>
             <div class="wr-chat-messages-list" ref="messages">
                 <chatMessage v-for="(msg, key) in tempData" :showAuthor="msg === tempData[0] || msg.user !== tempData[key > 0 ? key - 1 : 0].user" :isLastByUser="msg.user !== tempData[key < tempData.length - 1 ? key + 1 : 0].user" :msg="msg" :colour="colours[userColours[msg.user]]" :index="key" :selfUser="selfUser" :isGroupChat="isGroupChat" />
@@ -109,6 +110,10 @@
                         this.$refs.infiniteLoading.$emit('$InfiniteLoading:complete');
                     }
                 }.bind(this), 100);
+            },
+            openPrintView: function() {
+                var printWin = window.open("", "_blank");
+                printWin.document.write(Helpers.printMgr.generatePrintViewString(this.chatData.messages, this.selfUser, this.chatTitle));
             }
         }
     }

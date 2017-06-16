@@ -1,0 +1,12 @@
+/**
+ * Libs and defaults 
+ */
+@import './lib/lib';
+
+body {
+    background-color: white;
+    background-image: none;
+    overflow-y: auto;
+}
+
+@import './components/chat-view/chat-message-print';

@@ -20,6 +20,14 @@ gulp.task('sass', () => {
         .pipe(browserSync.stream());
 });
 
+gulp.task('psass', () => {
+  return gulp.src('./src/styles/print.scss')
+        .pipe(sass({ outputStyle: 'compressed' }).on('error', sass.logError))
+        .pipe(autoprefixer())
+        .pipe(gulp.dest('./dist/'))
+        .pipe(browserSync.stream());
+});
+
 gulp.task("buildjs", function () {
     return browserify({
         "entries": ['./src/index.js'],
@@ -38,7 +46,7 @@ gulp.task("buildjs", function () {
 });
 
 gulp.task('sass:watch', () => {
-    gulp.watch('./src/styles/**/*.scss', ['sass']);
+    gulp.watch('./src/styles/**/*.scss', ['sass', 'psass']);
 });
 
 gulp.task('js:watch', () => {
@@ -63,7 +71,7 @@ gulp.task('buildassets', () => {
         .pipe(gulp.dest("./dist/assets/"))
 });
 
-gulp.task('build', ['sass', 'buildjs', 'buildassets'], () => {
+gulp.task('build', ['sass', 'psass', 'buildjs', 'buildassets'], () => {
     return gulp.src('./src/index.html')
         .pipe(gulp.dest("./dist/"))
         .pipe(browserSync.stream());
