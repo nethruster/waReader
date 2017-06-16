@@ -9,10 +9,10 @@ import moment from 'moment';
 const addAnchorLinksToUrls = function (text) {
   return anchorme(text, {
     attributes: [{
-        name: "target",
-        value: "_blank"
-      }]
-    });
+      name: "target",
+      value: "_blank"
+    }]
+  });
 }
 
 /**
@@ -23,18 +23,16 @@ const addAnchorLinksToUrls = function (text) {
  * @return string
  */
 function getDateFormat(firstn, postm) {
-  if(firstn > 12) {
-    if(postm == "") {
+  if (firstn > 12) {
+    if (postm == "") {
       return "DD/MM/YYYY HH:mm";
     } else {
       return "DD/MM/YYYY hh:mm A";
     }
+  } else if (postm == "") {
+    return "MM/DD/YYYY HH:mm";
   } else {
-    if(postm == "") {
-      return "MM/DD/YYYY HH:mm";
-    } else {
-      return "MM/DD/YYYY hh:mm A";
-    }
+    return "MM/DD/YYYY hh:mm A";
   }
 }
 
@@ -44,17 +42,27 @@ function getDateFormat(firstn, postm) {
  * @param string text
  * @return object
  */
-const parseTextFile = function (text) {
-
-    if(!text) throw "The text has no lines";
+const parseTextFile = function (text, intitalDateTime, finalDateTime) {
+  var hasntInitialDatime = false, hasntFinalDateTime = false;
+  if (intitalDateTime === undefined) {
+    hasntInitialDatime = true;
+  } else {
+    intitalDateTime = moment(intitalDateTime);
+  }
+  if (finalDateTime === undefined) {
+    hasntFinalDateTime = true;
+  } else {
+    finalDateTime = moment(finalDateTime);
+  }
+  if (!text) throw "The text has no lines";
 
   // Surround urls with anchor tags
   text = addAnchorLinksToUrls(text);
 
   var linesArray = text.split('\n'),
-      messages   = [],
-      userList   = [];
-      
+    messages = [],
+    userList = [];
+
   linesArray.forEach((line) => {
     if (/^(((\d+)(\/)(\d+)(\/)(\d+))(, )((\d+)(:)(\d+)( (AM|PM))?)( - )([^:]*)(:)(\s)(.*))/g.test(line)) { // Normal user message
       let lineData = /^(((\d+)(\/)(\d+)(\/)(\d+))(, )((\d+)(:)(\d+)( (AM|PM))?)( - )([^:]*)(:)(\s)(.*))/g.exec(line);
@@ -65,14 +73,15 @@ const parseTextFile = function (text) {
         user: lineData[16]
       };
 
-      messages.push(msgObj);
-
-      if (!userList.includes(msgObj.user)) {
-        userList.push(msgObj.user);
+      if ((hasntInitialDatime || msgObj.datetime.isAfter(intitalDateTime)) && (hasntFinalDateTime || msgObj.datetime.isBefore(finalDateTime))) {
+        messages.push(msgObj);
+        if (!userList.includes(msgObj.user)) {
+          userList.push(msgObj.user);
+        }
       }
 
     } else {
-      if(/^(((\d+)(\/)(\d+)(\/)(\d+))(, )((\d+)(:)(\d+)( (AM|PM))?)( - )(.*))/g.test(line)) { // System | misc message
+      if (/^(((\d+)(\/)(\d+)(\/)(\d+))(, )((\d+)(:)(\d+)( (AM|PM))?)( - )(.*))/g.test(line)) { // System | misc message
         let lineData = /^(((\d+)(\/)(\d+)(\/)(\d+))(, )((\d+)(:)(\d+)( (AM|PM))?)( - )(.*))/g.exec(line);
         let datetimeFormatString = getDateFormat(lineData[3], lineData[13]);
         let msgObj = {
@@ -80,8 +89,9 @@ const parseTextFile = function (text) {
           msg: lineData[16],
           user: ''
         };
-
-        messages.push(msgObj);
+        if ((hasntInitialDatime || msgObj.datetime.isAfter(intitalDateTime)) && (hasntFinalDateTime || msgObj.datetime.isBefore(finalDateTime))) {
+          messages.push(msgObj);
+        }
 
       } else {
         messages[messages.length > 0 ? messages.length - 1 : 0].msg += `\n${line}`;
@@ -89,7 +99,7 @@ const parseTextFile = function (text) {
     }
   });
 
-  if(messages.length === 0) throw "The text has no messages";
+  if (messages.length === 0) throw "The text has no messages";
 
   userList.sort();
 
