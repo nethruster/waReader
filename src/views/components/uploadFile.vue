@@ -1,6 +1,8 @@
 <template>
     <div class="upload-file-wrapper flex-dc flex flex-full-center">
         <p>Upload a Whatpsapp Text (.txt) file and view it in a nice, clean readeable format.</p>
+        <DatePicker :date="intitalDateTime"/>
+        <DatePicker :date="finalDateTime"/>
         <input type="file" id="file" name="file" class="upload-file-input" accept=".txt">
         <label for="file" class="upload-file-label pointer flex-full-center" ripple="ripple">
             <span>Choose file</span>&nbsp;
@@ -25,15 +27,20 @@
 
 <script>
     import Helpers from './../../helpers/index.js';
-
+    import DatePicker from 'vue-datepicker'
     export default {
         name: 'uploadFile',
         props: ['populateData', 'showToast'],
         data: function() {
             return {
                 isLoading: false,
-                buttonText: 'Submit'
+                buttonText: 'Submit',
+                intitalDateTime: {time: null},
+                finalDateTime: {time: null}
             }
+        },
+        components: {
+            DatePicker
         },
         methods: {
             getFile: function() {
@@ -50,7 +57,9 @@
 
                     fr.onload = (event) => {
                         try {
-                            setTimeout(this.populateData(Helpers.parseMgr.parseTextFile(event.target.result), file.name), 1200);
+                            var intitalDateTime = this.intitalDateTime.time !== null ? this.intitalDateTime.time : undefined;
+                            var finalDateTime = this.finalDateTime.time  !== null ? this.finalDateTime.time : undefined;
+                            setTimeout(this.populateData(Helpers.parseMgr.parseTextFile(event.target.result, intitalDateTime, finalDateTime), file.name), 1200);
                         } catch(err) {
                             this.isLoading = false;
                             this.buttonText = 'Submit&nbsp;';

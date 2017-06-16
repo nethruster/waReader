@@ -8,7 +8,7 @@ function generateMessagesHtmlString(msgs, selfUser) {
         <div class="wr-chat-bubble" class="${ e.user !== msgs[index < msgs.length - 1 ? index + 1 : 0].user  ? 'lastByUser' : ''}">
             ${lastUser !== e.user ? `<span class="wr-chat-message-author">${e.user}</span>` : ''}
             <div class="wr-chat-message-text">${e.msg}</div>
-            <p class="wr-chat-message-datetime">${ e.datetime }</p>
+            <p class="wr-chat-message-datetime">${ e.datetime.format("DD/MM/YYYY HH:mm") }</p>
         </div>`
     } else {
       bodydata = `<div class="wr-chat-sys-message">

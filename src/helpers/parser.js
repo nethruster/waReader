@@ -55,7 +55,6 @@ const parseTextFile = function (text, intitalDateTime, finalDateTime) {
     finalDateTime = moment(finalDateTime);
   }
   if (!text) throw "The text has no lines";
-
   // Surround urls with anchor tags
   text = addAnchorLinksToUrls(text);
 
@@ -68,11 +67,10 @@ const parseTextFile = function (text, intitalDateTime, finalDateTime) {
       let lineData = /^(((\d+)(\/)(\d+)(\/)(\d+))(, )((\d+)(:)(\d+)( (AM|PM))?)( - )([^:]*)(:)(\s)(.*))/g.exec(line);
       let datetimeFormatString = getDateFormat(lineData[3], lineData[13]);
       let msgObj = {
-        datetime: moment(`${lineData[2]} ${lineData[9]}`, datetimeFormatString).format("DD/MM/YYYY HH:mm"),
+        datetime: moment(`${lineData[2]} ${lineData[9]}`, datetimeFormatString),
         msg: lineData[19],
         user: lineData[16]
       };
-
       if ((hasntInitialDatime || msgObj.datetime.isAfter(intitalDateTime)) && (hasntFinalDateTime || msgObj.datetime.isBefore(finalDateTime))) {
         messages.push(msgObj);
         if (!userList.includes(msgObj.user)) {
@@ -89,9 +87,9 @@ const parseTextFile = function (text, intitalDateTime, finalDateTime) {
           msg: lineData[16],
           user: ''
         };
-        if ((hasntInitialDatime || msgObj.datetime.isAfter(intitalDateTime)) && (hasntFinalDateTime || msgObj.datetime.isBefore(finalDateTime))) {
+        // if ((hasntInitialDatime || msgObj.datetime.isAfter(intitalDateTime)) && (hasntFinalDateTime || msgObj.datetime.isBefore(finalDateTime))) {
           messages.push(msgObj);
-        }
+        // }
 
       } else {
         messages[messages.length > 0 ? messages.length - 1 : 0].msg += `\n${line}`;
