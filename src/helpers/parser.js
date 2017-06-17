@@ -61,7 +61,6 @@ const parseTextFile = function (text, intitalDateTime, finalDateTime) {
   var linesArray = text.split('\n'),
     messages = [],
     userList = [];
-
   linesArray.forEach((line) => {
     if (/^(((\d+)(\/)(\d+)(\/)(\d+))(, )((\d+)(:)(\d+)( (AM|PM))?)( - )([^:]*)(:)(\s)(.*))/g.test(line)) { // Normal user message
       let lineData = /^(((\d+)(\/)(\d+)(\/)(\d+))(, )((\d+)(:)(\d+)( (AM|PM))?)( - )([^:]*)(:)(\s)(.*))/g.exec(line);
@@ -83,16 +82,19 @@ const parseTextFile = function (text, intitalDateTime, finalDateTime) {
         let lineData = /^(((\d+)(\/)(\d+)(\/)(\d+))(, )((\d+)(:)(\d+)( (AM|PM))?)( - )(.*))/g.exec(line);
         let datetimeFormatString = getDateFormat(lineData[3], lineData[13]);
         let msgObj = {
-          date: moment(`${lineData[2]} ${lineData[9]}`, datetimeFormatString).format("DD/MM/YYYY HH:mm"),
+          datetime: moment(`${lineData[2]} ${lineData[9]}`, datetimeFormatString),
           msg: lineData[16],
           user: ''
         };
+        console.log(msgObj.datetime);
         if ((hasntInitialDatime || msgObj.datetime.isAfter(intitalDateTime)) && (hasntFinalDateTime || msgObj.datetime.isBefore(finalDateTime))) {
           messages.push(msgObj);
         }
 
       } else {
-        messages[messages.length > 0 ? messages.length - 1 : 0].msg += `\n${line}`;
+        if(messages[0]) {
+          messages[messages.length > 0 ? messages.length - 1 : 0].msg += `\n${line}`;
+        }
       }
     }
   });
