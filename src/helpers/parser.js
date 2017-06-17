@@ -87,9 +87,9 @@ const parseTextFile = function (text, intitalDateTime, finalDateTime) {
           msg: lineData[16],
           user: ''
         };
-        // if ((hasntInitialDatime || msgObj.datetime.isAfter(intitalDateTime)) && (hasntFinalDateTime || msgObj.datetime.isBefore(finalDateTime))) {
+        if ((hasntInitialDatime || msgObj.datetime.isAfter(intitalDateTime)) && (hasntFinalDateTime || msgObj.datetime.isBefore(finalDateTime))) {
           messages.push(msgObj);
-        // }
+        }
 
       } else {
         messages[messages.length > 0 ? messages.length - 1 : 0].msg += `\n${line}`;
