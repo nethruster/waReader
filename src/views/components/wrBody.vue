@@ -1,6 +1,12 @@
 <template>
     <div class="wr-body flex flex-full-center">
-      <uploadFile :populateData="populateData" v-if="Object.keys(this.chatData).length === 0" :showToast="showToast" />
+    <div class="wr-home-panel flex flex-dc" v-if="Object.keys(this.chatData).length === 0">
+        <uploadFile :populateData="populateData"  :showToast="showToast" />
+        <div class="info-section flex flex-full-center">
+            TODO: ADD APP INFO AND FAQ
+        </div>
+    </div>
+      
       <chatView :chatData="chatData" :chatTitle="chatTitle" v-else :showToast="showToast" />
     </div>
 </template>

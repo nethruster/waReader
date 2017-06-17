@@ -25,6 +25,7 @@ input[type="file"] {
 
 .upload-file-wrapper {
     padding: var(--base-pm);
+    flex: 2;
 }
 
 .upload-file-label {
@@ -47,4 +48,26 @@ input[type="file"] {
     &:hover {
         background-color: #0cb757;
     }
+}
+
+.date-interval-picker {
+    margin: calc(var(--base-pm) * 2);
+}
+
+.cov-datepicker {
+    border: none;
+    border-bottom: 1px solid rgba(0,0,0, .1);
+    margin: var(--base-pm) calc(var(--base-pm) * 2);
+}
+
+.date-interval-picker-c {
+    position: relative;
+}
+
+.date-interval-picker-label {
+    position: absolute; 
+    top: -12px; 
+    font-size: .86em; 
+    left: 16px;
+    color: var(--wbrand-colour-light);
 }

@@ -113,7 +113,7 @@
                 this.showToast(`You are now ${user}`, 'info');
             },
             handleBackClick: function() {
-                location.reload(true);
+                location.reload(false);
             },
             onInfinite: function() {
                 setTimeout( function () {
