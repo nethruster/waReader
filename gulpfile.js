@@ -7,10 +7,13 @@ const gulp         = require('gulp'),
       vueify       = require('vueify'),
       source       = require("vinyl-source-stream"),
       buffer       = require("vinyl-buffer"),
+      envify       = require("envify"),
       babelify     = require('babelify'),
       browserify   = require("browserify"),
       browserSync  = require('browser-sync').create(),
       autoprefixer = require('gulp-autoprefixer');
+
+var env = "development";
 
 gulp.task('sass', () => {
   return gulp.src('./src/styles/styles.scss')
@@ -36,6 +39,7 @@ gulp.task("buildjs", function () {
     .transform(babelify.configure({
         presets: ["es2015"]
     }))
+    .transform('envify', {global: true, _: 'purge', NODE_ENV: env})
     .transform(vueify)
     .bundle()
     .pipe(source("waReader.js"))
@@ -70,12 +74,15 @@ gulp.task('buildassets', () => {
     return gulp.src('./src/assets/*')
         .pipe(gulp.dest("./dist/assets/"))
 });
+gulp.task('set-production', ()=> {
+  return env = "production";
+});
 
 gulp.task('build', ['sass', 'psass', 'buildjs', 'buildassets'], () => {
     return gulp.src('./src/index.html')
         .pipe(gulp.dest("./dist/"))
         .pipe(browserSync.stream());
 });
-
+gulp.task('build-prod', ['set-production','build']);
 
 gulp.task('default',  ['serve']);
