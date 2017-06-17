@@ -43,34 +43,40 @@ function getDateFormat(firstn, postm) {
  * @return object
  */
 const parseTextFile = function (text, intitalDateTime, finalDateTime) {
-  var hasntInitialDatime = false, hasntFinalDateTime = false;
-  if (intitalDateTime === undefined) {
-    hasntInitialDatime = true;
-  } else {
+  var hasInitialDatime = false, 
+      hasFinalDateTime = false;
+
+  if (intitalDateTime) {
+    hasInitialDatime = true;
     intitalDateTime = moment(intitalDateTime);
   }
-  if (finalDateTime === undefined) {
-    hasntFinalDateTime = true;
-  } else {
+
+  if (finalDateTime) {
+    hasFinalDateTime = true;
     finalDateTime = moment(finalDateTime);
+
   }
   if (!text) throw "The text has no lines";
+
   // Surround urls with anchor tags
   text = addAnchorLinksToUrls(text);
 
   var linesArray = text.split('\n'),
     messages = [],
     userList = [];
+
   linesArray.forEach((line) => {
     if (/^(((\d+)(\/)(\d+)(\/)(\d+))(, )((\d+)(:)(\d+)( (AM|PM))?)( - )([^:]*)(:)(\s)(.*))/g.test(line)) { // Normal user message
       let lineData = /^(((\d+)(\/)(\d+)(\/)(\d+))(, )((\d+)(:)(\d+)( (AM|PM))?)( - )([^:]*)(:)(\s)(.*))/g.exec(line);
       let datetimeFormatString = getDateFormat(lineData[3], lineData[13]);
+
       let msgObj = {
         datetime: moment(`${lineData[2]} ${lineData[9]}`, datetimeFormatString),
         msg: lineData[19],
         user: lineData[16]
       };
-      if ((hasntInitialDatime || msgObj.datetime.isAfter(intitalDateTime)) && (hasntFinalDateTime || msgObj.datetime.isBefore(finalDateTime))) {
+
+      if ((!hasInitialDatime || msgObj.datetime.isAfter(intitalDateTime)) && (!hasFinalDateTime || msgObj.datetime.isBefore(finalDateTime))) {
         messages.push(msgObj);
         if (!userList.includes(msgObj.user)) {
           userList.push(msgObj.user);
@@ -86,19 +92,19 @@ const parseTextFile = function (text, intitalDateTime, finalDateTime) {
           msg: lineData[16],
           user: ''
         };
-        console.log(msgObj.datetime);
-        if ((hasntInitialDatime || msgObj.datetime.isAfter(intitalDateTime)) && (hasntFinalDateTime || msgObj.datetime.isBefore(finalDateTime))) {
+
+        if ((!hasInitialDatime || msgObj.datetime.isAfter(intitalDateTime)) && (!hasFinalDateTime || msgObj.datetime.isBefore(finalDateTime))) {
           messages.push(msgObj);
         }
 
       } else {
-        if(messages[0]) {
+        if (messages[0]) {
           messages[messages.length > 0 ? messages.length - 1 : 0].msg += `\n${line}`;
         }
       }
     }
   });
-
+  
   if (messages.length === 0) throw "The text has no messages";
 
   userList.sort();
