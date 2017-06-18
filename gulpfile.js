@@ -1,6 +1,7 @@
 'use strict'
 
 const gulp         = require('gulp'),
+      util         = require('gulp-util'),
       sass         = require('gulp-sass'),
       babel        = require('gulp-babel'),
       uglify       = require('gulp-uglify'),
@@ -14,7 +15,7 @@ const gulp         = require('gulp'),
       browserSync  = require('browser-sync').create(),
       autoprefixer = require('gulp-autoprefixer');
 
-var env = "development";
+var env = util.env.production ? "production" : "development";
 
 gulp.task('sass', () => {
   return gulp.src('./src/styles/styles.scss')
@@ -45,7 +46,7 @@ gulp.task("buildjs", function () {
     .bundle()
     .pipe(source("waReader.js"))
     .pipe(buffer())
-    .pipe(uglify())
+    .pipe(env === 'production' ? uglify() : util.noop())
     .pipe(gulp.dest("./dist/"))
     .pipe(browserSync.stream());
 });
@@ -75,9 +76,6 @@ gulp.task('buildassets', () => {
     return gulp.src('./src/assets/*')
         .pipe(gulp.dest("./dist/assets/"))
 });
-gulp.task('set-production', ()=> {
-  return env = "production";
-});
 
 gulp.task('build', ['sass', 'psass', 'buildjs', 'buildassets'], () => {
     return gulp.src('./src/index.html')
@@ -85,6 +83,5 @@ gulp.task('build', ['sass', 'psass', 'buildjs', 'buildassets'], () => {
         .pipe(gulp.dest("./dist/"))
         .pipe(browserSync.stream());
 });
-gulp.task('build-prod', ['set-production','build']);
 
 gulp.task('default',  ['serve']);
