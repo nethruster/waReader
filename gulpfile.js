@@ -8,6 +8,7 @@ const gulp         = require('gulp'),
       source       = require("vinyl-source-stream"),
       buffer       = require("vinyl-buffer"),
       envify       = require("envify"),
+      htmlmin = require('gulp-html-minifier'),
       babelify     = require('babelify'),
       browserify   = require("browserify"),
       browserSync  = require('browser-sync').create(),
@@ -80,6 +81,7 @@ gulp.task('set-production', ()=> {
 
 gulp.task('build', ['sass', 'psass', 'buildjs', 'buildassets'], () => {
     return gulp.src('./src/index.html')
+        .pipe(htmlmin({collapseWhitespace: true, env: env}))
         .pipe(gulp.dest("./dist/"))
         .pipe(browserSync.stream());
 });
