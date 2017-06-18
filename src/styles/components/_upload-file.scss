@@ -26,6 +26,7 @@ input[type="file"] {
 .upload-file-wrapper {
     padding: var(--base-pm);
     flex: 2;
+    font-weight: 300;
 }
 
 .upload-file-label {
@@ -50,14 +51,19 @@ input[type="file"] {
     }
 }
 
+/* 
+* Date interval picker
+*/
 .date-interval-picker {
     margin: calc(var(--base-pm) * 2);
 }
 
+// Module input class
 .cov-datepicker {
     border: none;
     border-bottom: 1px solid rgba(0,0,0, .1);
     margin: var(--base-pm) calc(var(--base-pm) * 2);
+    cursor: pointer;
 }
 
 .date-interval-picker-c {

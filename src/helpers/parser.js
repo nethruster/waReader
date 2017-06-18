@@ -43,8 +43,8 @@ function getDateFormat(firstn, postm) {
  * @return object
  */
 const parseTextFile = function (text, intitalDateTime, finalDateTime) {
-  var hasInitialDatime = false, 
-      hasFinalDateTime = false;
+  var hasInitialDatime = false,
+    hasFinalDateTime = false;
 
   if (intitalDateTime) {
     hasInitialDatime = true;
@@ -104,7 +104,7 @@ const parseTextFile = function (text, intitalDateTime, finalDateTime) {
       }
     }
   });
-  
+
   if (messages.length === 0) throw "The text has no messages";
 
   userList.sort();

@@ -1,25 +1,25 @@
 <template>
     <div class="upload-file-wrapper flex-dc flex flex-full-center">
-            <h2 class="ta-c">Upload a Whatpsapp Text (.txt) file and view it in a nice, clean readeable format.</h2>
-            <div class="date-interval-picker flex flex-full-center">
-                <p>Show messages between (optional): </p>
-                <div class="date-interval-picker-c">
-                    <label class="date-interval-picker-label">Start Date</label>
-                    <DatePicker :date="intitalDateTime" :option="pickerOptions" />
-                </div>
-                <div class="date-interval-picker-c">
-                    <label class="date-interval-picker-label">End Date</label>
-                    <DatePicker :date="finalDateTime" :option="pickerOptions" />
-                </div>
+        <h2 class="ta-c">Upload a Whatpsapp Text (.txt) file and view it in a nice, clean, readeable format.</h2>
+        <div class="date-interval-picker flex flex-full-center">
+            <p>Show messages between (optional): </p>
+            <div class="date-interval-picker-c">
+                <label class="date-interval-picker-label">Start Date</label>
+                <DatePicker :date="intitalDateTime" :option="pickerOptions" />
             </div>
-            <input type="file" id="file" name="file" class="upload-file-input" accept=".txt">
-            <label for="file" class="upload-file-label pointer flex-full-center" ripple="ripple">
-                <span>Choose file</span>&nbsp;
-                <svg viewBox="0 0 24 24">
-                    <path d="M9,16V10H5L12,3L19,10H15V16H9M5,20V18H19V20H5Z" />
-                </svg>
-            </label>
-            <div class="flex flex-full-center">
+            <div class="date-interval-picker-c">
+                <label class="date-interval-picker-label">End Date</label>
+                <DatePicker :date="finalDateTime" :option="pickerOptions" />
+            </div>
+        </div>
+        <input type="file" id="file" name="file" class="upload-file-input" accept=".txt">
+        <label for="file" class="upload-file-label pointer flex-full-center" ripple="ripple">
+            <span>Choose file</span>&nbsp;
+            <svg viewBox="0 0 24 24">
+                <path d="M9,16V10H5L12,3L19,10H15V16H9M5,20V18H19V20H5Z" />
+            </svg>
+        </label>
+        <div class="flex flex-full-center">
             <button class="upload-file-button pointer" :disabled="isLoading ? '' : disabled" v-on:click.prevent="getFile" ripple="ripple">
                 <span class="flex flex-cross-center">
                     <p v-html="this.buttonText"></p>
@@ -30,7 +30,7 @@
                     </div>
                 </span>
             </button>
-            </div>
+        </div>
     </div>
 </template>
 
