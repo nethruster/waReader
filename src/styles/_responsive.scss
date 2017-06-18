@@ -20,7 +20,7 @@
 
     .chat-info {
         text-align: center;
-        font-size: .86em;
+        font-size: .9em;
     }
 
     .wr-participats-sidebar-open,
@@ -29,7 +29,16 @@
     }
 
     .wr-chat-bubble {
-        font-size: .83em;
+        font-size: .9em;
+    }
+
+    .info-section,
+    .upload-file-wrapper {
+        height: auto;
+    }
+
+    .upload-file-wrapper {
+        flex: initial;
     }
 }
 
@@ -41,6 +50,23 @@
     .date-interval-picker-c {
         margin-top: calc(var(--base-pm) * 4);
     }
+}
+
+@media (max-width: 675px) {
+    .wr-body {
+        height: auto;
+        overflow-y: auto;
+        display: initial;
+    }
+
+    .info-section-more-items-buttons {
+        flex-direction: column;
+    }
+
+    .info-section-hero-items {
+        flex-direction: column;
+    }
+
 }
 
 @media (max-width: 320px) {

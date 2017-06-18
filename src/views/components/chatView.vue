@@ -33,7 +33,7 @@
             </div>
             <div class="wr-chat-messages-list" ref="messages">
                 <chatMessage v-for="(msg, key) in tempData" :showAuthor="msg === tempData[0] || msg.user !== tempData[key > 0 ? key - 1 : 0].user" :isLastByUser="msg.user !== tempData[key < tempData.length - 1 ? key + 1 : 0].user" :msg="msg" :colour="colours[userColours[msg.user]]" :index="key" :selfUser="selfUser" :isGroupChat="isGroupChat" />
-                <infinite-loading :distance="120" :on-infinite="onInfinite" ref="infiniteLoading" spinner="spiral"></infinite-loading>
+                <infinite-loading :distance="200" :on-infinite="onInfinite" ref="infiniteLoading" spinner="spiral"></infinite-loading>
             </div>
         </div>
          <div :class="['wr-chat-drawer-overlay', {'active' : isDrawerOpen}]"></div>

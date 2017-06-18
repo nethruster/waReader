@@ -71,7 +71,7 @@ gulp.task('serve', ['build', 'sass:watch', 'js:watch', 'vue:watch'], function() 
 });
 
 gulp.task('buildassets', () => {
-    return gulp.src('./src/assets/*')
+    return gulp.src('./src/assets/**/*')
         .pipe(gulp.dest("./dist/assets/"))
 });
 gulp.task('set-production', ()=> {

@@ -1,5 +1,5 @@
 <template>
-    <div class="wr-body flex flex-full-center">
+    <div :class="{'wr-body-chat': chatLoaded}" class="wr-body flex flex-full-center">
         <div class="wr-home-panel flex flex-dc" v-if="Object.keys(this.chatData).length === 0">
             <uploadFile :populateData="populateData" :showToast="showToast" />
             <div class="info-section flex flex-dc flex-full-center">
@@ -35,7 +35,7 @@
                 </div>
                 <div class="info-section-more-items flex flex-dc flex-full-center">
                     <h4>Got more doubts or questions?</h4>
-                    <div class="flex flex-full-center">
+                    <div class="info-section-more-items-buttons flex flex-full-center">
                         <a href="https://github.com/nethruster/waReader" class="button-link" rel="noopener" target="_blank"><div class="upload-file-label pointer flex-full-center">Inspect the source code</div></a>
                         <a href="https://nethruster.com/contact" class="button-link" rel="noopener" target="_blank"><div class="upload-file-label pointer flex-full-center">Send us a message</div></a>
                     </div>
@@ -64,13 +64,15 @@
         data: function() {
             return {
                 chatData: {},
-                chatTitle: ''
+                chatTitle: '',
+                chatLoaded: false
             }
         },
         methods: {
             populateData: function(data, chatTitle) {
                 this.chatData = data;
                 this.chatTitle = /(^WhatsApp Chat with )?(.+)(.txt)/g.exec(chatTitle)[2]; // This is not at all stable, I'll probably remove it
+                this.chatLoaded = true;
             },
             showToast: function (text, mode) {
                 switch (mode) {
