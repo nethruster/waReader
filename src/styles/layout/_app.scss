@@ -33,6 +33,42 @@
     height: 100%;
 }
 
+.info-section-hero-items {
+    width: 90%;
+    justify-content: space-around;
+    flex: 1;
+}
+
+.info-section-hero-item {
+    margin: calc(var(--base-pm) * 2);
+    flex: 1;
+}
+
+.info-section-hero-item-title {
+    display: inline-block;
+    font-size: 1.1em;
+    vertical-align: middle;
+    margin: calc(var(--base-pm) * 2) 0;
+}
+
+.info-hero-item-description {
+    font-size: .86em;
+}
+
+.info-section-hero-icon {
+    width: 32px;
+    color: #0cb757;
+}
+
+.info-section-more-items {
+    width: 90%;
+    flex: 1;
+}
+
+.wrisot {
+    width: 70px;
+}
+
 *::-webkit-scrollbar {
     width: 6px !important;
     height: 6px !important;

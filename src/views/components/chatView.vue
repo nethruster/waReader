@@ -110,7 +110,7 @@
             },
             setSelfUser: function(user) {
                 this.selfUser = user;
-                this.showToast(`You are now ${user}`, 'info');
+                this.showToast(`You are now ${user || 'a stranger'}`, 'info');
             },
             handleBackClick: function() {
                 location.reload(false);

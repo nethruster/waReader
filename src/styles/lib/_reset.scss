@@ -47,6 +47,7 @@ ul {
 
 h1,
 h2,
+h4,
 p {
     margin: 0;
 }
@@ -56,6 +57,10 @@ a {
     -webkit-text-decoration-skip: objects;
     color: lighten(#4b4b4b, 15%);
     text-decoration: underline;
+
+    &.button-link {
+        text-decoration: none;
+    }
 }
 
 a:hover {
@@ -115,6 +120,13 @@ label
     display: none;
 }
 
-h2 {
+h1,
+h2,
+h4 {
     font-weight: 300;
+}
+
+h1 {
+    font-size: 2.6em;
+    margin: calc(var(--base-pm) * 4) 0;
 }

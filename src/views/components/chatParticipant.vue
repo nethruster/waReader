@@ -21,6 +21,8 @@
             handleClick: function() {
                 if(this.selfUser != this.user) {
                     this.setSelfUser(this.user);
+                } else {
+                    this.setSelfUser('');
                 }
             }
         }

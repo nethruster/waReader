@@ -1,15 +1,18 @@
 <template>
-    <div class="upload-file-wrapper flex-dc flex flex-full-center">
-        <h2 class="ta-c">Upload a Whatpsapp Text (.txt) file and view it in a nice, clean, readeable format.</h2>
-        <div class="date-interval-picker flex flex-full-center">
+    <div class="upload-file-wrapper flex flex-full-center flex-dc flex-sa">
+        <h1><img src="./assets/wrisot.svg" class="wrisot">&nbsp;waReader</h1>
+        <h2 class="ta-c">Upload a WhatsApp  text (.txt) file and view it in a nice, clean, readeable format.</h2>
+        <div class="date-interval-picker flex flex-dc flex-full-center">
             <p>Show messages between (optional): </p>
-            <div class="date-interval-picker-c">
-                <label class="date-interval-picker-label">Start Date</label>
-                <DatePicker :date="intitalDateTime" :option="pickerOptions" />
-            </div>
-            <div class="date-interval-picker-c">
-                <label class="date-interval-picker-label">End Date</label>
-                <DatePicker :date="finalDateTime" :option="pickerOptions" />
+            <div class="date-interval-picker-r flex flex-full-center">
+                <div class="date-interval-picker-c">
+                    <label class="date-interval-picker-label">Start Date</label>
+                    <DatePicker :date="intitalDateTime" :option="pickerOptions" />
+                </div>
+                <div class="date-interval-picker-c">
+                    <label class="date-interval-picker-label">End Date</label>
+                    <DatePicker :date="finalDateTime" :option="pickerOptions" />
+                </div>
             </div>
         </div>
         <input type="file" id="file" name="file" class="upload-file-input" accept=".txt">
@@ -25,7 +28,7 @@
                     <p v-html="this.buttonText"></p>
                     <div id="upload-file-loader" :class="['loader', {'is-loading': isLoading}]">
                         <svg class="circular" viewBox="25 25 50 50">
-                        <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10"/>
+                            <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10"/>
                         </svg>
                     </div>
                 </span>

@@ -37,6 +37,7 @@ input[type="file"] {
     @extend .button;
     color: #08c65b;
     background-color: transparent;
+    text-decoration: none;
 }
 
 .upload-file-button {
@@ -45,7 +46,6 @@ input[type="file"] {
     border: none;
     background-color: #08c65b;
     flex: 1;
-
     &:hover {
         background-color: #0cb757;
     }
@@ -55,7 +55,7 @@ input[type="file"] {
 * Date interval picker
 */
 .date-interval-picker {
-    margin: calc(var(--base-pm) * 2);
+    padding: calc(var(--base-pm) * 4) var(--base-pm);
 }
 
 // Module input class
@@ -68,6 +68,7 @@ input[type="file"] {
 
 .date-interval-picker-c {
     position: relative;
+    margin-top: calc(var(--base-pm) * 2.5);
 }
 
 .date-interval-picker-label {
