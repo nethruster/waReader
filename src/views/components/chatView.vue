@@ -1,8 +1,8 @@
 <template>
     <div class="wr-chat-view flex">
         <div :class="['wr-chat-participants', {'active' : isDrawerOpen}]">
-            <div class="wr-chat-header flex flex-full-center flex-sa" v-on:click="toggleDrawer">
-                <svg viewBox="0 0 24 24" class="wr-participats-sidebar-close pointer">
+            <div class="wr-chat-header flex flex-full-center flex-sa">
+                <svg viewBox="0 0 24 24" class="wr-participats-sidebar-close pointer" v-on:click="toggleDrawer">
                     <path d="M19,6.41L17.59,5L12,10.59L6.41,5L5,6.41L10.59,12L5,17.59L6.41,19L12,13.41L17.59,19L19,17.59L13.41,12L19,6.41Z" />
                 </svg>
                 <p>{{ chatData.users.length }} chat members</p>

@@ -57,7 +57,8 @@ a {
     -webkit-text-decoration-skip: objects;
     color: lighten(#4b4b4b, 15%);
     text-decoration: underline;
-
+    transition: color .2s ease-in-out;
+    
     &.button-link {
         text-decoration: none;
     }

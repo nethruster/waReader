@@ -78,3 +78,18 @@ input[type="file"] {
     left: 16px;
     color: var(--wbrand-colour-light);
 }
+
+.date-interval-picker-clear-button {
+    color: #ef5350;
+
+    svg {
+        width: 18px;
+        transition: color .2s ease-in-out;
+    }
+
+    &:hover {
+        svg {
+            color: #c62828;
+        }
+    }
+}

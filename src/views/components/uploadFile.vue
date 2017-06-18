@@ -6,11 +6,23 @@
             <p>Show messages between (optional): </p>
             <div class="date-interval-picker-r flex flex-full-center">
                 <div class="date-interval-picker-c">
-                    <label class="date-interval-picker-label">Start Date</label>
+                    <label class="date-interval-picker-label">Start Date 
+                        <span class="date-interval-picker-clear-button pointer" v-on:click="clearStart" v-if="intitalDateTime.time !== null">
+                            <svg viewBox="0 0 24 24" class="pointer">
+                                <path d="M19,6.41L17.59,5L12,10.59L6.41,5L5,6.41L10.59,12L5,17.59L6.41,19L12,13.41L17.59,19L19,17.59L13.41,12L19,6.41Z" />
+                            </svg>
+                        </span>
+                    </label>
                     <DatePicker :date="intitalDateTime" :option="pickerOptions" />
                 </div>
                 <div class="date-interval-picker-c">
-                    <label class="date-interval-picker-label">End Date</label>
+                    <label class="date-interval-picker-label" >End Date
+                        <span class="date-interval-picker-clear-button pointer" v-on:click="clearEnd" v-if="finalDateTime.time !== null">
+                            <svg viewBox="0 0 24 24" class="pointer">
+                                <path d="M19,6.41L17.59,5L12,10.59L6.41,5L5,6.41L10.59,12L5,17.59L6.41,19L12,13.41L17.59,19L19,17.59L13.41,12L19,6.41Z" />
+                            </svg>
+                        </span>
+                    </label>
                     <DatePicker :date="finalDateTime" :option="pickerOptions" />
                 </div>
             </div>
@@ -97,6 +109,12 @@
                     // No files selected
                    this.showToast('Please, choose a file', 'error');
                 }
+            },
+            clearStart: function() {
+                this.intitalDateTime.time = null;
+            },
+            clearEnd: function() {
+                this.finalDateTime.time = null;
             }
         }
     }
