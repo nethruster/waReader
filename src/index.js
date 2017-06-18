@@ -18,3 +18,5 @@ Vue.use(Toasted);
  * Mount app
  */
 new Vue(Main).$mount('#app-root');
+
+console.log("Humans worked on this project! https://wareader.nethruster.com/humans.txt");

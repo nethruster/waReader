@@ -77,7 +77,12 @@ gulp.task('buildassets', () => {
         .pipe(gulp.dest("./dist/assets/"))
 });
 
-gulp.task('build', ['sass', 'psass', 'buildjs', 'buildassets'], () => {
+gulp.task('buildhumans', () => {
+    return gulp.src('./src/humans.txt')
+        .pipe(gulp.dest("./dist/"))
+});
+
+gulp.task('build', ['sass', 'psass', 'buildjs', 'buildassets', 'buildhumans'], () => {
     return gulp.src('./src/index.html')
         .pipe(htmlmin({
           collapseWhitespace: true,
