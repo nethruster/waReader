@@ -84,7 +84,7 @@
                 if(fileInput.files.length > 0) {
                     this.isLoading = true;
                     this.buttonText = 'Procesing chat&nbsp;';
-                    
+
                     var file = fileInput.files[0],
                         fr = new FileReader();
 
