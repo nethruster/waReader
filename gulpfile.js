@@ -79,7 +79,10 @@ gulp.task('buildassets', () => {
 
 gulp.task('build', ['sass', 'psass', 'buildjs', 'buildassets'], () => {
     return gulp.src('./src/index.html')
-        .pipe(htmlmin({collapseWhitespace: true, env: env}))
+        .pipe(htmlmin({
+          collapseWhitespace: true,
+          env: env,
+        }))
         .pipe(gulp.dest("./dist/"))
         .pipe(browserSync.stream());
 });
