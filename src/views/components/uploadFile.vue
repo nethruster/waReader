@@ -28,12 +28,15 @@
             </div>
         </div>
         <input type="file" id="file" name="file" class="upload-file-input" accept=".txt">
-        <label for="file" class="upload-file-label pointer flex-full-center" ripple="ripple">
-            <span>Choose file</span>&nbsp;
-            <svg viewBox="0 0 24 24">
-                <path d="M9,16V10H5L12,3L19,10H15V16H9M5,20V18H19V20H5Z" />
-            </svg>
-        </label>
+        <div class="ta-c">
+            <label for="file" class="upload-file-label pointer flex-full-center" ripple="ripple">
+                <span>Choose file</span>&nbsp;
+                <svg viewBox="0 0 24 24">
+                    <path d="M9,16V10H5L12,3L19,10H15V16H9M5,20V18H19V20H5Z" />
+                </svg>
+            </label>
+            <p class="upload-file-filename"></p>
+        </div>
         <div class="flex flex-full-center">
             <button class="upload-file-button pointer" :disabled="isLoading ? '' : disabled" v-on:click.prevent="getFile" ripple="ripple">
                 <span class="flex flex-cross-center">
@@ -76,6 +79,12 @@
         },
         components: {
             DatePicker
+        },
+        mounted: function() {
+            var fileInput = document.getElementById("file");
+            fileInput.addEventListener('change', () => {
+                document.getElementsByClassName('upload-file-filename')[0].innerHTML = fileInput.files[0].name;;
+            });
         },
         methods: {
             getFile: function() {
