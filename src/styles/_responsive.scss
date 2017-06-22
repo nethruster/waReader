@@ -69,6 +69,22 @@
 
 }
 
+@media (max-height: 740px) {
+    .wr-body {
+        height: auto;
+        overflow-y: auto;
+        display: initial;
+    }
+
+    .info-section-more-items-buttons {
+        flex-direction: column;
+    }
+
+    .info-section-hero-items {
+        flex-direction: column;
+    }
+}
+
 @media (max-width: 320px) {
     h1 {
         font-size: 2em;
