@@ -1,48 +1,5 @@
-import anchorme from "anchorme";
+import parserUtils from './parserUtils';
 import moment from 'moment';
-
-/**
- * Replaces urls with link tags within the passed text
- * @param string text
- * @return string
- */
-const addAnchorLinksToUrls = function (text) {
-  return anchorme(text, {
-    attributes: [{
-      name: "target",
-      value: "_blank"
-    }]
-  });
-}
-const parseBoldSymbols = function(text) {
-  return text.replace(/((^|\ |~|_)\*)([^\ \*\n\t]([^\n]*?[^\t\n\ ])?)(\*)/gm, "$2<b>$3</b>");
-}
-const parseItalicSymbols = function(text) {
-  return text.replace(/((^|\ |~|\*)_)([^\ _\n\t]([^\n]*?[^\t\n\ ])?)_/gm, "$2<i>$3</i>");
-}
-const parseStrikethroughSymbols = function(text) {
-  return text.replace(/((^|\ |\*|_)~)([^\ ~\n\t]([^\n]*?[^\t\n\ ])?)~/gm, "$2<span class='t-strikethrough'>$3</span>");
-}
-/**
- * Computes the date format depending on the chat date format
- * returns the correspondent format
- * @param string firstn - first number of the date 
- * @param string postm - AM/PM
- * @return string
- */
-function getDateFormat(firstn, postm) {
-  if (firstn > 12) {
-    if (postm == "") {
-      return "DD/MM/YYYY HH:mm";
-    } else {
-      return "DD/MM/YYYY hh:mm A";
-    }
-  } else if (postm == "") {
-    return "MM/DD/YYYY HH:mm";
-  } else {
-    return "MM/DD/YYYY hh:mm A";
-  }
-}
 
 /**
  * Parses the content of a Whatsapp txt chat export file and returns 
@@ -50,7 +7,7 @@ function getDateFormat(firstn, postm) {
  * @param string text
  * @return object
  */
-const parseTextFile = function (text, intitalDateTime, finalDateTime) {
+const parseTextFile = (text, intitalDateTime, finalDateTime) => {
   var hasInitialDatime = false,
     hasFinalDateTime = false,
     hasReachedFinalDateTime = false;
@@ -65,13 +22,14 @@ const parseTextFile = function (text, intitalDateTime, finalDateTime) {
     finalDateTime = moment(finalDateTime);
   }
   
+  // Empty file
   if (!text) throw "The text has no lines";
 
-  text = parseBoldSymbols(text);
-  text = parseItalicSymbols(text);
-  text = parseStrikethroughSymbols(text);
+  // Replace markdown syntax by its correct representation
+  text = parserUtils.parseMarkdown(text);
+
   // Surround urls with anchor tags
-  text = addAnchorLinksToUrls(text);
+  text = parserUtils.parseUrlLinks(text);
 
   var linesArray = text.split('\n'),
     messages = [],
@@ -79,10 +37,11 @@ const parseTextFile = function (text, intitalDateTime, finalDateTime) {
 
   linesArray.forEach((line) => {
     if (/^(((\d+)(\/)(\d+)(\/)(\d+))(, )((\d+)(:)(\d+)( (AM|PM))?)( - )([^:]*)(:)(\s)(.*))/g.test(line)) { // Normal user message
-      if (hasReachedFinalDateTime) break;
-      let lineData = /^(((\d+)(\/)(\d+)(\/)(\d+))(, )((\d+)(:)(\d+)( (AM|PM))?)( - )([^:]*)(:)(\s)(.*))/g.exec(line);
-      let datetimeFormatString = getDateFormat(lineData[3], lineData[13]);
 
+      if (hasReachedFinalDateTime) return {};
+
+      let lineData = /^(((\d+)(\/)(\d+)(\/)(\d+))(, )((\d+)(:)(\d+)( (AM|PM))?)( - )([^:]*)(:)(\s)(.*))/g.exec(line);
+      let datetimeFormatString = parserUtils.getDateFormat(lineData[3], lineData[13]);
       let msgObj = {
         datetime: moment(`${lineData[2]} ${lineData[9]}`, datetimeFormatString),
         msg: lineData[19],
@@ -96,14 +55,15 @@ const parseTextFile = function (text, intitalDateTime, finalDateTime) {
             userList.push(msgObj.user);
           }
         } else {
-          hasFinalDateTime = true;
+          hasReachedFinalDateTime = true;
         }
       }
-
     } else if (/^(((\d+)(\/)(\d+)(\/)(\d+))(, )((\d+)(:)(\d+)( (AM|PM))?)( - )(.*))/g.test(line)) { // System | misc message
-      if (hasReachedFinalDateTime) break;
+
+      if (hasReachedFinalDateTime) return {};
+
       let lineData = /^(((\d+)(\/)(\d+)(\/)(\d+))(, )((\d+)(:)(\d+)( (AM|PM))?)( - )(.*))/g.exec(line);
-      let datetimeFormatString = getDateFormat(lineData[3], lineData[13]);
+      let datetimeFormatString = parserUtils.getDateFormat(lineData[3], lineData[13]);
       let msgObj = {
         datetime: moment(`${lineData[2]} ${lineData[9]}`, datetimeFormatString),
         msg: lineData[16],
@@ -113,14 +73,10 @@ const parseTextFile = function (text, intitalDateTime, finalDateTime) {
       if (!hasInitialDatime || msgObj.datetime.isAfter(intitalDateTime)) {
         if (!hasFinalDateTime || msgObj.datetime.isBefore(finalDateTime)) {
           messages.push(msgObj);
-          if (!userList.includes(msgObj.user)) {
-            userList.push(msgObj.user);
-          }
         } else {
-          hasFinalDateTime = true;
+          hasReachedFinalDateTime = true;
         }
       }
-
     } else {
       if (messages[0]) {
         messages[messages.length > 0 ? messages.length - 1 : 0].msg += `\n${line}`;

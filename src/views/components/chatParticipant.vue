@@ -16,7 +16,6 @@
                 } else {
                     return "&";
                 }
-                
             },
             handleClick: function() {
                 if(this.selfUser != this.user) {
