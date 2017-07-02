@@ -14,7 +14,9 @@ const addAnchorLinksToUrls = function (text) {
     }]
   });
 }
-
+const parseBoldSymbols = function(text) {
+  return text.replace(/((^|\ |~|_)\*)([^\ \*\n\t]([^\n]*?[^\t\n\ ])?)(\*)/gm, "$2<b>$3</b>");
+}
 /**
  * Computes the date format depending on the chat date format
  * returns the correspondent format
@@ -44,7 +46,8 @@ function getDateFormat(firstn, postm) {
  */
 const parseTextFile = function (text, intitalDateTime, finalDateTime) {
   var hasInitialDatime = false,
-    hasFinalDateTime = false;
+    hasFinalDateTime = false,
+    hasReachedFinalDateTime = false;
 
   if (intitalDateTime) {
     hasInitialDatime = true;
@@ -58,6 +61,7 @@ const parseTextFile = function (text, intitalDateTime, finalDateTime) {
   
   if (!text) throw "The text has no lines";
 
+  text = parseBoldSymbols(text);
   // Surround urls with anchor tags
   text = addAnchorLinksToUrls(text);
 
@@ -67,6 +71,7 @@ const parseTextFile = function (text, intitalDateTime, finalDateTime) {
 
   linesArray.forEach((line) => {
     if (/^(((\d+)(\/)(\d+)(\/)(\d+))(, )((\d+)(:)(\d+)( (AM|PM))?)( - )([^:]*)(:)(\s)(.*))/g.test(line)) { // Normal user message
+      if (hasReachedFinalDateTime) break;
       let lineData = /^(((\d+)(\/)(\d+)(\/)(\d+))(, )((\d+)(:)(\d+)( (AM|PM))?)( - )([^:]*)(:)(\s)(.*))/g.exec(line);
       let datetimeFormatString = getDateFormat(lineData[3], lineData[13]);
 
@@ -76,31 +81,41 @@ const parseTextFile = function (text, intitalDateTime, finalDateTime) {
         user: lineData[16]
       };
 
-      if ((!hasInitialDatime || msgObj.datetime.isAfter(intitalDateTime)) && (!hasFinalDateTime || msgObj.datetime.isBefore(finalDateTime))) {
-        messages.push(msgObj);
-        if (!userList.includes(msgObj.user)) {
-          userList.push(msgObj.user);
+      if (!hasInitialDatime || msgObj.datetime.isAfter(intitalDateTime)) {
+        if (!hasFinalDateTime || msgObj.datetime.isBefore(finalDateTime)) {
+          messages.push(msgObj);
+          if (!userList.includes(msgObj.user)) {
+            userList.push(msgObj.user);
+          }
+        } else {
+          hasFinalDateTime = true;
+        }
+      }
+
+    } else if (/^(((\d+)(\/)(\d+)(\/)(\d+))(, )((\d+)(:)(\d+)( (AM|PM))?)( - )(.*))/g.test(line)) { // System | misc message
+      if (hasReachedFinalDateTime) break;
+      let lineData = /^(((\d+)(\/)(\d+)(\/)(\d+))(, )((\d+)(:)(\d+)( (AM|PM))?)( - )(.*))/g.exec(line);
+      let datetimeFormatString = getDateFormat(lineData[3], lineData[13]);
+      let msgObj = {
+        datetime: moment(`${lineData[2]} ${lineData[9]}`, datetimeFormatString),
+        msg: lineData[16],
+        user: ''
+      };
+
+      if (!hasInitialDatime || msgObj.datetime.isAfter(intitalDateTime)) {
+        if (!hasFinalDateTime || msgObj.datetime.isBefore(finalDateTime)) {
+          messages.push(msgObj);
+          if (!userList.includes(msgObj.user)) {
+            userList.push(msgObj.user);
+          }
+        } else {
+          hasFinalDateTime = true;
         }
       }
 
     } else {
-      if (/^(((\d+)(\/)(\d+)(\/)(\d+))(, )((\d+)(:)(\d+)( (AM|PM))?)( - )(.*))/g.test(line)) { // System | misc message
-        let lineData = /^(((\d+)(\/)(\d+)(\/)(\d+))(, )((\d+)(:)(\d+)( (AM|PM))?)( - )(.*))/g.exec(line);
-        let datetimeFormatString = getDateFormat(lineData[3], lineData[13]);
-        let msgObj = {
-          datetime: moment(`${lineData[2]} ${lineData[9]}`, datetimeFormatString),
-          msg: lineData[16],
-          user: ''
-        };
-
-        if ((!hasInitialDatime || msgObj.datetime.isAfter(intitalDateTime)) && (!hasFinalDateTime || msgObj.datetime.isBefore(finalDateTime))) {
-          messages.push(msgObj);
-        }
-
-      } else {
-        if (messages[0]) {
-          messages[messages.length > 0 ? messages.length - 1 : 0].msg += `\n${line}`;
-        }
+      if (messages[0]) {
+        messages[messages.length > 0 ? messages.length - 1 : 0].msg += `\n${line}`;
       }
     }
   });
