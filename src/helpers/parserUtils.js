@@ -75,10 +75,17 @@ const getDateFormat = (firstn, postm) => {
   }
 }
 
-
+const getUserLetter = (userName) => {
+   if(!userName.includes('+')) {
+      return userName.charAt(0).toUpperCase();
+  } else {
+      return "&";
+  }
+}
 
 export default {
   getDateFormat,
+  getUserLetter,
   parseMarkdown,
   parseUrlLinks
 }

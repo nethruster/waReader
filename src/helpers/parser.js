@@ -33,7 +33,8 @@ const parseTextFile = (text, intitalDateTime, finalDateTime) => {
 
   var linesArray = text.split('\n'),
     messages = [],
-    userList = [];
+    userList = [],
+    userNames = [];
 
   linesArray.forEach((line) => {
     if (/^(((\d+)(\/)(\d+)(\/)(\d+))(, )((\d+)(:)(\d+)( (AM|PM))?)( - )([^:]*)(:)(\s)(.*))/g.test(line)) { // Normal user message
@@ -42,16 +43,22 @@ const parseTextFile = (text, intitalDateTime, finalDateTime) => {
 
       let lineData = /^(((\d+)(\/)(\d+)(\/)(\d+))(, )((\d+)(:)(\d+)( (AM|PM))?)( - )([^:]*)(:)(\s)(.*))/g.exec(line);
       let datetimeFormatString = parserUtils.getDateFormat(lineData[3], lineData[13]);
+      
       let msgObj = {
         datetime: moment(`${lineData[2]} ${lineData[9]}`, datetimeFormatString),
         msg: lineData[19],
-        user: lineData[16]
+        user: {
+          name: lineData[16],
+          letter: parserUtils.getUserLetter(lineData[16])
+        }
       };
 
       if (!hasInitialDatime || msgObj.datetime.isAfter(intitalDateTime)) {
         if (!hasFinalDateTime || msgObj.datetime.isBefore(finalDateTime)) {
           messages.push(msgObj);
-          if (!userList.includes(msgObj.user)) {
+          
+          if (!userNames.includes(msgObj.user.name)) {
+            userNames.push(msgObj.user.name);
             userList.push(msgObj.user);
           }
         } else {
@@ -67,7 +74,7 @@ const parseTextFile = (text, intitalDateTime, finalDateTime) => {
       let msgObj = {
         datetime: moment(`${lineData[2]} ${lineData[9]}`, datetimeFormatString),
         msg: lineData[16],
-        user: ''
+        user: {}
       };
 
       if (!hasInitialDatime || msgObj.datetime.isAfter(intitalDateTime)) {
@@ -86,7 +93,15 @@ const parseTextFile = (text, intitalDateTime, finalDateTime) => {
 
   if (messages.length === 0) throw "The text has no messages";
 
-  userList.sort();
+  userList.sort((uA, uB) => {
+    if (uA.name < uB.name) {
+        return -1;
+    }
+    else if (uA.name > uB.name) {
+        return 1;
+    }
+    return 0;
+  });
 
   return {
     users: userList,

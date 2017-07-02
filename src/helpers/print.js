@@ -1,25 +1,25 @@
 function generateMessagesHtmlString(msgs, selfUser) {
   var stringDataArray = new Array(msgs.length);
   var lastUser;
-  msgs.forEach(function (e, index) {
+  msgs.forEach(function (msg, index) {
     let bodydata;
 
-    if (e.user !== '') {
+    if (msg.user !== '') {
       bodydata = `
-        <div class="wr-chat-bubble" class="${e.user !== msgs[index < msgs.length - 1 ? index + 1 : 0].user ? 'lastByUser' : ''}">
-            ${lastUser !== e.user ? `<span class="wr-chat-message-author">${e.user}</span>` : ''}
-            <div class="wr-chat-message-text">${e.msg}</div>
-            <p class="wr-chat-message-datetime">${e.datetime.format("DD/MM/YYYY HH:mm")}</p>
+        <div class="wr-chat-bubble" class="${msg.user.name !== msgs[index < msgs.length - 1 ? index + 1 : 0].user.name ? 'lastByUser' : ''}">
+            ${lastUser !== msg.user.name ? `<span class="wr-chat-message-author">${msg.user.name}</span>` : ''}
+            <div class="wr-chat-message-text">${msg.msg}</div>
+            <p class="wr-chat-message-datetime">${msg.datetime.format("DD/MM/YYYY HH:mm")}</p>
         </div>`;
     } else {
       bodydata = `
       <div class="wr-chat-sys-message">
-          <p>${e.msg}</p>
+          <p>${msg.msg}</p>
       </div>`;
     }
-    stringDataArray[index] = `<div class="wr-chat-message flex flex-cross-center ${selfUser === e.user ? 'wr-chat-self' : ''}">${bodydata}</div>`;
+    stringDataArray[index] = `<div class="wr-chat-message flex flex-cross-center ${selfUser === msg.user.name ? 'wr-chat-self' : ''}">${bodydata}</div>`;
 
-    lastUser = e.user;
+    lastUser = msg.user.name;
   });
 
   return stringDataArray.join('');
