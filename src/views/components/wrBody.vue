@@ -43,7 +43,7 @@
             </div>
         </div>
 
-        <chatView :chatData="chatData" :chatTitle="chatTitle" v-else :showToast="showToast" />
+        <chatView :chatData="chatData" :chatTitle="chatTitle" :showToast="showToast" v-else />
     </div>
 </template>
 

@@ -54,8 +54,8 @@ const parseTextFile = function (text, intitalDateTime, finalDateTime) {
   if (finalDateTime) {
     hasFinalDateTime = true;
     finalDateTime = moment(finalDateTime);
-
   }
+  
   if (!text) throw "The text has no lines";
 
   // Surround urls with anchor tags
