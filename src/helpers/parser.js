@@ -17,6 +17,12 @@ const addAnchorLinksToUrls = function (text) {
 const parseBoldSymbols = function(text) {
   return text.replace(/((^|\ |~|_)\*)([^\ \*\n\t]([^\n]*?[^\t\n\ ])?)(\*)/gm, "$2<b>$3</b>");
 }
+const parseItalicSymbols = function(text) {
+  return text.replace(/((^|\ |~|\*)_)([^\ _\n\t]([^\n]*?[^\t\n\ ])?)_/gm, "$2<i>$3</i>");
+}
+const parseStrikethroughSymbols = function(text) {
+  return text.replace(/((^|\ |\*|_)~)([^\ ~\n\t]([^\n]*?[^\t\n\ ])?)~/gm, "$2<span class='t-strikethrough'>$3</span>");
+}
 /**
  * Computes the date format depending on the chat date format
  * returns the correspondent format
@@ -62,6 +68,8 @@ const parseTextFile = function (text, intitalDateTime, finalDateTime) {
   if (!text) throw "The text has no lines";
 
   text = parseBoldSymbols(text);
+  text = parseItalicSymbols(text);
+  text = parseStrikethroughSymbols(text);
   // Surround urls with anchor tags
   text = addAnchorLinksToUrls(text);
 
