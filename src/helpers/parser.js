@@ -14,7 +14,9 @@ const addAnchorLinksToUrls = function (text) {
     }]
   });
 }
-
+const parseBoldSymbols = function(text) {
+  return text.replace(/((^|\ |~|_)\*)([^\ \*\n\t]([^\n]*?[^\t\n\ ])?)(\*)/gm, "$2<b>$3</b>");
+}
 /**
  * Computes the date format depending on the chat date format
  * returns the correspondent format
@@ -59,6 +61,7 @@ const parseTextFile = function (text, intitalDateTime, finalDateTime) {
   }
   if (!text) throw "The text has no lines";
 
+  text = parseBoldSymbols(text);
   // Surround urls with anchor tags
   text = addAnchorLinksToUrls(text);
 
