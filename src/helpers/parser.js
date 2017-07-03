@@ -1,6 +1,9 @@
 import parserUtils from './parserUtils';
 import moment from 'moment';
 
+const RegExrNormalUserMessage = /^(((\d+)(\/)(\d+)(\/)(\d+))(, )((\d+)(:)(\d+)( (AM|PM))?)( - )([^:]*)(:)(\s)(.*))/,
+      RegExrtSystemMessage = /^(((\d+)(\/)(\d+)(\/)(\d+))(, )((\d+)(:)(\d+)( (AM|PM))?)( - )(.*))/;
+
 /**
  * Parses the content of a Whatsapp txt chat export file and returns 
  * the data in an object
@@ -37,11 +40,11 @@ const parseTextFile = (text, intitalDateTime, finalDateTime) => {
     userNames = [];
 
   linesArray.forEach((line) => {
-    if (/^(((\d+)(\/)(\d+)(\/)(\d+))(, )((\d+)(:)(\d+)( (AM|PM))?)( - )([^:]*)(:)(\s)(.*))/g.test(line)) { // Normal user message
+    if (RegExrNormalUserMessage.test(line)) { // Normal user message
 
       if (hasReachedFinalDateTime) return {};
 
-      let lineData = /^(((\d+)(\/)(\d+)(\/)(\d+))(, )((\d+)(:)(\d+)( (AM|PM))?)( - )([^:]*)(:)(\s)(.*))/g.exec(line);
+      let lineData = RegExrNormalUserMessage.exec(line);
       let datetimeFormatString = parserUtils.getDateFormat(lineData[3], lineData[13]);
       
       let msgObj = {
@@ -65,11 +68,11 @@ const parseTextFile = (text, intitalDateTime, finalDateTime) => {
           hasReachedFinalDateTime = true;
         }
       }
-    } else if (/^(((\d+)(\/)(\d+)(\/)(\d+))(, )((\d+)(:)(\d+)( (AM|PM))?)( - )(.*))/g.test(line)) { // System | misc message
+    } else if (RegExrtSystemMessage.test(line)) { // System | misc message
 
       if (hasReachedFinalDateTime) return {};
 
-      let lineData = /^(((\d+)(\/)(\d+)(\/)(\d+))(, )((\d+)(:)(\d+)( (AM|PM))?)( - )(.*))/g.exec(line);
+      let lineData = RegExrtSystemMessage.exec(line);
       let datetimeFormatString = parserUtils.getDateFormat(lineData[3], lineData[13]);
       let msgObj = {
         datetime: moment(`${lineData[2]} ${lineData[9]}`, datetimeFormatString),
