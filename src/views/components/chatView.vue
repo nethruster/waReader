@@ -13,7 +13,7 @@
                 </svg>&nbsp;Load new chat
             </div>
             <div class="wr-chat-participants-list">
-                <chatParticipant v-for="(user, key) in chatData.users" :user="user" :colour="colours[userColours[user.name]]" :index="key" :selfUser="selfUser" :setSelfUser="setSelfUser" ripple="ripple" />
+                <chat-participant v-for="(user, key) in chatData.users" :user="user" :colour="colours[userColours[user.name]]" :index="key" :selfUser="selfUser" :setSelfUser="setSelfUser" ripple="ripple" />
             </div>
         </div>
         <div class="wr-chat-messages">
@@ -32,7 +32,7 @@
             </button>
             </div>
             <div class="wr-chat-messages-list" ref="messages">
-                <chatMessage v-for="(msg, key) in tempData" :showAuthor="msg === tempData[0] || msg.user.name !== tempData[key > 0 ? key - 1 : 0].user.name" :isLastByUser="msg.user.name !== tempData[key < tempData.length - 1 ? key + 1 : 0].user.name" :msg="msg" :colour="colours[userColours[msg.user.name]]" :index="key" :selfUser="selfUser" :isGroupChat="isGroupChat" />
+                <chat-message v-for="(msg, key) in tempData" :showAuthor="msg === tempData[0] || msg.user.name !== tempData[key > 0 ? key - 1 : 0].user.name" :isLastByUser="msg.user.name !== tempData[key < tempData.length - 1 ? key + 1 : 0].user.name" :msg="msg" :colour="colours[userColours[msg.user.name]]" :index="key" :selfUser="selfUser" :isGroupChat="isGroupChat" />
                 <infinite-loading :distance="200" :on-infinite="onInfinite" ref="infiniteLoading" spinner="spiral"></infinite-loading>
             </div>
         </div>
@@ -92,7 +92,6 @@
         },
         mounted: function () {
             mdripple();
-            window.addEventListener('resize', this.handleResize);
         },
         created: function() {
             this.userColours = this.assignUserColours();

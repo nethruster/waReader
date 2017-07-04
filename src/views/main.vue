@@ -1,6 +1,6 @@
 <template>
     <div id="main-wrapper" class="flex flex-dc flex-full-center">
-        <wrBody />
+        <wr-body />
     </div>
 </template>
 

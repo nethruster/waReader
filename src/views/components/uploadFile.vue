@@ -13,7 +13,7 @@
                             </svg>
                         </span>
                     </label>
-                    <DatePicker :date="intitalDateTime" :option="pickerOptions" />
+                    <date-picker :date="intitalDateTime" :option="pickerOptions" />
                 </div>
                 <div class="date-interval-picker-c">
                     <label class="date-interval-picker-label">End Date
@@ -23,7 +23,7 @@
                             </svg>
                         </span>
                     </label>
-                    <DatePicker :date="finalDateTime" :option="pickerOptions" />
+                    <date-picker :date="finalDateTime" :option="pickerOptions" />
                 </div>
             </div>
         </div>
@@ -43,7 +43,7 @@
                     <p v-html="this.buttonText"></p>
                     <div id="upload-file-loader" :class="['loader', {'is-loading': isLoading}]">
                         <svg class="circular" viewBox="25 25 50 50">
-                            <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10"/>
+                            <circle class="path" cx="50" cy="50" r="20" stroke-width="2" />
                         </svg>
                     </div>
                 </span>
@@ -54,7 +54,8 @@
 
 <script>
     import Helpers from './../../helpers/index.js';
-    import DatePicker from 'vue-datepicker'
+    import datePicker from 'vue-datepicker';
+
     export default {
         name: 'uploadFile',
         props: ['populateData', 'showToast'],
@@ -62,6 +63,7 @@
             return {
                 isLoading: false,
                 buttonText: 'Submit',
+                buttonLoadingText: 'Procesing chat&nbsp;',
                 intitalDateTime: {time: null},
                 finalDateTime: {time: null},
                 pickerOptions: {
@@ -78,7 +80,7 @@
             }
         },
         components: {
-            DatePicker
+            datePicker
         },
         mounted: function() {
             var fileInput = document.getElementById("file");
@@ -92,7 +94,7 @@
 
                 if(fileInput.files.length > 0) {
                     this.isLoading = true;
-                    this.buttonText = 'Procesing chat&nbsp;';
+                    this.buttonText = this.buttonLoadingText;
 
                     var file = fileInput.files[0],
                         fr = new FileReader();

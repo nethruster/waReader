@@ -6,8 +6,8 @@ import anchorme from "anchorme";
  * @return string
  */
 const parseBoldSymbols = (text) => {
-  return text.replace(/((^|\ |~|_)\*)([^\ \*\n\t]([^\n]*?[^\t\n\ ])?)(\*)/gm, "$2<b>$3</b>");
-}
+  return text.replace(/((^|\ |~|_)\*)([^\ \*\n\t]([^\n]*?[^\t\n\ ])?)(\*)/gm, '$2<b>$3</b>');
+};
 
 /**
  * Replaces markdown itallic formatted messages (_m_) with their html representation
@@ -15,7 +15,7 @@ const parseBoldSymbols = (text) => {
  * @return string
  */
 const parseItallicSymbols = (text) => {
-  return text.replace(/((^|\ |~|\*)_)([^\ _\n\t]([^\n]*?[^\t\n\ ])?)_/gm, "$2<i>$3</i>");
+  return text.replace(/((^|\ |~|\*)_)([^\ _\n\t]([^\n]*?[^\t\n\ ])?)_/gm, '$2<i>$3</i>');
 }
 
 /**
@@ -24,7 +24,7 @@ const parseItallicSymbols = (text) => {
  * @return string
  */
 const parseStrikethroughSymbols = (text) => {
-  return text.replace(/((^|\ |\*|_)~)([^\ ~\n\t]([^\n]*?[^\t\n\ ])?)~/gm, "$2<span class='t-strikethrough'>$3</span>");
+  return text.replace(/((^|\ |\*|_)~)([^\ ~\n\t]([^\n]*?[^\t\n\ ])?)~/gm, '$2<span class="t-strikethrough">$3</span>');
 }
 
 /**
@@ -35,11 +35,11 @@ const parseStrikethroughSymbols = (text) => {
 const parseUrlLinks = (text) => {
   return anchorme(text, {
     attributes: [{
-      name: "target",
-      value: "_blank"
-    }]
+      name: 'target',
+      value: '_blank',
+    }],
   });
-}
+};
 
 /**
  * Replaces markdown formatted messages (*m*, _m_, ~m~) with an html representation
@@ -52,7 +52,7 @@ const parseMarkdown = (text) => {
   text = parseStrikethroughSymbols(text);
 
   return text;
-}
+};
 
 /**
  * Computes the date format depending on the chat date format
@@ -63,29 +63,29 @@ const parseMarkdown = (text) => {
  */
 const getDateFormat = (firstn, postm) => {
   if (firstn > 12) {
-    if (postm == "") {
-      return "DD/MM/YYYY HH:mm";
+    if (postm === '') {
+      return 'DD/MM/YYYY HH:mm';
     } else {
-      return "DD/MM/YYYY hh:mm A";
+      return 'DD/MM/YYYY hh:mm A';
     }
-  } else if (postm == "") {
-    return "MM/DD/YYYY HH:mm";
+  } else if (postm === '') {
+    return 'MM/DD/YYYY HH:mm';
   } else {
-    return "MM/DD/YYYY hh:mm A";
+    return 'MM/DD/YYYY hh:mm A';
   }
-}
+};
 
 const getUserLetter = (userName) => {
-   if(!userName.includes('+')) {
-      return userName.charAt(0).toUpperCase();
+  if(!userName.includes('+')) {
+    return userName.charAt(0).toUpperCase();
   } else {
-      return "&";
+    return '&';
   }
-}
+};
 
 export default {
   getDateFormat,
   getUserLetter,
   parseMarkdown,
-  parseUrlLinks
-}
+  parseUrlLinks,
+};

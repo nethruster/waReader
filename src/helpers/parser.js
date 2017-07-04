@@ -1,6 +1,9 @@
 import parserUtils from './parserUtils';
 import moment from 'moment';
 
+const RegExrNormalUserMessage = /^(((\d+)(\/)(\d+)(\/)(\d+))(, )((\d+)(:)(\d+)( (AM|PM))?)( - )([^:]*)(:)(\s)(.*))/,
+  RegExrtSystemMessage = /^(((\d+)(\/)(\d+)(\/)(\d+))(, )((\d+)(:)(\d+)( (AM|PM))?)( - )(.*))/;
+
 /**
  * Parses the content of a Whatsapp txt chat export file and returns 
  * the data in an object
@@ -23,7 +26,7 @@ const parseTextFile = (text, intitalDateTime, finalDateTime) => {
   }
   
   // Empty file
-  if (!text) throw "The text has no lines";
+  if (!text) throw 'The text has no lines';
 
   // Replace markdown syntax by its correct representation
   text = parserUtils.parseMarkdown(text);
@@ -33,15 +36,14 @@ const parseTextFile = (text, intitalDateTime, finalDateTime) => {
 
   var linesArray = text.split('\n'),
     messages = [],
-    userList = [],
+    users = [],
     userNames = [];
 
   linesArray.forEach((line) => {
-    if (/^(((\d+)(\/)(\d+)(\/)(\d+))(, )((\d+)(:)(\d+)( (AM|PM))?)( - )([^:]*)(:)(\s)(.*))/g.test(line)) { // Normal user message
-
+    if (RegExrNormalUserMessage.test(line)) { // Normal user message
       if (hasReachedFinalDateTime) return {};
 
-      let lineData = /^(((\d+)(\/)(\d+)(\/)(\d+))(, )((\d+)(:)(\d+)( (AM|PM))?)( - )([^:]*)(:)(\s)(.*))/g.exec(line);
+      let lineData = RegExrNormalUserMessage.exec(line);
       let datetimeFormatString = parserUtils.getDateFormat(lineData[3], lineData[13]);
       
       let msgObj = {
@@ -49,8 +51,8 @@ const parseTextFile = (text, intitalDateTime, finalDateTime) => {
         msg: lineData[19],
         user: {
           name: lineData[16],
-          letter: parserUtils.getUserLetter(lineData[16])
-        }
+          letter: parserUtils.getUserLetter(lineData[16]),
+        },
       };
 
       if (!hasInitialDatime || msgObj.datetime.isAfter(intitalDateTime)) {
@@ -59,22 +61,21 @@ const parseTextFile = (text, intitalDateTime, finalDateTime) => {
           
           if (!userNames.includes(msgObj.user.name)) {
             userNames.push(msgObj.user.name);
-            userList.push(msgObj.user);
+            users.push(msgObj.user);
           }
         } else {
           hasReachedFinalDateTime = true;
         }
       }
-    } else if (/^(((\d+)(\/)(\d+)(\/)(\d+))(, )((\d+)(:)(\d+)( (AM|PM))?)( - )(.*))/g.test(line)) { // System | misc message
-
+    } else if (RegExrtSystemMessage.test(line)) { // System | misc message
       if (hasReachedFinalDateTime) return {};
 
-      let lineData = /^(((\d+)(\/)(\d+)(\/)(\d+))(, )((\d+)(:)(\d+)( (AM|PM))?)( - )(.*))/g.exec(line);
+      let lineData = RegExrtSystemMessage.exec(line);
       let datetimeFormatString = parserUtils.getDateFormat(lineData[3], lineData[13]);
       let msgObj = {
         datetime: moment(`${lineData[2]} ${lineData[9]}`, datetimeFormatString),
         msg: lineData[16],
-        user: {}
+        user: {},
       };
 
       if (!hasInitialDatime || msgObj.datetime.isAfter(intitalDateTime)) {
@@ -91,24 +92,23 @@ const parseTextFile = (text, intitalDateTime, finalDateTime) => {
     }
   });
 
-  if (messages.length === 0) throw "The text has no messages";
+  if (messages.length === 0) throw 'The text has no messages';
 
-  userList.sort((uA, uB) => {
+  users.sort((uA, uB) => {
     if (uA.name < uB.name) {
-        return -1;
-    }
-    else if (uA.name > uB.name) {
-        return 1;
+      return -1;
+    } else if (uA.name > uB.name) {
+      return 1;
     }
     return 0;
   });
 
   return {
-    users: userList,
-    messages: messages
+    users,
+    messages,
   };
-}
+};
 
 export default {
-  parseTextFile
-}
+  parseTextFile,
+};

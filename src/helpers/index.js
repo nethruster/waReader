@@ -6,5 +6,5 @@ import printMgr from './print';
 
 export default {
   parseMgr,
-  printMgr
-}
+  printMgr,
+};

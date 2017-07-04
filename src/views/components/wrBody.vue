@@ -1,5 +1,5 @@
 <template>
-    <div :class="{'wr-body-chat': chatLoaded}" class="wr-body flex flex-full-center">
+    <div class="wr-body flex flex-full-center" :class="{'wr-body-chat': chatLoaded}">
         <div class="wr-home-panel flex flex-dc" v-if="Object.keys(this.chatData).length === 0">
             <uploadFile :populateData="populateData" :showToast="showToast" />
             <div class="info-section flex flex-dc flex-full-center">

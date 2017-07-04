@@ -1,7 +1,7 @@
 function generateMessagesHtmlString(msgs, selfUser) {
   var stringDataArray = new Array(msgs.length);
   var lastUser;
-  msgs.forEach(function (msg, index) {
+  msgs.forEach((msg, index) => {
     let bodydata;
 
     if (msg.user !== '') {
@@ -9,7 +9,7 @@ function generateMessagesHtmlString(msgs, selfUser) {
         <div class="wr-chat-bubble" class="${msg.user.name !== msgs[index < msgs.length - 1 ? index + 1 : 0].user.name ? 'lastByUser' : ''}">
             ${lastUser !== msg.user.name ? `<span class="wr-chat-message-author">${msg.user.name}</span>` : ''}
             <div class="wr-chat-message-text">${msg.msg}</div>
-            <p class="wr-chat-message-datetime">${msg.datetime.format("DD/MM/YYYY HH:mm")}</p>
+            <p class="wr-chat-message-datetime">${msg.datetime.format('DD/MM/YYYY HH:mm')}</p>
         </div>`;
     } else {
       bodydata = `
@@ -39,8 +39,8 @@ const generatePrintViewString = function (msgs, selfUser, chatTitle) {
     <p class="ta-c"><small>Generated with <a href="https://wareader.nethruster.com">waReader</a> by Nethruster (nethruster.com)</small></p>`;
 
   return previewTemplate;
-}
+};
 
 export default {
-  generatePrintViewString
-}
+  generatePrintViewString,
+};
