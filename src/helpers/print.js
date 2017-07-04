@@ -4,7 +4,7 @@ function generateMessagesHtmlString(msgs, selfUser) {
   msgs.forEach((msg, index) => {
     let bodydata;
 
-    if (msg.user !== '') {
+    if (Object.keys(msg.user).length !== 0) {
       bodydata = `
         <div class="wr-chat-bubble" class="${msg.user.name !== msgs[index < msgs.length - 1 ? index + 1 : 0].user.name ? 'lastByUser' : ''}">
             ${lastUser !== msg.user.name ? `<span class="wr-chat-message-author">${msg.user.name}</span>` : ''}
