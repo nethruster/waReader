@@ -42,9 +42,11 @@
                 <span class="flex flex-cross-center">
                     <p v-html="this.buttonText"></p>
                     <div id="upload-file-loader" :class="['loader', {'is-loading': isLoading}]">
-                        <svg class="circular" viewBox="25 25 50 50">
-                            <circle class="path" cx="50" cy="50" r="20" stroke-width="2" />
-                        </svg>
+                            <div id="loader-4">
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                            </div>
                     </div>
                 </span>
             </button>

@@ -1,4 +1,4 @@
-import anchorme from "anchorme";
+import anchorme from 'anchorme';
 
 /**
  * Replaces markdown bold formatted messages (*m*) with their html representation
