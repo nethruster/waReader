@@ -7,7 +7,7 @@
     background-color: #eee;
     height: var( --chat-header-height);
     padding: 0 var(--base-pm);
-    border-bottom: 1px solid rgba(0,0,0, .1);
+    border-bottom: 1px solid rgba(0, 0, 0, .1);
     text-transform: uppercase;
     font-weight: 400;
 }
@@ -27,14 +27,14 @@
     overflow: hidden;
     text-overflow: ellipsis;
     -webkit-appearance: none;
-    border: none;
+    border: 0;
     background-color: transparent;
     flex: 1;
     color: #08c65b;
 
     &:hover {
         box-shadow: none;
-        background-color: rgba(0,0,0, .05);
+        background-color: rgba(0, 0, 0, .05);
     }
 }
 

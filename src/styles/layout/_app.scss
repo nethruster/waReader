@@ -18,7 +18,7 @@
 .brand-bg {
     background-color: var(--wbrand-colour-light) !important;
     color: #f1f1f1 !important;
-    border: none !important;
+    border: 0 !important;
 }
 
 .wr-home-panel {
@@ -77,9 +77,9 @@
 }
 
 *::-webkit-scrollbar-thumb {
-    background-color: rgba(0,0,0,0.2);
+    background-color: rgba(0, 0, 0 , .2);
 }
 
 *::-webkit-scrollbar-track {
-    background: rgba(255,255,255,0.08);
+    background: rgba(255, 255, 255, .08);
 }

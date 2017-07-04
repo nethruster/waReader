@@ -27,7 +27,7 @@
     color: #262626;
     padding: calc(var(--base-pm) / 1.5) var(--base-pm);
     border-radius: 8px;
-    box-shadow: 0 1px 0.5px rgba(0,0,0,0.13);
+    box-shadow: 0 1px .5px rgba(0, 0, 0, 0.13);
     margin-bottom: 2px;
     max-width: 75%;
     font-size: .96em;
@@ -35,19 +35,21 @@
     word-wrap: break-word;
     position: relative;
 
-    &.lastByUser {
+    &.last-by-user {
         margin-bottom: 12px;
     }
 }
 
 .wr-chat-message-text {
     cursor: text;
+
+    &::after {
+        content: ' \00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0';
+        display: inline;
+    }
 }
 
-.wr-chat-message-text::after {
-    content: " \00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0";
-    display: inline;
-}
+
 
 .wr-chat-message-datetime {
     position: absolute;
@@ -55,7 +57,7 @@
     right: 8px;
     bottom: 2px;
     font-size: .78em;
-    color: rgba(0,0,0,.45);
+    color: rgba(0, 0, 0, .45);
     font-weight: 400;
 }
 
@@ -68,7 +70,7 @@
     margin: 0 auto;
     background-color: #e0f1fa;
     border-radius: 8px;
-    box-shadow: 0 1px 0.5px rgba(0,0,0,0.13);
+    box-shadow: 0 1px .5px rgba(0, 0, 0, 0.13);
     padding: calc(var(--base-pm) / 2) var(--base-pm);
     margin: var(--base-pm) auto;
     font-size: .9em;
