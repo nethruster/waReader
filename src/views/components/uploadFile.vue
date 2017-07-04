@@ -42,11 +42,11 @@
                 <span class="flex flex-cross-center">
                     <p v-html="this.buttonText"></p>
                     <div id="upload-file-loader" :class="['loader', {'is-loading': isLoading}]">
-                            <div id="loader-4">
-                                <span></span>
-                                <span></span>
-                                <span></span>
-                            </div>
+                        <div id="loader-4">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </div>
                     </div>
                 </span>
             </button>
