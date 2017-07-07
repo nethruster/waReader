@@ -6,16 +6,16 @@ const gulp         = require('gulp'),
       babel        = require('gulp-babel'),
       uglify       = require('gulp-uglify'),
       vueify       = require('vueify'),
-      source       = require("vinyl-source-stream"),
-      buffer       = require("vinyl-buffer"),
-      envify       = require("envify"),
+      source       = require('vinyl-source-stream'),
+      buffer       = require('vinyl-buffer'),
+      envify       = require('envify'),
       htmlmin      = require('gulp-html-minifier'),
       babelify     = require('babelify'),
-      browserify   = require("browserify"),
+      browserify   = require('browserify'),
       browserSync  = require('browser-sync').create(),
       autoprefixer = require('gulp-autoprefixer');
 
-var env = util.env.production ? "production" : "development";
+var env = util.env.production ? 'production' : 'development';
 
 gulp.task('sass', () => {
   return gulp.src('./src/styles/styles.scss')
@@ -33,21 +33,21 @@ gulp.task('psass', () => {
         .pipe(browserSync.stream());
 });
 
-gulp.task("buildjs", function () {
+gulp.task('buildjs', function () {
     return browserify({
-        "entries": ['./src/index.js'],
-        "debug": true
+        'entries': ['./src/index.js'],
+        'debug': true
     })
     .transform(babelify.configure({
-        presets: ["es2015"]
+        presets: ['es2015']
     }))
     .transform('envify', {global: true, _: 'purge', NODE_ENV: env})
     .transform(vueify)
     .bundle()
-    .pipe(source("waReader.js"))
+    .pipe(source('waReader.js'))
     .pipe(buffer())
     .pipe(env === 'production' ? uglify() : util.noop())
-    .pipe(gulp.dest("./dist/"))
+    .pipe(gulp.dest('./dist/'))
     .pipe(browserSync.stream());
 });
 
@@ -66,20 +66,20 @@ gulp.task('vue:watch', () => {
 
 gulp.task('serve', ['build', 'sass:watch', 'js:watch', 'vue:watch'], function() {
     browserSync.init({
-        server: "./dist"
+        server: './dist'
     });
 
-    gulp.watch("./index.html").on('change', browserSync.reload);
+    gulp.watch('./index.html').on('change', browserSync.reload);
 });
 
 gulp.task('buildassets', () => {
     return gulp.src('./src/assets/**/*')
-        .pipe(gulp.dest("./dist/assets/"))
+        .pipe(gulp.dest('./dist/assets/'))
 });
 
 gulp.task('buildhumans', () => {
     return gulp.src('./src/humans.txt')
-        .pipe(gulp.dest("./dist/"))
+        .pipe(gulp.dest('./dist/'))
 });
 
 gulp.task('build', ['sass', 'psass', 'buildjs', 'buildassets', 'buildhumans'], () => {
@@ -88,7 +88,7 @@ gulp.task('build', ['sass', 'psass', 'buildjs', 'buildassets', 'buildhumans'], (
           collapseWhitespace: true,
           env: env,
         }))
-        .pipe(gulp.dest("./dist/"))
+        .pipe(gulp.dest('./dist/'))
         .pipe(browserSync.stream());
 });
 
