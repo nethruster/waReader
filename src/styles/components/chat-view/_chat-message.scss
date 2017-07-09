@@ -41,6 +41,7 @@
 }
 
 .wr-chat-message-text {
+    white-space: pre-wrap;
     cursor: text;
 
     &::after {
