@@ -87,7 +87,7 @@
         mounted: function() {
             var fileInput = document.getElementById("file");
             fileInput.addEventListener('change', () => {
-                document.getElementsByClassName('upload-file-filename')[0].innerHTML = fileInput.files[0].name;;
+                document.getElementsByClassName('upload-file-filename')[0].innerHTML = fileInput.files[0].name;
             });
         },
         methods: {

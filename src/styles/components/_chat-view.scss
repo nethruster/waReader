@@ -6,7 +6,7 @@
 .wr-chat-header {
     background-color: #eee;
     height: var( --chat-header-height);
-    padding: 0 var(--base-pm);
+    padding: 0 calc(var(--base-pm) * 2);
     border-bottom: 1px solid rgba(0, 0, 0, .1);
     text-transform: uppercase;
     font-weight: 400;
