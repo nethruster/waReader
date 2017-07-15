@@ -4,7 +4,8 @@
 # TEAM
 
     Guillem Arias            --    Front-end Developer and Designer                -- https://www.gariasf.com
-    Claudio Yanes            --    Backend Developer and Systems Administrator     -- https://claudio4.com
+    Claudio Yanes            --    Backend Developer and Systems Administrator     -- https://www.claudio4.com
+    Miguel Dorta             --    Team Collaborator                               -- https://www.migueldorta.com
 
 # THANKS
 
