@@ -13,7 +13,7 @@
                 </svg>&nbsp;Load new chat
             </div>
             <div class="wr-chat-participants-list">
-                <chat-participant v-for="(user, key) in chatData.users" :user="user" :colour="colours[userColours[user.name]]" :index="key" :selfUser="selfUser" :setSelfUser="setSelfUser" ripple="ripple" />
+                <chat-participant v-for="(user, key) in chatData.users" :user="user" :colour="Helpers.gVars.COLOURS[userColours[user.name]]" :index="key" :selfUser="selfUser" :setSelfUser="setSelfUser" ripple="ripple" />
             </div>
         </div>
         <div class="wr-chat-messages">
@@ -32,7 +32,7 @@
             </button>
             </div>
             <div class="wr-chat-messages-list" ref="messages">
-                <chat-message v-for="(msg, key) in tempData" :showAuthor="msg === tempData[0] || msg.user.name !== tempData[key > 0 ? key - 1 : 0].user.name" :isLastByUser="msg.user.name !== tempData[key < tempData.length - 1 ? key + 1 : 0].user.name" :msg="msg" :colour="colours[userColours[msg.user.name]]" :index="key" :selfUser="selfUser" :isGroupChat="isGroupChat" />
+                <chat-message v-for="(msg, key) in tempData" :showAuthor="msg === tempData[0] || msg.user.name !== tempData[key > 0 ? key - 1 : 0].user.name" :isLastByUser="msg.user.name !== tempData[key < tempData.length - 1 ? key + 1 : 0].user.name" :msg="msg" :colour="Helpers.gVars.COLOURS[userColours[msg.user.name]]" :index="key" :selfUser="selfUser" :isGroupChat="isGroupChat" />
                 <infinite-loading :distance="200" :on-infinite="onInfinite" ref="infiniteLoading" spinner="spiral"></infinite-loading>
             </div>
         </div>
@@ -66,28 +66,7 @@
                 tempData: [],             // Used to store lazy loading messages (messages are pushed here progressively)
                 scrollMessagesToLoad: 25, // Ammount of messages to load each time we lazy load new messages,
                 isDrawerOpen: false,
-                colours: [
-                    '#35cd96',
-                    '#6bcbef',
-                    '#e542a3',
-                    '#91ab01',
-                    '#ffa97a',
-                    '#1f7aec',
-                    '#dfb610',
-                    '#029d00',
-                    '#8b7add',
-                    '#fe7c7f',
-                    '#ba33dc',
-                    '#59d368',
-                    '#b04632',
-                    '#fd85d4',
-                    '#8393ca',
-                    '#ff8f2c',
-                    '#a3e2cb',
-                    '#b4876e',
-                    '#c90379',
-                    '#ef4b4f'
-                ]
+                Helpers,
             }
         },
         mounted: function () {
@@ -99,7 +78,7 @@
         methods: {
             assignUserColours: function() {
                 var userColoursArr = {},
-                    coloursLength = this.colours.length;
+                    coloursLength = this.Helpers.gVars.COLOURS.length;
 
                 for(let user in this.chatData.users) {
                     userColoursArr[this.chatData.users[user].name] = Math.floor(Math.random() * coloursLength);
@@ -126,7 +105,7 @@
             },
             openPrintView: function() {
                 var printWin = window.open("", "_blank");
-                printWin.document.write(Helpers.printMgr.generatePrintViewString(this.chatData.messages, this.selfUser, this.chatTitle));
+                printWin.document.write(this.Helpers.printMgr.generatePrintViewString(this.chatData.messages, this.selfUser, this.chatTitle, this.userColours));
             },
             toggleDrawer: function() {
                 this.isDrawerOpen = !this.isDrawerOpen;
