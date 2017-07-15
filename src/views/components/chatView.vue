@@ -91,7 +91,6 @@
         created: function() {
             this.userColours = this.assignUserColours();
             window.addEventListener('resize', () => {
-                console.log(window.innerWidth);
                 if(window.innerWidth > 950) {
                     this.isDrawerOpen = false;
                 }
