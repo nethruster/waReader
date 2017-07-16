@@ -131,3 +131,17 @@ h1 {
     font-size: 2.6em;
     margin: calc(var(--base-pm) * 4) 0;
 }
+
+@-moz-document url-prefix() {
+    .wr-chat-participant {
+        &:not(.wr-chat-header-self-participant)::after {
+            top: calc(50% - calc(var(--base-pm) * 1.5));
+        }
+    }
+
+    .wr-chat-participant {
+        &:not(:first-child) {
+            margin-top: -6px!important;
+        }
+    }
+}
