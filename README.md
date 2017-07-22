@@ -3,13 +3,13 @@
 
 ``` bash
 # install dependencies
-npm install
+yarn install
 
 # run development mode with hot reload at localhost:3000
-npm run dev
+yarn dev
 
 # build for production with minification and autoprefixer
-npm run build
+yarn build
 ```
 
 # License
