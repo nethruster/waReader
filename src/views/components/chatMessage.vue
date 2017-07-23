@@ -3,7 +3,7 @@
         <div class="wr-chat-bubble" :class="{'last-by-user': isLastByUser}" v-if="Object.keys(msg.user).length !== 0">
             <span class="wr-chat-message-author" :style="{color: this.colour}" v-if="isGroupChat && showAuthor">{{msg.user.name}}</span>
             <div class="wr-chat-message-text" v-html="msg.msg"></div>
-            <p class="wr-chat-message-datetime">{{ msg.datetime.format("DD/MM/YYYY HH:mm") }}</p>
+            <p class="wr-chat-message-datetime">{{ msg.datetime.format(`${this.dateFormat} - HH:mm`) }}</p>
         </div>
         <div class="wr-chat-sys-message" v-else>
             <p v-html="msg.msg"></p>
@@ -14,6 +14,6 @@
 <script>
     export default {
         name: 'chatMessage',
-        props: ['msg', 'index', 'selfUser', 'isGroupChat', 'showAuthor', 'isLastByUser',  'colour'],
+        props: ['msg', 'index', 'selfUser', 'isGroupChat', 'showAuthor', 'isLastByUser',  'colour', 'dateFormat'],
     }
 </script>

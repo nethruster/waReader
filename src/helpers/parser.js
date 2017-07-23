@@ -44,8 +44,8 @@ const parseTextFile = (text, intitalDateTime, finalDateTime, dateSystem) => {
       if (hasReachedFinalDateTime) return {};
 
       let lineData = RegExrNormalUserMessage.exec(line);
-      let datetimeFormatString = parserUtils.getDateFormat(lineData[3], lineData[13], dateSystem);
-      
+      let datetimeFormatString = parserUtils.getDateFormat(lineData[13], dateSystem);
+      // let msgDateTime = moment(`${lineData[2]} ${lineData[9]}`, datetimeFormatString) === null ? : 
       let msgObj = {
         datetime: moment(`${lineData[2]} ${lineData[9]}`, datetimeFormatString),
         msg: lineData[19],
@@ -71,7 +71,7 @@ const parseTextFile = (text, intitalDateTime, finalDateTime, dateSystem) => {
       if (hasReachedFinalDateTime) return {};
 
       let lineData = RegExrtSystemMessage.exec(line);
-      let datetimeFormatString = parserUtils.getDateFormat(lineData[3], lineData[13], dateSystem);
+      let datetimeFormatString = parserUtils.getDateFormat(lineData[13], dateSystem);
       let msgObj = {
         datetime: moment(`${lineData[2]} ${lineData[9]}`, datetimeFormatString),
         msg: lineData[16],

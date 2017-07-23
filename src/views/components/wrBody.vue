@@ -1,7 +1,7 @@
 <template>
     <div class="wr-body flex flex-full-center" :class="{'wr-body-chat': chatLoaded}">
         <div class="wr-home-panel flex flex-dc" v-if="Object.keys(this.chatData).length === 0">
-            <uploadFile :populateData="populateData" :showToast="showToast" />
+            <uploadFile :populateData="populateData" :showToast="showToast" :dateFormat="dateFormat" :handleDTClick="handleDTClick" />
             <div class="info-section flex flex-dc flex-full-center">
                 <div class="info-section-hero-items flex flex-main-center flex-sa">
                     <div class="info-section-hero-item">
@@ -43,7 +43,7 @@
             </div>
         </div>
 
-        <chatView :chatData="chatData" :chatTitle="chatTitle" :showToast="showToast" v-else />
+        <chatView :chatData="chatData" :chatTitle="chatTitle" :showToast="showToast" :dateFormat="dateFormat" v-else />
     </div>
 </template>
 
@@ -65,7 +65,8 @@
             return {
                 chatData: {},
                 chatTitle: '',
-                chatLoaded: false
+                chatLoaded: false,
+                dateFormat: 'DD/MM/YYYY'
             }
         },
         methods: {
@@ -98,6 +99,12 @@
                         });
                 }
             },
+            handleDTClick: function(e) {
+                let input = document.getElementById(e.target.dataset.input);
+                if(!input.checked) {
+                    this.dateFormat = input.value;
+                }
+            }
         }
     }
 </script>

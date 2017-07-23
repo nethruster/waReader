@@ -3,7 +3,7 @@
         <h1><img src="./assets/wrisot.svg" class="wrisot">&nbsp;waReader</h1>
         <h2 class="ta-c">Upload a WhatsApp  text (.txt) file and view it in a nice, clean, readeable format.</h2>
         <div class="date-interval-picker flex flex-dc flex-full-center">
-            <p>Show messages between (optional): </p>
+            <p>Show messages between <small>(optional)</small>: </p>
             <div class="date-interval-picker-r flex flex-full-center">
                 <div class="date-interval-picker-c">
                     <label class="date-interval-picker-label">Start Date 
@@ -21,6 +21,15 @@
                     </label>
                     <date-picker :date="finalDateTime" :option="pickerOptions" />
                 </div>
+            </div>
+        </div>
+        <div class="date-format-picker flex flex-full-center flex-dc">
+            <p>File's date format <small>(DD = Day, MM = Month, YYYY = Year)</small>: </p>
+            <div class="date-picker-inputs flex flex-full-center">
+                <input type="radio" name="date-format" id="date-format-st" value="DD/MM/YYYY" checked>
+                <label class="button pointer" for="date-format-st" data-input="date-format-st" v-on:click="handleDTClick">DD/MM/YYYY</label>
+                <input type="radio" name="date-format" id="date-format-nost" value="MM/DD/YYYY">
+                <label class="button pointer" for="date-format-nost" data-input="date-format-nost" v-on:click="handleDTClick">MM/DD/YYYY</label>
             </div>
         </div>
         <input type="file" id="file" name="file" class="upload-file-input" accept=".txt">
@@ -56,7 +65,7 @@
 
     export default {
         name: 'uploadFile',
-        props: ['populateData', 'showToast'],
+        props: ['populateData', 'showToast', 'dateFormat', 'handleDTClick'],
         data: function() {
             return {
                 isLoading: false,
@@ -101,9 +110,9 @@
 
                     fr.onload = (event) => {
                         try {
-                            var intitalDateTime = this.intitalDateTime.time !== null ? this.intitalDateTime.time : undefined;
-                            var finalDateTime = this.finalDateTime.time  !== null ? this.finalDateTime.time : undefined;
-                            setTimeout(this.populateData(Helpers.parseMgr.parseTextFile(event.target.result, intitalDateTime, finalDateTime, "DD/MM/YYYY"), file.name), 1200);
+                            var intitalDateTime = this.intitalDateTime.time !== null ? this.intitalDateTime.time : undefined,
+                                finalDateTime = this.finalDateTime.time !== null ? this.finalDateTime.time : undefined;
+                            setTimeout(this.populateData(Helpers.parseMgr.parseTextFile(event.target.result, intitalDateTime, finalDateTime, this.dateFormat), file.name), 1200);
                         } catch(err) {
                             this.isLoading = false;
                             this.buttonText = 'Submit&nbsp;';

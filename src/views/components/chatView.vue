@@ -48,11 +48,11 @@
             </button>
             </div>
             <div class="wr-chat-messages-list" ref="messages">
-                <chat-message v-for="(msg, key) in tempData" :showAuthor="msg === tempData[0] || msg.user.name !== tempData[key > 0 ? key - 1 : 0].user.name" :isLastByUser="msg.user.name !== tempData[key < tempData.length - 1 ? key + 1 : 0].user.name" :msg="msg" :colour="Helpers.gVars.COLOURS[userColours[msg.user.name]]" :index="key" :selfUser="selfUser" :isGroupChat="isGroupChat" />
+                <chat-message v-for="(msg, key) in tempData" :showAuthor="msg === tempData[0] || msg.user.name !== tempData[key > 0 ? key - 1 : 0].user.name" :isLastByUser="msg.user.name !== tempData[key < tempData.length - 1 ? key + 1 : 0].user.name" :msg="msg" :colour="Helpers.gVars.COLOURS[userColours[msg.user.name]]" :index="key" :selfUser="selfUser" :isGroupChat="isGroupChat" :dateFormat="dateFormat" />
                 <infinite-loading :distance="200" :on-infinite="onInfinite" ref="infiniteLoading" spinner="spiral"></infinite-loading>
             </div>
         </div>
-         <div :class="['wr-chat-drawer-overlay', {'active' : isDrawerOpen}]"></div>
+        <div :class="['wr-chat-drawer-overlay', {'active' : isDrawerOpen}]"></div>
     </div>
 </template>
 
@@ -68,7 +68,7 @@
     
     export default {
         name: 'chatView',
-        props: ['chatData', 'chatTitle', 'showToast'],
+        props: ['chatData', 'chatTitle', 'showToast', 'dateFormat'],
         components: {
             InfiniteLoading,
             chatParticipant,

@@ -61,7 +61,7 @@ const parseMarkdown = (text) => {
  * @param string postm - AM/PM
  * @return string
  */
-const getDateFormat = (dateSystem, postm) => {
+const getDateFormat = (postm, dateSystem) => {
   if (postm === '') {
     return `${dateSystem} HH:mm`;
   } else {

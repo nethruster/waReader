@@ -85,7 +85,6 @@ gulp.task('buildhumans', () => {
 
 gulp.task('build', ['sass', 'psass', 'buildjs', 'buildassets', 'buildhumans'], () => {
     return gulp.src('./src/index.html')
-        // .pipe(replace(/<script src='waReader.js'><\/script>/g, `<script src='waReader.js?v=${Date.now()}'><\/script>`))
         .pipe(htmlmin({
           collapseWhitespace: true,
           env: env,
@@ -94,7 +93,7 @@ gulp.task('build', ['sass', 'psass', 'buildjs', 'buildassets', 'buildhumans'], (
           build_dir: "./dist",
           src_path: "./src",
           query_name: "v",
-          hash_len: 10
+          hash_len: 12
         }))
         .pipe(gulp.dest('./dist/'))
         .pipe(browserSync.stream());
