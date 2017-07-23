@@ -10,7 +10,7 @@ const RegExrNormalUserMessage = /^(((\d+)(\/)(\d+)(\/)(\d+))(, )((\d+)(:)(\d+)( 
  * @param string text
  * @return object
  */
-const parseTextFile = (text, intitalDateTime, finalDateTime) => {
+const parseTextFile = (text, intitalDateTime, finalDateTime, dateSystem) => {
   var hasInitialDatime = false,
     hasFinalDateTime = false,
     hasReachedFinalDateTime = false;
@@ -44,7 +44,7 @@ const parseTextFile = (text, intitalDateTime, finalDateTime) => {
       if (hasReachedFinalDateTime) return {};
 
       let lineData = RegExrNormalUserMessage.exec(line);
-      let datetimeFormatString = parserUtils.getDateFormat(lineData[3], lineData[13]);
+      let datetimeFormatString = parserUtils.getDateFormat(lineData[3], lineData[13], dateSystem);
       
       let msgObj = {
         datetime: moment(`${lineData[2]} ${lineData[9]}`, datetimeFormatString),
@@ -71,7 +71,7 @@ const parseTextFile = (text, intitalDateTime, finalDateTime) => {
       if (hasReachedFinalDateTime) return {};
 
       let lineData = RegExrtSystemMessage.exec(line);
-      let datetimeFormatString = parserUtils.getDateFormat(lineData[3], lineData[13]);
+      let datetimeFormatString = parserUtils.getDateFormat(lineData[3], lineData[13], dateSystem);
       let msgObj = {
         datetime: moment(`${lineData[2]} ${lineData[9]}`, datetimeFormatString),
         msg: lineData[16],

@@ -61,22 +61,16 @@ const parseMarkdown = (text) => {
  * @param string postm - AM/PM
  * @return string
  */
-const getDateFormat = (firstn, postm) => {
-  if (firstn > 12) {
-    if (postm === '') {
-      return 'DD/MM/YYYY HH:mm';
-    } else {
-      return 'DD/MM/YYYY hh:mm A';
-    }
-  } else if (postm === '') {
-    return 'MM/DD/YYYY HH:mm';
+const getDateFormat = (dateSystem, postm) => {
+  if (postm === '') {
+    return `${dateSystem} HH:mm`;
   } else {
-    return 'MM/DD/YYYY hh:mm A';
+    return `${dateSystem} hh:mm A`;
   }
 };
 
 const getUserLetter = (userName) => {
-  if(!userName.includes('+')) {
+  if (!userName.includes('+')) {
     return userName.charAt(0).toUpperCase();
   } else {
     return '&';

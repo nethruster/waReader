@@ -103,7 +103,7 @@
                         try {
                             var intitalDateTime = this.intitalDateTime.time !== null ? this.intitalDateTime.time : undefined;
                             var finalDateTime = this.finalDateTime.time  !== null ? this.finalDateTime.time : undefined;
-                            setTimeout(this.populateData(Helpers.parseMgr.parseTextFile(event.target.result, intitalDateTime, finalDateTime), file.name), 1200);
+                            setTimeout(this.populateData(Helpers.parseMgr.parseTextFile(event.target.result, intitalDateTime, finalDateTime, "DD/MM/YYYY"), file.name), 1200);
                         } catch(err) {
                             this.isLoading = false;
                             this.buttonText = 'Submit&nbsp;';
