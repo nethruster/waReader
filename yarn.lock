@@ -1975,6 +1975,12 @@ fs.realpath@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/fs.realpath/-/fs.realpath-1.0.0.tgz#1504ad2523158caa40db4a2787cb01411994ea4f"
 
+fs_helper@=0.1.11:
+  version "0.1.11"
+  resolved "https://registry.yarnpkg.com/fs_helper/-/fs_helper-0.1.11.tgz#c76f466c3af6f3f3bef0ee9b4093fd39369f8faa"
+  dependencies:
+    girdle "=0.1.15"
+
 fsevents@^1.0.0:
   version "1.1.2"
   resolved "https://registry.yarnpkg.com/fsevents/-/fsevents-1.1.2.tgz#3282b713fb3ad80ede0e9fcf4611b5aa6fc033f4"
@@ -2051,6 +2057,14 @@ getpass@^0.1.1:
   resolved "https://registry.yarnpkg.com/getpass/-/getpass-0.1.7.tgz#5eff8e3e684d569ae4cb2b1282604e8ba62149fa"
   dependencies:
     assert-plus "^1.0.0"
+
+girdle@=0.1.15:
+  version "0.1.15"
+  resolved "https://registry.yarnpkg.com/girdle/-/girdle-0.1.15.tgz#f808819e3092aa2370982cc3ec4df19a83605848"
+
+girdle@=0.2.3:
+  version "0.2.3"
+  resolved "https://registry.yarnpkg.com/girdle/-/girdle-0.2.3.tgz#8ba29189adfc7fc5e08efa731d5b5563e86c24be"
 
 glob-base@^0.3.0:
   version "0.3.0"
@@ -2203,6 +2217,14 @@ gulp-babel@^6.1.2:
     replace-ext "0.0.1"
     through2 "^2.0.0"
     vinyl-sourcemaps-apply "^0.2.0"
+
+gulp-hash-src@^0.1.6:
+  version "0.1.6"
+  resolved "https://registry.yarnpkg.com/gulp-hash-src/-/gulp-hash-src-0.1.6.tgz#ff1d31660bcc6b13bb6be9fca562ee0c3c034423"
+  dependencies:
+    fs_helper "=0.1.11"
+    girdle "=0.2.3"
+    through2 "=0.4.2"
 
 gulp-html-minifier@^0.1.8:
   version "0.1.8"
@@ -3551,6 +3573,10 @@ object-component@0.0.3:
   version "0.0.3"
   resolved "https://registry.yarnpkg.com/object-component/-/object-component-0.0.3.tgz#f0c69aa50efc95b866c186f400a33769cb2f1291"
 
+object-keys@~0.4.0:
+  version "0.4.0"
+  resolved "https://registry.yarnpkg.com/object-keys/-/object-keys-0.4.0.tgz#28a6aae7428dd2c3a92f3d95f21335dd204e0336"
+
 object-path@^0.9.0:
   version "0.9.2"
   resolved "https://registry.yarnpkg.com/object-path/-/object-path-0.9.2.tgz#0fd9a74fc5fad1ae3968b586bda5c632bd6c05a5"
@@ -4881,6 +4907,13 @@ tfunk@^3.0.1:
     chalk "^1.1.1"
     object-path "^0.9.0"
 
+through2@=0.4.2:
+  version "0.4.2"
+  resolved "https://registry.yarnpkg.com/through2/-/through2-0.4.2.tgz#dbf5866031151ec8352bb6c4db64a2292a840b9b"
+  dependencies:
+    readable-stream "~1.0.17"
+    xtend "~2.1.1"
+
 through2@^0.5.0:
   version "0.5.1"
   resolved "https://registry.yarnpkg.com/through2/-/through2-0.5.1.tgz#dfdd012eb9c700e2323fd334f38ac622ab372da7"
@@ -5298,6 +5331,12 @@ xmlhttprequest-ssl@1.5.3:
 "xtend@>=4.0.0 <4.1.0-0", xtend@^4.0.0, xtend@~4.0.1:
   version "4.0.1"
   resolved "https://registry.yarnpkg.com/xtend/-/xtend-4.0.1.tgz#a5c6d532be656e23db820efb943a1f04998d63af"
+
+xtend@~2.1.1:
+  version "2.1.2"
+  resolved "https://registry.yarnpkg.com/xtend/-/xtend-2.1.2.tgz#6efecc2a4dad8e6962c4901b337ce7ba87b5d28b"
+  dependencies:
+    object-keys "~0.4.0"
 
 xtend@~3.0.0:
   version "3.0.0"

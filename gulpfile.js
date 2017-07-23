@@ -11,6 +11,7 @@ const gulp         = require('gulp'),
       envify       = require('envify'),
       htmlmin      = require('gulp-html-minifier'),
       babelify     = require('babelify'),
+      hash_src     = require("gulp-hash-src"),
       browserify   = require('browserify'),
       browserSync  = require('browser-sync').create(),
       autoprefixer = require('gulp-autoprefixer');
@@ -84,9 +85,16 @@ gulp.task('buildhumans', () => {
 
 gulp.task('build', ['sass', 'psass', 'buildjs', 'buildassets', 'buildhumans'], () => {
     return gulp.src('./src/index.html')
+        // .pipe(replace(/<script src='waReader.js'><\/script>/g, `<script src='waReader.js?v=${Date.now()}'><\/script>`))
         .pipe(htmlmin({
           collapseWhitespace: true,
           env: env,
+        }))
+        .pipe(hash_src({
+          build_dir: "./dist",
+          src_path: "./src",
+          query_name: "v",
+          hash_len: 10
         }))
         .pipe(gulp.dest('./dist/'))
         .pipe(browserSync.stream());
