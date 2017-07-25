@@ -98,7 +98,7 @@ input[type="file"], input[type="radio"] {
     label {
         color: #4b4b4b;
         border: 1px solid transparentize(#4b4b4b, .9);
-        transition: color .2s ease-in-out, border color .2s ease-in-out;
+        transition: color .2s ease-in-out, border-color .2s ease-in-out;
 
         &:hover {
             box-shadow: 0 1px 1px 0 rgba(0, 0 ,0 , .06), 0 1px 2px 0 rgba(0, 0, 0, .1);

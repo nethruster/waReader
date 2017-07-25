@@ -126,7 +126,7 @@
             },
             openPrintView: function() {
                 var printWin = window.open("", "_blank");
-                printWin.document.write(this.Helpers.printMgr.generatePrintViewString(this.chatData.messages, this.selfUser, this.chatTitle, this.userColours));
+                printWin.document.write(this.Helpers.printMgr.generatePrintViewString(this.chatData.messages, this.selfUser, this.chatTitle, this.userColours, this.dateFormat));
             },
             toggleDrawer: function() {
                 this.isDrawerOpen = !this.isDrawerOpen;
