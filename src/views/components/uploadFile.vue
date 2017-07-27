@@ -1,6 +1,6 @@
 <template>
     <div class="upload-file-wrapper flex flex-full-center flex-dc flex-sa">
-        <h1><img src="./assets/wrisot.svg" class="wrisot">&nbsp;waReader</h1>
+        <h1><img src="../../assets/wrisot.svg" class="wrisot">&nbsp;waReader</h1>
         <h2 class="ta-c">Upload a WhatsApp  text (.txt) file and view it in a nice, clean, readeable format.</h2>
         <div class="date-interval-picker flex flex-dc flex-full-center">
             <p>Show messages between <small>(optional)</small>: </p>
