@@ -3,7 +3,11 @@
  */
 import Vue from 'vue';
 import Toasted from 'vue-toasted';
-
+/**
+ * Styles
+ */
+import "./styles/styles.scss";
+import "./styles/print.scss";
 /**
  * Vue components
  */
