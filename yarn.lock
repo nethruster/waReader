@@ -1847,6 +1847,10 @@ html-minifier@^3.2.3:
     relateurl "0.2.x"
     uglify-js "3.0.x"
 
+html-webpack-exclude-assets-plugin@^0.0.5:
+  version "0.0.5"
+  resolved "https://registry.yarnpkg.com/html-webpack-exclude-assets-plugin/-/html-webpack-exclude-assets-plugin-0.0.5.tgz#41af65003f37ef333f044f49e6ada8a4d3f82959"
+
 html-webpack-plugin@^2.29.0:
   version "2.29.0"
   resolved "https://registry.yarnpkg.com/html-webpack-plugin/-/html-webpack-plugin-2.29.0.tgz#e987f421853d3b6938c8c4c8171842e5fd17af23"

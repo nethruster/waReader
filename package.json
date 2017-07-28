@@ -25,6 +25,7 @@
     "css-loader": "^0.28.4",
     "extract-text-webpack-plugin": "^3.0.0",
     "file-loader": "^0.11.2",
+    "html-webpack-exclude-assets-plugin": "^0.0.5",
     "html-webpack-plugin": "^2.29.0",
     "node-sass": "^4.5.3",
     "sass-loader": "^6.0.6",
