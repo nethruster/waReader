@@ -104,8 +104,9 @@ if (isProduction) {
   config.plugins.push(
     new workboxPlugin({
       globDirectory: path.join(__dirname, 'dist'),
-      globPatterns: ['**/*.{html, js, css, png, svg}'],
-      swDest: path.join(path.join(__dirname, 'dist'), 'sw.js'),
+      globPatterns: ['**\/*.{html,js,css,svg,png,ico}'],
+      globIgnores: ['assets/icons/**\/*.{svg,png}'],
+      swDest: path.join(path.join(__dirname, 'dist'), 'sw.js')
     })
   )
 }
