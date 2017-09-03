@@ -1,5 +1,6 @@
 const webpack = require('webpack'),
   path = require('path'),
+  workboxPlugin = require('workbox-webpack-plugin')
   HtmlWebpackPlugin = require('html-webpack-plugin'),
   CopyWebpackPlugin = require('copy-webpack-plugin'),
   ExtractTextPlugin = require('extract-text-webpack-plugin'),
@@ -10,7 +11,7 @@ const webpack = require('webpack'),
   extractPrint  = new ExtractTextPlugin('print.css'),
   extractStyles = new ExtractTextPlugin('styles.css');
 
-module.exports = {
+const config = {
   devtool: isProduction ? undefined : 'cheap-module-source-map',
   entry: './src/index.js',
   output: {
@@ -87,6 +88,7 @@ module.exports = {
       { from: path.join(__dirname, 'src', 'assets', 'icons'), to: path.join(__dirname, 'dist', 'assets', 'icons') },
       { from: path.join(__dirname, 'src', 'humans.txt'), to: path.join(__dirname, 'dist', 'humans.txt') },
     ]),
+
     new HtmlWebpackPlugin({
       minify: {
         collapseWhitespace: true,
@@ -94,6 +96,18 @@ module.exports = {
       hash: true,
       template: './src/index.html',
       excludeAssets: [/print\.css/],
-    }),
+    })
   ],
 };
+
+if (isProduction) {
+  config.plugins.push(
+    new workboxPlugin({
+      globDirectory: path.join(__dirname, 'dist'),
+      globPatterns: ['**/*.{html, js, css, png, svg}'],
+      swDest: path.join(path.join(__dirname, 'dist'), 'sw.js'),
+    })
+  )
+}
+
+module.exports = config

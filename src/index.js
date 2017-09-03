@@ -24,3 +24,7 @@ Vue.use(Toasted);
 new Vue(Main).$mount('#app-root');
 
 console.log('Humans worked on this project! https://wareader.nethruster.com/humans.txt');
+
+if (process.env.NODE_ENV === "production" && 'serviceWorker' in navigator) {
+  navigator.serviceWorker.register('/sw.js');
+}
