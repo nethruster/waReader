@@ -1,13 +1,11 @@
-:root {
-    --base-pm: 8px;
-    --chat-header-height: 60px;
+$base-pm: 8px;
+$chat-header-height: 60px;
 
-    --wbrand-colour: #009688;
-    --wbrand-colour-light: #09d261;
-    --wbrand-bg-colour: linear-gradient(to bottom, #dddbd1, #d2dbdc);
+$wbrand-colour: #009688;
+$wbrand-colour-light: #09d261;
+$wbrand-bg-colour: linear-gradient(to bottom, #dddbd1, #d2dbdc);
 
-    --easeOutExpo: cubic-bezier(0.19, 1, 0.22, 1)
-}
+$easeOutExpo: cubic-bezier(0.19, 1, 0.22, 1);
 
 // Loader params
 $loaderPointSize: 4px; // scaling... any units

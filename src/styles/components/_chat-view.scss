@@ -5,8 +5,8 @@
 
 .wr-chat-header {
     background-color: #eee;
-    height: var( --chat-header-height);
-    padding: 0 calc(var(--base-pm) * 2);
+    height: $chat-header-height;
+    padding: 0 $base-pm * 2;
     border-bottom: 1px solid rgba(0, 0, 0, .1);
     text-transform: uppercase;
     font-weight: 400;
@@ -16,7 +16,7 @@
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
-    margin: 0 var(--base-pm);
+    margin: 0 $base-pm;
     flex: 1;
 }
 

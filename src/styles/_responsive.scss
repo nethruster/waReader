@@ -48,7 +48,7 @@
     }
 
     .date-interval-picker-c {
-        margin-top: calc(var(--base-pm) * 4);
+        margin-top:$base-pm * 4;
     }
 }
 

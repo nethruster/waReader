@@ -35,7 +35,7 @@ body {
     text-rendering: optimizeLegibility;
     font-feature-settings: "kern";
     background-color: #dfdfdf;
-    background-image: var(--wbrand-bg-colour);
+    background-image: $wbrand-bg-colour;
     font-family: Roboto, 'Noto Sans', apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
 }
 
@@ -129,13 +129,13 @@ h4 {
 
 h1 {
     font-size: 2.6em;
-    margin: calc(var(--base-pm) * 4) 0;
+    margin: $base-pm * 4 0;
 }
 
 @-moz-document url-prefix() {
     .wr-chat-participant {
         &:not(.wr-chat-header-self-participant)::after {
-            top: calc(50% - calc(var(--base-pm) * 1.5));
+            top: calc(50% - #{$base-pm} * 1.5);
         }
     }
 

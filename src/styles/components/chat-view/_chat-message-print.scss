@@ -7,7 +7,7 @@
 .wr-chat-messages-list {
     overflow-y: auto;
     width: 100%;
-    padding: var(--base-pm) 0;
+    padding: $base-pm 0;
     max-height: none;
 }
 

@@ -43,7 +43,7 @@
             <p class="upload-file-filename"></p>
         </div>
         <div class="flex flex-full-center">
-            <button class="upload-file-button pointer" :disabled="isLoading ? '' : disabled" v-on:click.prevent="getFile" ripple="ripple">
+            <button class="upload-file-button pointer" :disabled="isLoading ? true : false" v-on:click.prevent="getFile" ripple="ripple">
                 <span class="flex flex-cross-center">
                     <p v-html="this.buttonText"></p>
                     <div id="upload-file-loader" :class="['loader', {'is-loading': isLoading}]">

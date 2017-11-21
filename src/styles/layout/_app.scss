@@ -16,7 +16,7 @@
 }
 
 .brand-bg {
-    background-color: var(--wbrand-colour-light) !important;
+    background-color: $wbrand-colour-light !important;
     color: #f1f1f1 !important;
     border: 0 !important;
     transition: background-color .4s;
@@ -46,7 +46,7 @@
 }
 
 .info-section-hero-item {
-    padding: calc(var(--base-pm) * 2);
+    padding: $base-pm * 2;
     flex: 1;
 }
 
@@ -54,7 +54,7 @@
     display: inline-block;
     font-size: 1.1em;
     vertical-align: middle;
-    margin: calc(var(--base-pm) * 2) 0;
+    margin: $base-pm * 2 0;
 }
 
 .info-hero-item-description {
@@ -69,7 +69,7 @@
 .info-section-more-items {
     width: 90%;
     flex: 1;
-    margin-top: calc(var(--base-pm) * 4);
+    margin-top: $base-pm * 4;
 }
 
 .wrisot {
