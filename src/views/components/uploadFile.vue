@@ -80,7 +80,7 @@
                     format: 'YYYY-MM-DD',
                     placeholder: 'Choose a date',
                     color: {
-                        header: 'var(--wbrand-colour)',
+                        header: '#009688',
                         headerText: '#fff'
                     },
                 }
