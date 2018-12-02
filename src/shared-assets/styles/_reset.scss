@@ -1,0 +1,59 @@
+// Reset 
+:global {
+    * { box-sizing: border-box; }
+
+    html {
+        font-family: sans-serif;
+        text-size-adjust: 100%;
+        -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    }
+
+    body {
+        color: var(--wbrand-colour-default);
+        word-wrap: break-word;
+        -webkit-overflow-scrolling: touch;
+        background-color: var(--wbrand-bg-colour);
+        background-image: var(--wbrand-bg-image);
+    }
+
+    body, html { height: 100%; }
+
+    html, body, div, span,
+    h1, h2, h3, h4, h5, h6, p, pre,
+    a,
+    img,
+    small, strong, sub, sup,
+    b, u, i, center,
+    ul, li,
+    form, label,
+    article, aside, canvas, embed,
+    footer, header,
+    menu, nav, section,
+    time, audio, video,
+    button, a, input, textarea {
+        margin: 0;
+        padding: 0;
+        border: 0;
+        vertical-align: baseline;
+    }
+
+    img { border: 0 }
+
+    ol, ul { list-style: none; }
+
+    img, svg, video {
+        max-width: 100%;
+        object-fit: contain;
+    }
+
+    button, a, input, textarea { outline: none; }
+
+    *::-webkit-scrollbar {
+        width: 6px !important;
+        height: 6px !important;
+    }
+
+    *::-webkit-scrollbar-thumb { background-color: var(--scrollbar-thumb-bg-colour); }
+
+    *::-webkit-scrollbar-track { background-color: var(--scrollbar-track-bg-colour); }
+}

@@ -1,0 +1,13 @@
+// Spacing
+:global {
+    dd,
+    dt,
+    li { margin-bottom: 1.0rem; }
+
+    label { margin-bottom: 1.5rem; }
+
+    figure,
+    form,
+    p,
+    ul { margin-bottom: 2.5rem; }
+}
