@@ -1,7 +1,7 @@
 import { h, Component, render } from 'preact'
 import 'preact/debug'
 
-import './shared-assets/styles/index.scss'
+import './styles/index.scss'
 
 const mountPoint = document.querySelector('#mount-point')
 

@@ -9,11 +9,8 @@
     }
 
     body {
-        color: var(--wbrand-colour-default);
         word-wrap: break-word;
         -webkit-overflow-scrolling: touch;
-        background-color: var(--wbrand-bg-colour);
-        background-image: var(--wbrand-bg-image);
     }
 
     body, html { height: 100%; }
