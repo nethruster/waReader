@@ -26,7 +26,9 @@ module.exports = {
   },
   output: {
     path: BUILD_DIR,
-    publicPath: '/'
+    publicPath: '/',
+    filename: '[name]-[hash].js',
+    chunkFilename: '[name]-[hash].js'
   },
   module: {
     rules: [
@@ -92,7 +94,6 @@ module.exports = {
         minifyCSS: true,
         minifyJS: true
       },
-      hash: true,
       template: APP_DIR + '/index.html'
     })
   ]
