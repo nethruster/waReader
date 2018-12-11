@@ -27,8 +27,8 @@ module.exports = {
   output: {
     path: BUILD_DIR,
     publicPath: '/',
-    filename: '[name]-[hash].js',
-    chunkFilename: '[name]-[hash].js'
+    filename: '[name]-[hash:6].js',
+    chunkFilename: '[name]-[hash:6].js'
   },
   module: {
     rules: [
@@ -44,27 +44,23 @@ module.exports = {
         test: /\.scss$/,
         use: [
           'style-loader',
-          'css-loader?modules=true&localIdentName=lsh[hash:base64:7]&minimize: true',
+          'css-loader?modules=true&localIdentName=lsh[hash:6]&minimize: true',
           'postcss-loader',
           'sass-loader'
         ]
       },
       {
-        test: /\.(png|jpg|jpeg|gif)$/,
+        test: /\.(png|jpg|jpeg|gif|svg)$/,
         loader: 'file-loader',
         options: {
-          name: 'assets/img/[name].[ext]?[hash]'
+          name: 'assets/img/[name].[ext]?[hash:6]'
         }
-      },
-      {
-        test: /\.svg$/,
-        loader: 'svg-sprite-loader'
       },
       {
         test: /\.(woff2|woff)$/,
         loader: 'file-loader',
         options: {
-          name: 'assets/fonts/[name].[ext]?[hash]'
+          name: 'assets/fonts/[name].[ext]?[hash:6]'
         }
       }
     ]
