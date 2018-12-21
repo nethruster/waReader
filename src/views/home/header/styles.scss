@@ -1,0 +1,15 @@
+:local {
+    .header {
+        position: fixed;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 174px;
+        width: 100%;
+    }
+
+    .headerLogo {
+        height: auto;
+        width: 250px;
+    }
+}
