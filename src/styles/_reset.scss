@@ -45,12 +45,12 @@
 
     button, a, input, textarea { outline: none; }
 
-    *::-webkit-scrollbar {
+    .cscroll::-webkit-scrollbar {
         width: 6px !important;
         height: 6px !important;
     }
 
-    *::-webkit-scrollbar-thumb { background-color: var(--scrollbar-thumb-bg-colour); }
+    .cscroll::-webkit-scrollbar-thumb { background-color: var(--scrollbar-thumb-bg-colour); }
 
-    *::-webkit-scrollbar-track { background-color: var(--scrollbar-track-bg-colour); }
+    .cscroll::-webkit-scrollbar-track { background-color: var(--scrollbar-track-bg-colour); }
 }
