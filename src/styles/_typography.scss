@@ -5,6 +5,7 @@
     html { font-size: 62.5% }
 
     body {
+        color: #343434;
         font-family: "Poppins", "Segoe UI", "Helvetica Neue", "Helvetica", "Lucida Grande", Arial, "Ubuntu", "Cantarell", "Fira Sans", sans-serif;
         text-rendering: optimizeLegibility;
         font-feature-settings: "kern";
@@ -18,6 +19,8 @@
 
     p { margin-top: 0 }
 
+    label { margin-bottom: 0 }
+
     h1,
     h2,
     h3,
@@ -26,7 +29,7 @@
     h6 {
         font-weight: 300;
         letter-spacing: -.1rem;
-        margin-bottom: 2.0rem;
+        margin-bottom: .5rem;
         margin-top: 0;
     }
 
@@ -61,5 +64,10 @@
         font-size: 1.6rem;
         letter-spacing: 0;
         line-height: 1.4;
+    }
+
+    a {
+        text-decoration: underline;
+        color: #8D8D8D;
     }
 }
