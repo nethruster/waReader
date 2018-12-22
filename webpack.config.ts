@@ -11,8 +11,10 @@ const APP_DIR = path.resolve(__dirname, 'src')
 module.exports = {
   mode: isProduction ? 'production' : 'development',
   entry: {
-    main: APP_DIR + '/index.js'
+    main: APP_DIR + '/index.tsx'
   },
+  target: 'web',
+  devtool: 'source-map',
   optimization: {
     splitChunks: {
       cacheGroups: {
@@ -20,7 +22,6 @@ module.exports = {
           test: /preact|preact-compat|decko|react-ink/,
           chunks: 'initial',
           name: 'vendor',
-          enforce: true
         }
       }
     }
@@ -34,19 +35,17 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.js$/,
+        test: /\.tsx?$/,
         include: APP_DIR,
-        loader: 'babel-loader',
-        options: {
-          cacheDirectory: true
-        }
+        use: ['babel-loader', 'awesome-typescript-loader']
       },
       {
         test: /\.scss$/,
         use: [
           ExtractCssChunks.loader,
+
           {
-            loader: 'css-loader',
+            loader: 'typings-for-css-modules-loader',
             options: {
               modules: true,
               localIdentName: 'wdr[hash:6]',
@@ -81,14 +80,16 @@ module.exports = {
     hot: true,
     inline: true,
     port: 8081,
-    host: '0.0.0.0'
+    host: '0.0.0.0',
+    disableHostCheck: true
   },
   resolve: {
     alias: {
       react: 'preact-compat',
       'react-dom': 'preact-compat'
     },
-    modules: [APP_DIR + '/shared-assets', 'node_modules']
+    modules: [APP_DIR + '/shared-assets', 'node_modules'],
+    extensions: ['.ts', '.tsx', '.js', '.jsx']
   },
   plugins: [
     new webpack.HotModuleReplacementPlugin(),

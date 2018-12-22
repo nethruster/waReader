@@ -2,9 +2,15 @@ import { h } from 'preact'
 
 import icons from '../../../../scripts/icons'
 
-import style from './styles.scss'
+const style = require('./styles.scss')
 
-export default function QuiInfoContent({ icon, title, text }) {
+interface QuickInfoContentProps {
+    icon: string;
+    title: string;
+    text: string;
+}
+
+export default function QuiInfoContent({ icon, title, text }: QuickInfoContentProps) {
   return (
     <div>
       <h5 class="flex flex-full-center">

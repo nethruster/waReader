@@ -5,7 +5,7 @@ import FileChooser from './file-chooser'
 import Header from './header'
 import QuickInfo from './quick-info'
 
-import style from './styles.scss'
+const style = require('./styles.scss')
 
 export default function Home() {
   return (

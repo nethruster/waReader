@@ -1,7 +1,14 @@
 import { h } from 'preact'
-import Ink from 'react-ink'
 
-import style from './styles.scss'
+const style = require('./styles.scss')
+
+interface ButtonProps {
+    text: string;
+    type: string;
+    onClickExecute?(): void;
+    customClass?: string;
+    disabled?: boolean;
+}
 
 export default function Button({
   text = 'A Button',
@@ -9,7 +16,7 @@ export default function Button({
   onClickExecute = () => {},
   customClass,
   disabled
-}) {
+}: ButtonProps) {
   return (
     <button
       title={text}
@@ -20,7 +27,6 @@ export default function Button({
       disabled={disabled}
     >
       <span>{text}</span>
-      <Ink />
     </button>
   )
 }

@@ -2,9 +2,9 @@ import { h } from 'preact'
 
 import QuickInfoContent from './content'
 
-import style from './styles.scss'
+const style = require('./styles.scss')
 
-export default function Home() {
+export default function QuickInfo() {
   return (
     <div class={style.quickinfoWrapper}>
       <QuickInfoContent

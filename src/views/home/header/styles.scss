@@ -1,7 +1,7 @@
-:local {
-    $header-height: 174px;
-    $logo-width: 250px;
+$header-height: 174px;
+$logo-width: 250px;
 
+:local {
     .header {
         position: fixed;
         height: $header-height;

@@ -1,12 +1,7 @@
+$home-world-bg-image: url(../../assets/img/world-white.svg);
+$content-top-spacing: 216px;
+
 :local {
-    $home-world-bg-image: url(../../assets/img/world-white.svg);
-    $content-top-spacing: 216px;
-
-    :root {
-        --home-gradient: linear-gradient(-30deg, #00A38C, #2AD983);
-        --home-light-circle-color: rgba(147,255,205,.1);
-    }  
-
     .backgroundContainer {
         background-image: var(--home-gradient);
         background-size: 200%;

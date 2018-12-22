@@ -2,7 +2,7 @@ import { h } from 'preact'
 
 import FileInput from '../../../components/inputs/file'
 
-import style from './styles.scss'
+const style = require('./styles.scss')
 
 export default function FileChooser() {
   return (

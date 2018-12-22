@@ -1,9 +1,14 @@
 import { h } from 'preact'
-import Ink from 'react-ink'
 
-import style from './styles.scss'
+const style = require('./styles.scss')
 
-export default function FileInput({ id, label, customClass }) {
+interface FileInputProps {
+    id: string;
+    label: string;
+    customClass: string;
+}
+
+export default function FileInput({id, label, customClass}: FileInputProps) {
   return (
     <label
       class={`${style.fileInput} ${customClass ? customClass : ''}`}
@@ -11,7 +16,6 @@ export default function FileInput({ id, label, customClass }) {
     >
       <span>{label}</span>
       <input id={id} type="file" />
-      <Ink />
     </label>
   )
 }
