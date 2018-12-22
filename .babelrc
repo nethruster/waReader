@@ -28,8 +28,8 @@
         ],
         [
             "@babel/plugin-proposal-decorators",
-            { 
-                "decoratorsBeforeExport": false 
+            {
+                "decoratorsBeforeExport": false
             }
         ]
     ]

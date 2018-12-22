@@ -7,14 +7,14 @@
         }
     },
     "extends": [
-        "plugin:prettier/recommended"        
+        "plugin:prettier/recommended"
     ],
     "plugins": [
         "react",
         "prettier",
         "typescript"
       ],
-      
+
     "env": {
         "browser": true,
         "node": true,
