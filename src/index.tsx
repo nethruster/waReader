@@ -1,9 +1,9 @@
-import { h, render } from 'preact'
-import 'preact/debug'
+import { h, render } from 'preact';
+import 'preact/debug';
 
-import App from './app'
-import './styles/index.scss'
+import App from './app';
+import './styles/index.scss';
 
-const mountPoint = document.querySelector('#mount-point')
+const mountPoint = document.querySelector('#mount-point');
 
-render(<App />, mountPoint, mountPoint.lastElementChild)
+render(<App />, mountPoint, mountPoint.lastElementChild);

@@ -1,6 +1,6 @@
-import { h } from 'preact'
+import { h } from 'preact';
 
-const style = require('./styles.scss')
+const style = require('./styles.scss');
 
 interface ButtonProps {
     text: string;
@@ -11,22 +11,22 @@ interface ButtonProps {
 }
 
 export default function Button({
-  text = 'A Button',
-  type = 'default',
-  onClickExecute = () => {},
-  customClass,
-  disabled
+    text = 'A Button',
+    type = 'default',
+    onClickExecute = () => {},
+    customClass,
+    disabled
 }: ButtonProps) {
-  return (
-    <button
-      title={text}
-      aria-label={text}
-      type={type}
-      class={`${style.button} ${customClass ? customClass : ''}`}
-      onClick={onClickExecute}
-      disabled={disabled}
-    >
-      <span>{text}</span>
-    </button>
-  )
+    return (
+        <button
+            title={text}
+            aria-label={text}
+            type={type}
+            className={`${style.button} ${customClass ? customClass : ''}`}
+            onClick={onClickExecute}
+            disabled={disabled}
+        >
+            <span>{text}</span>
+        </button>
+    );
 }

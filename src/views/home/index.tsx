@@ -1,28 +1,28 @@
-import { h } from 'preact'
+import { h } from 'preact';
 
-import FileChooser from './file-chooser'
+import FileChooser from './file-chooser';
 
-import Header from './header'
-import QuickInfo from './quick-info'
+import Header from './header';
+import QuickInfo from './quick-info';
 
-const style = require('./styles.scss')
+const style = require('./styles.scss');
 
 export default function Home() {
-  return (
-    <div class={`flex ${style.wrapper}`}>
-      <div class={style.backgroundContainer} />
-      <Header />
-      <div class={style.content}>
-        <p class={style.introDescription}>
-          Select a WhatsApp text (.txt) file and view it in a nice, clean,
-          readable format.
-        </p>
-        <FileChooser />
-        <p class={`text-center ${style.guideLink}`}>
-          <a href="#">Not sure what to do?</a>
-        </p>
-        <QuickInfo />
-      </div>
-    </div>
-  )
+    return (
+        <div className={`flex ${style.wrapper}`}>
+            <div className={style.backgroundContainer} />
+            <Header />
+            <div className={style.content}>
+                <p className={style.introDescription}>
+                    Select a WhatsApp text (.txt) file and view it in a nice,
+                    clean, readable format.
+                </p>
+                <FileChooser />
+                <p className={`text-center ${style.guideLink}`}>
+                    <a href="#">Not sure what to do?</a>
+                </p>
+                <QuickInfo />
+            </div>
+        </div>
+    );
 }

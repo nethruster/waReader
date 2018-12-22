@@ -1,6 +1,6 @@
-import { h } from 'preact'
+import { h } from 'preact';
 
-const style = require('./styles.scss')
+const style = require('./styles.scss');
 
 interface FileInputProps {
     id: string;
@@ -8,14 +8,14 @@ interface FileInputProps {
     customClass: string;
 }
 
-export default function FileInput({id, label, customClass}: FileInputProps) {
-  return (
-    <label
-      class={`${style.fileInput} ${customClass ? customClass : ''}`}
-      for={id}
-    >
-      <span>{label}</span>
-      <input id={id} type="file" />
-    </label>
-  )
+export default function FileInput({ id, label, customClass }: FileInputProps) {
+    return (
+        <label
+            className={`${style.fileInput} ${customClass ? customClass : ''}`}
+            for={id}
+        >
+            <span>{label}</span>
+            <input id={id} type="file" />
+        </label>
+    );
 }
