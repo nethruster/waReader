@@ -11,4 +11,13 @@
         height: 100%;
         overflow: hidden;       
     }
+
+    .cscroll::-webkit-scrollbar {
+        width: var(--cscrollbar-width) !important;
+        height: var(--cscrollbar-height) !important;
+    }
+
+    .cscroll::-webkit-scrollbar-thumb { background-color: var(--cscrollbar-thumb-bg-colour); }
+
+    .cscroll::-webkit-scrollbar-track { background-color: var(--cscrollbar-track-bg-colour); }
 }

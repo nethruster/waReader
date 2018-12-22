@@ -1,6 +1,14 @@
 :local {
+    $home-world-bg-image: url(../../assets/img/world-white.svg);
+    $content-top-spacing: 216px;
+
+    :root {
+        --home-gradient: linear-gradient(-30deg, #00A38C, #2AD983);
+        --home-light-circle-color: rgba(147,255,205,.1);
+    }  
+
     .backgroundContainer {
-        background-image: linear-gradient(-30deg, #00A38C, #2AD983);
+        background-image: var(--home-gradient);
         background-size: 200%;
         min-height: 100%;
         width: 100%;
@@ -12,7 +20,7 @@
         &::before {
             content: "";
             border-radius: 100% 100% 0 0;
-            background-color: rgba(147,255,205,.1);
+            background-color: var(--home-light-circle-color);
             width: 200%;
             min-height: 820px;
             position: absolute;
@@ -25,20 +33,19 @@
 
         &::after {
             content: "";
-            background-image: url(../../assets/img/world-white.svg);
+            background-image: $home-world-bg-image;
             position: absolute;
             left: 0;
             height: 100%;
             width: 100%;
             background-repeat: no-repeat;
             background-size: 100% auto;
-            top: 50px;
+            top: 40px;
             pointer-events: none;
         }
     }
 
     .wrapper {
-        display: flex;
         position: relative;
         min-height: 100%;
         width: 100%;
@@ -49,16 +56,16 @@
     .content {
         padding: 8px 18px;
         position: relative;
-        margin-top: 216px;
-        background-color: #fff;
+        margin-top: $content-top-spacing;
+        background-color: var(--color-primary);
         width: 100%;
 
         &::after {
             content: "";
             border-radius: 100% 100% 0 0;
-            background-color: #fff;
+            background-color: var(--color-primary);
             width: 120%;
-            min-height: 216px;
+            min-height: $content-top-spacing;
             position: absolute;
             margin-left: auto;
             left: 50%;

@@ -27,6 +27,10 @@
     /* Justify space around */
     .flex-sa { justify-content: space-around; }
 
+    .flex-end { justify-content: flex-end; }
+
+    .flex-wrap { flex-wrap: wrap; }
+
     /*
      * Misc
      */
@@ -39,4 +43,10 @@
     .text-right { text-align: right; }
 
     .selectable-text { user-select: text; }
+
+    .truncate {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
 }

@@ -1,15 +1,15 @@
 :local {
+    $header-height: 174px;
+    $logo-width: 250px;
+
     .header {
         position: fixed;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 174px;
+        height: $header-height;
         width: 100%;
     }
 
     .headerLogo {
         height: auto;
-        width: 250px;
+        width: $logo-width;
     }
 }

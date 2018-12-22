@@ -1,15 +1,14 @@
 :local {
     .uploadForm {
-        text-align: center;
         margin-top: 50px;
         margin-bottom: 0;
     }
 
     .inputButton {
-        background-color: #18bb8d;
+        background-color: var(--color-accent);
         border-radius: 50px;
         text-transform: uppercase;
-        color: #fff;
+        color: var(--color-primary);
         display: inline-block;
         padding: 16px 32px;
         line-height: calc(50px - 29px);

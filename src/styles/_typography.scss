@@ -5,7 +5,7 @@
     html { font-size: 62.5% }
 
     body {
-        color: #343434;
+        color: var(--color-bg);
         font-family: "Poppins", "Segoe UI", "Helvetica Neue", "Helvetica", "Lucida Grande", Arial, "Ubuntu", "Cantarell", "Fira Sans", sans-serif;
         text-rendering: optimizeLegibility;
         font-feature-settings: "kern";
@@ -68,6 +68,18 @@
 
     a {
         text-decoration: underline;
-        color: #8D8D8D;
+        color: var(--color-secondary);
+    }
+
+    s {
+        text-decoration: line-through;
+    }
+      
+    u {
+        text-decoration: underline;
+    }
+
+    em {
+        font-style: italic;
     }
 }

@@ -9,7 +9,7 @@ import style from './styles.scss'
 
 export default function Home() {
   return (
-    <div class={style.wrapper}>
+    <div class={`flex ${style.wrapper}`}>
       <div class={style.backgroundContainer} />
       <Header />
       <div class={style.content}>

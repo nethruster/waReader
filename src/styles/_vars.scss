@@ -2,10 +2,21 @@
     :root {
         --base-pm: 8px;
         --base-br: 4px;
-
-     
     
-        --scrollbar-thumb-bg-colour: rgba(0, 0, 0, 0.2);
-        --scrollbar-track-bg-colour: rgba(255, 255, 255, 0.08);
+        --cscrollbar-thumb-bg-colour: hsla(0, 0%, 0%, 0.2);
+        --cscrollbar-track-bg-colour: hsla(0, 0%, 100%, 0.08);
+        --cscrollbar-width: 6px;
+        --cscrollbar-height: 6px;
+
+        --radius: 0.25em;
+
+        --transition-bounce: cubic-bezier(.25,1.43,.35,1.69);
+
+        --color-primary: hsl(0, 0%, 100%);
+        --color-accent: hsl(163, 77%, 41%);
+        --color-secondary: hsl(0, 0%, 49%);
+        --color-tertiary: hsl(0, 0%, 95%);
+        --black: hsl(240, 7%, 12%);
+        --color-bg: hsl(0, 0%, 20%);
     }
 }

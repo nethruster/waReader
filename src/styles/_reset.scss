@@ -45,12 +45,16 @@
 
     button, a, input, textarea { outline: none; }
 
-    .cscroll::-webkit-scrollbar {
-        width: 6px !important;
-        height: 6px !important;
+    button, select, textarea,
+    input[type="button"], input[type="email"], input[type="number"],
+    input[type="password"], input[type="search"], input[type="submit"],
+    input[type="tel"], input[type="text"], input[type="url"] {
+    appearance: none;
     }
 
-    .cscroll::-webkit-scrollbar-thumb { background-color: var(--scrollbar-thumb-bg-colour); }
-
-    .cscroll::-webkit-scrollbar-track { background-color: var(--scrollbar-track-bg-colour); }
+    textarea {
+    resize: vertical;
+    overflow: auto;
+    vertical-align: top; // remove extra space below textarea element
+    }
 }
