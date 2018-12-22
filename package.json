@@ -17,6 +17,7 @@
     "@babel/plugin-transform-runtime": "^7.1.0",
     "@babel/preset-env": "^7.1.6",
     "@babel/runtime": "^7.1.5",
+    "@types/node": "^10.12.18",
     "autoprefixer": "^9.3.1",
     "awesome-typescript-loader": "^5.2.1",
     "babel-eslint": "^10.0.1",
@@ -50,14 +51,9 @@
     "webpack-dev-server": "^3.1.10"
   },
   "dependencies": {
-    "@types/node": "^10.12.18",
     "decko": "^1.2.0",
     "preact": "^8.3.1",
     "preact-compat": "^3.18.4",
     "typescript": "^3.2.2"
-  },
-  "alias": {
-    "react": "preact-compat",
-    "react-dom": "preact-compat"
   }
 }
