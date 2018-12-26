@@ -22,8 +22,8 @@
 
     .instrucctionList {
         counter-reset: dashedGreenNumbers;
-        
-        li { margin-bottom: 2.5rem; }      
+
+        li { margin-bottom: 2.5rem; }
     }
 
     .instructionText {
@@ -40,7 +40,7 @@
     .inlineImgInstruction {
         display: flex;
         align-items: center;
-        
+
         img { margin: 0 4px; }
     }
 
