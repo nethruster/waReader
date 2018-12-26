@@ -43,7 +43,6 @@ module.exports = {
         test: /\.scss$/,
         use: [
           ExtractCssChunks.loader,
-
           {
             loader: 'typings-for-css-modules-loader',
             options: {
