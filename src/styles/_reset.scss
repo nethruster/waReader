@@ -36,7 +36,11 @@
 
     img { border: 0 }
 
-    ol, ul { list-style: none; }
+    ol, ul { 
+        list-style: none;
+        margin: 0;
+        padding: 0;
+    }
 
     img, svg, video {
         max-width: 100%;

@@ -4,6 +4,7 @@ import FileChooser from './file-chooser';
 
 import Header from './header';
 import QuickInfo from './quick-info';
+import HowTo from './howto';
 
 const style = require('./styles.scss');
 
@@ -22,6 +23,7 @@ export default function Home() {
                     <a href="#">Not sure what to do?</a>
                 </p>
                 <QuickInfo />
+                <HowTo />
             </div>
         </div>
     );
