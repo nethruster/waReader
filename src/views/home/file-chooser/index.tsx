@@ -1,17 +1,44 @@
-import { h } from 'preact';
+import { h, Component } from 'preact';
+import { connect } from 'unistore/preact'
+import { bind } from 'decko'
 
 import FileInput from '../../../components/inputs/file';
 
+import { getParsedChatObject } from '../../../scripts/parse-chat'
+import {actions } from '../../../store/store'
+
 const style = require('./styles.scss');
 
-export default function FileChooser() {
-  return (
-    <form className={`text-center ${style.uploadForm}`}>
-      <FileInput
-        id="file-chooser"
-        label="Select A File"
-        customClass={style.inputButton}
-      />
-    </form>
-  );
-}
+export default connect("chat", actions)(class FileChooser extends Component {
+  constructor(props) {
+    super(props)
+
+    this.handleFileChange = this.handleFileChange.bind(this)
+  }
+
+  handleFileChange (event: any) {
+    let file: File = event.target.files[0]
+    let fr: FileReader = new FileReader()
+
+    fr.readAsText(file);
+
+    fr.onload = (event: any) => {
+      let fileContents = event.target.result
+      getParsedChatObject(fileContents).then(result => {
+      })
+    }
+  }
+
+  render() {
+    return (
+      <form className={`text-center ${style.uploadForm}`}>
+        <FileInput
+          id="file-chooser"
+          label="Select A File"
+          customClass={style.inputButton}
+          onChangeExecute={this.handleFileChange}
+        />
+      </form>
+    );
+  }
+})

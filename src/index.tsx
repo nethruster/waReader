@@ -1,9 +1,22 @@
-import { h, render } from 'preact';
+import { h, render, Component } from 'preact';
+import { Provider} from 'unistore/preact'
 import 'preact/debug';
 
 import App from './app';
 import './styles/index.scss';
 
-const mountPoint = document.querySelector('#mount-point');
+import { store } from "./store/store";
 
-render(<App />, mountPoint, mountPoint.lastElementChild);
+const mountPoint: Element  = document.querySelector('#mount-point');
+
+class AppWrapper extends Component {
+  render() {
+    return (
+      <Provider store={store}>
+        <App />
+      </Provider>
+    );
+  }
+}
+
+render(<AppWrapper />, mountPoint, mountPoint.lastElementChild);
