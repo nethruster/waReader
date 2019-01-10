@@ -58,6 +58,8 @@
     "decko": "^1.2.0",
     "preact": "^8.3.1",
     "preact-compat": "^3.18.4",
-    "typescript": "^3.2.2"
+    "typescript": "^3.2.2",
+    "unistore": "^3.2.1",
+    "whatsapp-chat-parser-alt": "^2.2.2"
   }
 }
