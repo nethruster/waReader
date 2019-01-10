@@ -11,7 +11,7 @@ const APP_DIR = path.resolve(__dirname, 'src')
 module.exports = {
   mode: isProduction ? 'production' : 'development',
   entry: {
-    main: APP_DIR + '/index.tsx'
+    main: APP_DIR + '/index.jsx'
   },
   target: 'web',
   devtool: 'source-map',
@@ -35,7 +35,7 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.js?$/,
+        test: /\.(js|jsx)?$/,
         include: APP_DIR,
         use: 'babel-loader'
       },
@@ -44,7 +44,7 @@ module.exports = {
         use: [
           ExtractCssChunks.loader,
           {
-            loader: 'typings-for-css-modules-loader',
+            loader: 'css-loader',
             options: {
               modules: true,
               localIdentName: 'wdr[hash:6]',
