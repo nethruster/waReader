@@ -16,13 +16,13 @@ export default connect("chat", actions)(class FileChooser extends Component {
     this.handleFileChange = this.handleFileChange.bind(this)
   }
 
-  handleFileChange (event: any) {
-    let file: File = event.target.files[0]
-    let fr: FileReader = new FileReader()
+  handleFileChange (event) {
+    let file = event.target.files[0]
+    let fr = new FileReader()
 
     fr.readAsText(file);
 
-    fr.onload = (event: any) => {
+    fr.onload = (event) => {
       let fileContents = event.target.result
       getParsedChatObject(fileContents).then(result => {
       })

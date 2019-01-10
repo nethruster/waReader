@@ -4,17 +4,11 @@ import icons from '../../../../scripts/icons';
 
 const style = require('./styles.scss');
 
-interface QuickInfoContentProps {
-  icon: string;
-  title: string;
-  text: string;
-}
-
 export default function QuiInfoContent({
   icon,
   title,
   text
-}: QuickInfoContentProps) {
+}) {
   return (
     <div>
       <h5 className="flex flex-full-center">

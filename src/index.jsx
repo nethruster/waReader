@@ -7,7 +7,7 @@ import './styles/index.scss';
 
 import { store } from "./store/store";
 
-const mountPoint: Element  = document.querySelector('#mount-point');
+const mountPoint = document.querySelector('#mount-point');
 
 class AppWrapper extends Component {
   render() {

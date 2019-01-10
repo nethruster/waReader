@@ -35,9 +35,9 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.tsx?$/,
+        test: /\.js?$/,
         include: APP_DIR,
-        use: ['babel-loader', 'awesome-typescript-loader']
+        use: 'babel-loader'
       },
       {
         test: /\.scss$/,
@@ -88,7 +88,7 @@ module.exports = {
       'react-dom': 'preact-compat'
     },
     modules: [APP_DIR + '/shared-assets', 'node_modules'],
-    extensions: ['.ts', '.tsx', '.js', '.jsx']
+    extensions: ['.js', '.jsx']
   },
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
