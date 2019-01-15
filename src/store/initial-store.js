@@ -1,5 +1,9 @@
 const initialStore = {
-  chat: null
+  chat: {
+    messages: [],
+    authors: [],
+    isGroup: false
+  }
 };
 
 export default initialStore;

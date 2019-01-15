@@ -28,7 +28,8 @@ export default connect(
       fr.onload = event => {
         let fileContents = event.target.result;
         getParsedChatObject(fileContents).then(result => {
-          this.props.setParsedChat(result);
+          // Process data
+          this.props.setChatData(result);
         });
       };
     }

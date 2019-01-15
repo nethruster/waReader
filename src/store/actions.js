@@ -1,5 +1,5 @@
 export default store => ({
-  setParsedChat(state, messagesArray) {
-    store.setState({ chat: messagesArray });
+  setChatData(state, data) {
+    store.setState({ chat: data });
   }
 });
