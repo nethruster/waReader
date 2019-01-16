@@ -1,11 +1,11 @@
 import { h, render, Component } from 'preact';
-import { Provider} from 'unistore/preact'
+import { Provider } from 'unistore/preact';
 import 'preact/debug';
 
-import App from './app';
+import AppRouter from './components/app-router';
 import './styles/index.scss';
 
-import { store } from "./store/store";
+import { store } from './store/store';
 
 const mountPoint = document.querySelector('#mount-point');
 
@@ -13,7 +13,7 @@ class AppWrapper extends Component {
   render() {
     return (
       <Provider store={store}>
-        <App />
+        <AppRouter />
       </Provider>
     );
   }
