@@ -1,21 +1,25 @@
-import { h, Component } from "preact";
-import { connect } from "unistore/preact";
-import { bind } from "decko";
+import { h, Component } from 'preact';
+import { connect } from 'unistore/preact';
+import { bind } from 'decko';
 
-import FileInput from "../../../components/inputs/file";
+import FileInput from '../../../components/inputs/file';
 
-import { getParsedChatObject } from "../../../scripts/parse-chat";
-import { actions } from "../../../store/store";
+import { getParsedChatObject } from '../../../scripts/parse-chat';
+import { actions } from '../../../store/store';
 
-const style = require("./styles.scss");
+const style = require('./styles.scss');
 
 export default connect(
-  "chat",
+  'chat',
   actions
 )(
   class FileChooser extends Component {
     constructor(props) {
       super(props);
+    }
+
+    componentDidMount() {
+      this.routerHistory = this.context.router.history;
     }
 
     @bind
@@ -28,8 +32,8 @@ export default connect(
       fr.onload = event => {
         let fileContents = event.target.result;
         getParsedChatObject(fileContents).then(result => {
-          // Process data
           this.props.setChatData(result);
+          this.routerHistory.push('/chat');
         });
       };
     }

@@ -3,7 +3,8 @@ const initialStore = {
     messages: [],
     authors: [],
     isGroup: false
-  }
+  },
+  isChatLoaded: false
 };
 
 export default initialStore;
