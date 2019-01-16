@@ -4,11 +4,7 @@ import icons from '../../../../scripts/icons';
 
 const style = require('./styles.scss');
 
-export default function QuiInfoContent({
-  icon,
-  title,
-  text
-}) {
+export default function QuiInfoContent({ icon, title, text }) {
   return (
     <div>
       <h5 className="flex flex-full-center">

@@ -1,4 +1,4 @@
-const whatsappParser = require("whatsapp-chat-parser-alt");
+const whatsappParser = require('whatsapp-chat-parser-alt');
 
 export function getParsedChatObject(fileContents) {
   return whatsappParser
