@@ -1,10 +1,10 @@
 {
-    "parser": "babel-eslint",
     "parserOptions": {
         "ecmaFeatures": {
             "modules": true,
             "jsx": true
-        }
+        },
+        "sourceType": "module"
     },
     "extends": [
         "plugin:prettier/recommended"

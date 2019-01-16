@@ -30,6 +30,7 @@
     "eslint-plugin-node": "^8.0.0",
     "eslint-plugin-prettier": "^3.0.0",
     "eslint-plugin-promise": "^4.0.1",
+    "eslint-plugin-react": "^7.12.3",
     "extract-css-chunks-webpack-plugin": "^3.2.1",
     "file-loader": "^2.0.0",
     "html-webpack-plugin": "^3.2.0",
@@ -51,7 +52,7 @@
     "decko": "^1.2.0",
     "preact": "^8.3.1",
     "preact-compat": "^3.18.4",
-    "typescript": "^3.2.2",
+    "react-router-dom": "^4.3.1",
     "unistore": "^3.2.1",
     "whatsapp-chat-parser-alt": "^3.2.3"
   }

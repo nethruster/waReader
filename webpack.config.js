@@ -1,12 +1,12 @@
-const path = require('path')
-const webpack = require('webpack')
-const HtmlWebpackPlugin = require('html-webpack-plugin')
-const ExtractCssChunks = require('extract-css-chunks-webpack-plugin')
+const path = require('path');
+const webpack = require('webpack');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const ExtractCssChunks = require('extract-css-chunks-webpack-plugin');
 
-const isProduction = process.env.NODE_ENV === 'production' // Check if we are in production mode
+const isProduction = process.env.NODE_ENV === 'production'; // Check if we are in production mode
 
-const BUILD_DIR = path.resolve(__dirname, 'dist')
-const APP_DIR = path.resolve(__dirname, 'src')
+const BUILD_DIR = path.resolve(__dirname, 'dist');
+const APP_DIR = path.resolve(__dirname, 'src');
 
 module.exports = {
   mode: isProduction ? 'production' : 'development',
@@ -19,9 +19,9 @@ module.exports = {
     splitChunks: {
       cacheGroups: {
         vendor: {
-          test: /preact|preact-compat|decko|react-ink/,
+          test: /preact|preact-compat|decko|react-ink|react-router-dom|whatsapp-chat-parser-alt/,
           chunks: 'initial',
-          name: 'vendor',
+          name: 'vendor'
         }
       }
     }
@@ -107,4 +107,4 @@ module.exports = {
       template: APP_DIR + '/index.html'
     })
   ]
-}
+};
