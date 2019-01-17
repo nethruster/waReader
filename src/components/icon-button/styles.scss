@@ -1,0 +1,8 @@
+.iconButton {
+    padding: 12px;
+    display: inline-flex;
+    border-radius: 100%;
+    cursor: pointer;
+
+    &:hover { background-color: var(--color-tertiary); }
+}
