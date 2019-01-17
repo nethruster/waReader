@@ -47,7 +47,7 @@ module.exports = {
             loader: 'css-loader',
             options: {
               modules: true,
-              localIdentName: 'wdr[hash:6]',
+              localIdentName: 'wdr-[hash:6]',
               minimize: true
             }
           },
