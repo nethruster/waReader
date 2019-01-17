@@ -53,12 +53,13 @@
     input[type="button"], input[type="email"], input[type="number"],
     input[type="password"], input[type="search"], input[type="submit"],
     input[type="tel"], input[type="text"], input[type="url"] {
-    appearance: none;
+        appearance: none;
+        background-color: transparent;
     }
 
     textarea {
-    resize: vertical;
-    overflow: auto;
-    vertical-align: top; // remove extra space below textarea element
+        resize: vertical;
+        overflow: auto;
+        vertical-align: top; // remove extra space below textarea element
     }
 }
