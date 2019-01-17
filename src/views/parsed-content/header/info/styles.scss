@@ -1,0 +1,38 @@
+:local {
+
+    .infoWrapper {
+        padding: 0 24px;
+    }
+
+    .infoContainer {
+        flex: 1;
+        padding: 24px 0;
+
+    }
+
+    .iconWrapper {
+        margin-right: 42px;
+        display: inline-flex;
+        align-items: center;
+        border-radius: 100%;
+        background-color: var(--color-accent);
+        padding: 12px;
+    }
+
+    .icon {
+        display: inline-flex;
+        align-items: center;
+    }
+
+    .title {
+        display: inline-flex;
+        align-items: center;
+        margin: 0;
+    }
+
+    .subtitle {
+        font-size: .9em;
+        color: var(--color-secondary);
+        margin: 0;
+    }
+}

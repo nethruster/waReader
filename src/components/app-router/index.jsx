@@ -7,10 +7,14 @@ import ParsedContent from '../../views/parsed-content';
 export default function AppRouter() {
   return (
     <BrowserRouter>
-      <Switch>
+      {/* 
+      IMPORTANT THIS IS COMMENTED FOR DEV PURPOSES ONLY 
+    */}
+      {/* <Switch>
         <Route path="/" exact component={Home} />
         <Route path="/chat" exact component={ParsedContent} />
-      </Switch>
+      </Switch> */}
+      <ParsedContent />
     </BrowserRouter>
   );
 }
