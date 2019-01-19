@@ -1,0 +1,28 @@
+:local {
+    .tabItem {
+        flex: 1;
+        cursor: pointer;
+        margin: 0;
+
+        &.active {
+            p::after {
+                content: '';
+                position: absolute;
+                bottom: 0;
+                height: 4px;
+                background-color: var(--color-accent);
+                width: 100%;
+                left: 50%;
+                border-radius: 24px 24px 0 0;
+                transform: translateX(-50%);
+            }
+        }
+
+        p {
+            position: relative;
+            margin: 0;
+            padding-bottom: 8px;
+            display: inline-block;
+        }
+    }
+}

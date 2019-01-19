@@ -1,10 +1,15 @@
 import { h } from 'preact';
+
 import HeaderInfo from './info';
+import HeaderTabs from './tabs';
+
+import style from './styles.scss';
 
 export default function Header() {
   return (
-    <div>
+    <header class={style.header}>
       <HeaderInfo />
-    </div>
+      <HeaderTabs />
+    </header>
   );
 }
