@@ -11,7 +11,7 @@ const APP_DIR = path.resolve(__dirname, 'src');
 module.exports = {
   mode: isProduction ? 'production' : 'development',
   entry: {
-    main: APP_DIR + '/index.jsx'
+    main: APP_DIR + '/index.js'
   },
   target: 'web',
   devtool: 'source-map',
@@ -87,8 +87,7 @@ module.exports = {
       react: 'preact-compat',
       'react-dom': 'preact-compat'
     },
-    modules: [APP_DIR + '/shared-assets', 'node_modules'],
-    extensions: ['.js', '.jsx']
+    modules: [APP_DIR + '/shared-assets', 'node_modules']
   },
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
