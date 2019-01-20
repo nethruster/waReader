@@ -11,7 +11,13 @@ export default store => ({
         messages: [],
         authors: [],
         isGroup: false
-      }
+      },
+      isChatLoaded: false
+    });
+  },
+  setActiveTab(sate, tab = 'chat') {
+    store.setState({
+      activeTab: tab.toLowerCase()
     });
   }
 });
