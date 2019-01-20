@@ -1,0 +1,16 @@
+.message {
+    display: inline-block;
+    background-color: var(--color-tertiary);
+    color: var(--color-secondary);
+    padding: 6px 8px;
+    border-radius: 12px;
+    position: relative;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    font-size: .75em;
+}
+
+.messageWrapper {
+    margin-bottom: 16px;
+    align-items: center;
+}

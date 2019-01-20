@@ -1,0 +1,26 @@
+.message {
+    display: inline-block;
+    background-color: var(--color-tertiary);
+    color: var(--color-bg);
+    padding: 10px 12px;
+    border-radius: 12px;
+    position: relative;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    font-size: .9em;
+}
+
+.date {
+    font-size: .85em;
+    color: var(--color-quaternary);
+}
+
+.messageWrapper {
+    margin-bottom: 16px;
+    max-width: 80%;
+    align-items: flex-start;
+
+    @media (max-width: 600px) {
+        max-width: 80%;
+    }
+}
