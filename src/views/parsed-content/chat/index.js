@@ -1,5 +1,6 @@
 import { h } from 'preact';
 import { connect } from 'unistore/preact';
+import ScrollViewport from 'preact-scroll-viewport';
 
 import { actions } from '../../../store/store';
 
@@ -17,7 +18,6 @@ function renderMessage(isSystemMessage, text, time) {
   }
 }
 
-// TODO: refactor, remove any operations from chat messages iteration. presentational element, no hard logic
 function renderChat(messageList) {
   let timeLineDay = messageList[0].dateDay;
 
@@ -47,8 +47,11 @@ export default connect(
   actions
 )(function Chat({ chat }) {
   return (
-    <div class={`flex flex-dc selectable-text ${style.messagesContainer}`}>
+    <ScrollViewport
+      defaultRowHeight={76}
+      class={`flex flex-dc selectable-text ${style.messagesContainer}`}
+    >
       {renderChat(chat.messages)}
-    </div>
+    </ScrollViewport>
   );
 });
