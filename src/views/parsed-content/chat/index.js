@@ -19,34 +19,21 @@ function renderMessage(isSystemMessage, text, time) {
 
 // TODO: refactor, remove any operations from chat messages iteration. presentational element, no hard logic
 function renderChat(messageList) {
-  let timeLineDate = new Date(messageList[0].date);
-  let timeLineDay = timeLineDate.getDay();
+  let timeLineDay = messageList[0].dateDay;
 
-  let messageDate = new Date();
-  let messageTime = '';
-  let dateString = '';
-  let messageDateDay = 0;
   let isNewDay = true;
   let isSystemMessage = false;
-  let messageText = '';
 
   return messageList.map((message, index) => {
-    messageDate = new Date(message.date);
-    messageTime = messageDate
-      .toLocaleTimeString('en-GB', { hc: 'h24' })
-      .replace(/(:\d{2}| [AP]M)$/, '');
-    dateString = messageDate.toLocaleDateString('en-GB');
-    messageDateDay = messageDate.getDay();
-    isNewDay = index === 0 || messageDateDay != timeLineDay;
+    isNewDay = index === 0 || message.dateDay != timeLineDay;
     isSystemMessage = message.author.toLowerCase() == 'system';
-    messageText = message.message;
 
-    timeLineDay = messageDateDay;
+    timeLineDay = message.dateDay;
 
     return (
       <span>
-        {isNewDay && <DateChip dateText={dateString} />}
-        {renderMessage(isSystemMessage, messageText, messageTime)}
+        {isNewDay && <DateChip dateText={message.dateString} />}
+        {renderMessage(isSystemMessage, message.message, message.time)}
         {index == messageList.length - 1 && (
           <p class="text-center">End of chat</p>
         )}
