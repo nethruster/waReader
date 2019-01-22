@@ -1,7 +1,8 @@
 import createStore from 'unistore';
 import devtools from 'unistore/devtools'; // TODO Pasar a dinamico en el condicional
 
-import initialStore from './initial-store';
+// import initialStore from './initial-store';
+import initialStore from './dev-initial-store';
 import actions from './actions';
 
 let store = null;
