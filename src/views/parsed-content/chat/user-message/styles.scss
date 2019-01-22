@@ -16,7 +16,7 @@
 }
 
 .messageWrapper {
-    margin-bottom: 16px;
+    margin-bottom: var(--message-separation);
     max-width: 80%;
     align-items: flex-start;
 

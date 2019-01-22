@@ -11,6 +11,6 @@
 }
 
 .messageWrapper {
-    margin-bottom: 16px;
+    margin-bottom: var(--message-separation);
     align-items: center;
 }

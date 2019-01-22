@@ -1,6 +1,8 @@
 :local {
     .messagesContainer {
-        padding: 0 16px;
+        padding: 16px;
+        max-height: calc(100vh - var(--header-height));
+        overflow: auto;
         
         p { margin: 0; }
     }   

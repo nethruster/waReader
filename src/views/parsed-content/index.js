@@ -4,6 +4,8 @@ import { connect } from 'unistore/preact';
 import Header from './header';
 import Chat from './chat';
 
+import style from './styles.scss';
+
 export default connect(['isChatLoaded', 'activeTab'])(
   class ParsedContent extends Component {
     componentDidMount() {
@@ -14,8 +16,10 @@ export default connect(['isChatLoaded', 'activeTab'])(
 
     render({ activeTab }) {
       return (
-        <div>
+        <div class={style.contentWrapper}>
           <Header />
+          {/* // Here's an idea, avoid rerendering tab in order to also avoid reprocecing hundreds of UI elements (messages) again. 
+          And would this be a problem with an infinte list? Test. */}
           {activeTab == 'chat' && <Chat />}
           {/* {activeTab == 'stats' && <Stats />} */}
         </div>
