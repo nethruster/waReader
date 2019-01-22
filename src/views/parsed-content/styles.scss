@@ -1,6 +1,3 @@
 :local {
-    .contentWrapper {
-        overflow: hidden;
-        height: 100%;
-    }
+    .contentWrapper { padding-top: var(--header-height); }
 }
