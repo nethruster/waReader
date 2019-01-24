@@ -10,33 +10,34 @@ import DateChip from './date-chip';
 
 import style from './styles.scss';
 
-function renderMessage(isSystemMessage, text, time) {
-  if (isSystemMessage) {
-    return <SystemMessage text={text} />;
+function renderMessage(message) {
+  if (message.author.toLowerCase() === 'system') {
+    return <SystemMessage text={message.message} />;
   } else {
-    return <UserMessage text={text} time={time} />;
+    return (
+      <UserMessage
+        text={message.message}
+        time={message.time}
+        author={message.author}
+      />
+    );
   }
 }
 
-function renderChat(messageList) {
-  let timeLineDay = messageList[0].dateDay;
+function renderChat(chatData) {
+  const messages = chatData.messages;
+  let timeLineDay = messages[0].dateDay;
 
   let isNewDay = true;
-  let isSystemMessage = false;
 
-  return messageList.map((message, index) => {
+  return messages.map((message, index) => {
     isNewDay = index === 0 || message.dateDay != timeLineDay;
-    isSystemMessage = message.author.toLowerCase() == 'system';
-
     timeLineDay = message.dateDay;
 
     return (
       <span>
         {isNewDay && <DateChip dateText={message.dateString} />}
-        {renderMessage(isSystemMessage, message.message, message.time)}
-        {index == messageList.length - 1 && (
-          <p class="text-center">End of chat</p>
-        )}
+        {renderMessage(message)}
       </span>
     );
   });
@@ -51,7 +52,7 @@ export default connect(
       defaultRowHeight={76}
       class={`flex flex-dc selectable-text ${style.messagesContainer}`}
     >
-      {renderChat(chat.messages)}
+      {renderChat(chat)}
     </ScrollViewport>
   );
 });
