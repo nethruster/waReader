@@ -1,6 +1,5 @@
 import { h } from 'preact';
 import { connect } from 'unistore/preact';
-import ScrollViewport from 'preact-scroll-viewport';
 
 import { actions } from '../../../store/store';
 
@@ -48,11 +47,8 @@ export default connect(
   actions
 )(function Chat({ chat }) {
   return (
-    <ScrollViewport
-      defaultRowHeight={76}
-      class={`flex flex-dc selectable-text ${style.messagesContainer}`}
-    >
+    <div class={`flex flex-dc selectable-text ${style.messagesContainer}`}>
       {renderChat(chat)}
-    </ScrollViewport>
+    </div>
   );
 });
