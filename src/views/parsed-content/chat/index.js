@@ -10,7 +10,14 @@ import DateChip from './date-chip';
 
 import style from './styles.scss';
 
-function renderMessage(message, isPreviousAuthor, isNextAuthor, userColour) {
+function renderMessage(
+  message,
+  isPreviousAuthor,
+  isNextAuthor,
+  userColour,
+  isNewDay,
+  isLastMessage
+) {
   if (message.author.toLowerCase() === 'system') {
     return <SystemMessage text={message.message} />;
   } else {
@@ -22,6 +29,8 @@ function renderMessage(message, isPreviousAuthor, isNextAuthor, userColour) {
         isPreviousAuthor={isPreviousAuthor}
         isNextAuthor={isNextAuthor}
         userColour={userColour}
+        isNewDay={isNewDay}
+        isLastMessage={isLastMessage}
       />
     );
   }
@@ -38,10 +47,12 @@ function renderChat(chatData) {
   let nextAuthor = '';
   let userAssignedColours = {};
   let userColour = '';
+  let isLastMessage = false;
 
   return messages.map((message, index) => {
     isNewDay = index === 0 || message.dateDay != timeLineDay;
     timeLineDay = message.dateDay;
+    isLastMessage = messages.length - 1 === index;
 
     if (
       !userAssignedColours[message.author] &&
@@ -70,7 +81,14 @@ function renderChat(chatData) {
     return (
       <span>
         {isNewDay && <DateChip dateText={message.dateString} />}
-        {renderMessage(message, isPreviousAuthor, isNextAuthor, userColour)}
+        {renderMessage(
+          message,
+          isPreviousAuthor,
+          isNextAuthor,
+          userColour,
+          isNewDay,
+          isLastMessage
+        )}
       </span>
     );
   });

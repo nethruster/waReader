@@ -26,23 +26,25 @@ export default function UserMessage({
   author,
   isPreviousAuthor,
   isNextAuthor,
-  userColour
+  userColour,
+  isNewDay,
+  isLastMessage
 }) {
   return (
     <div
       class={`flex ${style.messageWrapper} ${
-        isNextAuthor ? style.sameAuthorMessageContainer : ''
+        isNextAuthor && !isLastMessage ? style.sameAuthorMessageContainer : ''
       }`}
     >
-      {!isNextAuthor && (
+      {(!isNextAuthor || isLastMessage) && (
         <div class={style.authorPicture} style={{ color: userColour }}>
-          {computeUserInitials(author).toUpperCase()}
+          <p>{computeUserInitials(author).toUpperCase()}</p>
         </div>
       )}
       <div class="flex flex-dc">
         <span class={`flex ${style.messageContainer} `}>
           <div class="flex flex-dc">
-            {!isPreviousAuthor && (
+            {(!isPreviousAuthor || isNewDay) && (
               <span class={style.authorName} style={{ color: userColour }}>
                 {author}
               </span>
