@@ -20,18 +20,39 @@ function computeUserInitials(name) {
   }
 }
 
-export default function UserMessage({ text, time, author }) {
+export default function UserMessage({
+  text,
+  time,
+  author,
+  isPreviousAuthor,
+  isNextAuthor,
+  userColour
+}) {
   return (
-    <div class={`flex ${style.messageWrapper}`}>
-      <div class={style.authorPicture}>
-        {computeUserInitials(author).toUpperCase()}
-      </div>
+    <div
+      class={`flex ${style.messageWrapper} ${
+        isNextAuthor ? style.sameAuthorMessageContainer : ''
+      }`}
+    >
+      {!isNextAuthor && (
+        <div class={style.authorPicture} style={{ color: userColour }}>
+          {computeUserInitials(author).toUpperCase()}
+        </div>
+      )}
       <div class="flex flex-dc">
-        <span dir="ltr" class={`flex flex-dc ${style.messageContainer}`}>
-          <span class={style.authorName}>{author}</span>
-          <span class={style.message}>{text}</span>
+        <span class={`flex ${style.messageContainer} `}>
+          <div class="flex flex-dc">
+            {!isPreviousAuthor && (
+              <span class={style.authorName} style={{ color: userColour }}>
+                {author}
+              </span>
+            )}
+            <span dir="ltr" class={style.message}>
+              {text}
+            </span>
+          </div>
+          <div class={style.time}>{time}</div>
         </span>
-        <span class={style.date}>{time}</span>
       </div>
     </div>
   );

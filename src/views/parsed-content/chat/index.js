@@ -1,5 +1,6 @@
 import { h } from 'preact';
 import { connect } from 'unistore/preact';
+import { COLOURS } from '../../../scripts/vars';
 
 import { actions } from '../../../store/store';
 
@@ -9,7 +10,7 @@ import DateChip from './date-chip';
 
 import style from './styles.scss';
 
-function renderMessage(message) {
+function renderMessage(message, isPreviousAuthor, isNextAuthor, userColour) {
   if (message.author.toLowerCase() === 'system') {
     return <SystemMessage text={message.message} />;
   } else {
@@ -18,6 +19,9 @@ function renderMessage(message) {
         text={message.message}
         time={message.time}
         author={message.author}
+        isPreviousAuthor={isPreviousAuthor}
+        isNextAuthor={isNextAuthor}
+        userColour={userColour}
       />
     );
   }
@@ -28,15 +32,45 @@ function renderChat(chatData) {
   let timeLineDay = messages[0].dateDay;
 
   let isNewDay = true;
+  let isPreviousAuthor = false;
+  let isNextAuthor = false;
+  let previousAuthor = '';
+  let nextAuthor = '';
+  let userAssignedColours = {};
+  let userColour = '';
 
   return messages.map((message, index) => {
     isNewDay = index === 0 || message.dateDay != timeLineDay;
     timeLineDay = message.dateDay;
 
+    if (
+      !userAssignedColours[message.author] &&
+      message.author.toLowerCase() !== 'system'
+    ) {
+      userAssignedColours[message.author] =
+        COLOURS[Math.floor(Math.random() * COLOURS.length)];
+    }
+
+    userColour = userAssignedColours[message.author];
+
+    if (messages[index + 1] && message.author.toLowerCase() !== 'system') {
+      previousAuthor = messages[index + 1].author;
+
+      isNextAuthor =
+        message.author.toLowerCase() === previousAuthor.toLowerCase();
+    }
+
+    if (messages[index - 1] && message.author.toLowerCase() !== 'system') {
+      nextAuthor = messages[index - 1].author;
+
+      isPreviousAuthor =
+        message.author.toLowerCase() === nextAuthor.toLowerCase();
+    }
+
     return (
       <span>
         {isNewDay && <DateChip dateText={message.dateString} />}
-        {renderMessage(message)}
+        {renderMessage(message, isPreviousAuthor, isNextAuthor, userColour)}
       </span>
     );
   });
