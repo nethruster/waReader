@@ -1,24 +1,9 @@
 import { h } from 'preact';
 
+import htmlifyMessage from '../../../../scripts/htmlfy-message';
+import computeUserInitials from '../../../../scripts/compute-user-initials';
+
 import style from './styles.scss';
-
-function computeUserInitials(name) {
-  if (name.charAt(0) == '+') {
-    return '#';
-  } else {
-    let nameArray = name.split(' ');
-    let isNameArray = nameArray.length > 1;
-
-    if (isNameArray) {
-      return nameArray.reduce(
-        (previousValue, currentValue) =>
-          previousValue.charAt(0) + currentValue.charAt(0)
-      );
-    } else {
-      return name.charAt(0);
-    }
-  }
-}
 
 export default function UserMessage({
   text,
@@ -50,7 +35,7 @@ export default function UserMessage({
               </span>
             )}
             <span dir="ltr" class={style.message}>
-              {text}
+              {htmlifyMessage(text)}
             </span>
           </div>
           <div class={style.time}>{time}</div>

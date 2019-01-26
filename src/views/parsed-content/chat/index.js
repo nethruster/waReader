@@ -54,28 +54,27 @@ function renderChat(chatData) {
     timeLineDay = message.dateDay;
     isLastMessage = messages.length - 1 === index;
 
-    if (
-      !userAssignedColours[message.author] &&
-      message.author.toLowerCase() !== 'system'
-    ) {
-      userAssignedColours[message.author] =
-        COLOURS[Math.floor(Math.random() * COLOURS.length)];
-    }
+    if (message.author.toLowerCase() !== 'system') {
+      if (!userAssignedColours[message.author]) {
+        userAssignedColours[message.author] =
+          COLOURS[Math.floor(Math.random() * COLOURS.length)];
+      }
 
-    userColour = userAssignedColours[message.author];
+      userColour = userAssignedColours[message.author];
 
-    if (messages[index + 1] && message.author.toLowerCase() !== 'system') {
-      previousAuthor = messages[index + 1].author;
+      if (messages[index + 1]) {
+        previousAuthor = messages[index + 1].author;
 
-      isNextAuthor =
-        message.author.toLowerCase() === previousAuthor.toLowerCase();
-    }
+        isNextAuthor =
+          message.author.toLowerCase() === previousAuthor.toLowerCase();
+      }
 
-    if (messages[index - 1] && message.author.toLowerCase() !== 'system') {
-      nextAuthor = messages[index - 1].author;
+      if (messages[index - 1]) {
+        nextAuthor = messages[index - 1].author;
 
-      isPreviousAuthor =
-        message.author.toLowerCase() === nextAuthor.toLowerCase();
+        isPreviousAuthor =
+          message.author.toLowerCase() === nextAuthor.toLowerCase();
+      }
     }
 
     return (
