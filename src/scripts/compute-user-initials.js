@@ -1,5 +1,5 @@
 export default function computeUserInitials(name) {
-  if (name.charAt(0) == '+') {
+  if (name.startsWith('+') || name.startsWith('\u202a')) {
     return '#';
   } else {
     let nameArray = name.split(' ');
