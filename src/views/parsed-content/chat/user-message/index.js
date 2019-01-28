@@ -5,40 +5,31 @@ import computeUserInitials from '../../../../scripts/compute-user-initials';
 
 import style from './styles.scss';
 
-export default function UserMessage({
-  text,
-  time,
-  author,
-  isPreviousAuthor,
-  isNextAuthor,
-  userColour,
-  isNewDay,
-  isLastMessage
-}) {
+export default function UserMessage({ userColour, message, isNewDay }) {
   return (
     <div
       class={`flex ${style.messageWrapper} ${
-        isNextAuthor && !isLastMessage ? style.sameAuthorMessageContainer : ''
+        message.isNextAuthor ? style.sameAuthorMessageContainer : ''
       }`}
     >
-      {(!isNextAuthor || isLastMessage) && (
+      {!message.isNextAuthor && (
         <div class={style.authorPicture} style={{ color: userColour }}>
-          <p>{computeUserInitials(author).toUpperCase()}</p>
+          <p>{computeUserInitials(message.author).toUpperCase()}</p>
         </div>
       )}
       <div class="flex flex-dc">
         <span class={`flex ${style.messageContainer} `}>
           <div class="flex flex-dc">
-            {(!isPreviousAuthor || isNewDay) && (
+            {(!message.isPreviousAuthor || isNewDay) && (
               <span class={style.authorName} style={{ color: userColour }}>
-                {author}
+                {message.author}
               </span>
             )}
             <span dir="ltr" class={style.message}>
-              {htmlifyMessage(text)}
+              {htmlifyMessage(message.message)}
             </span>
           </div>
-          <div class={style.time}>{time}</div>
+          <div class={style.time}>{message.time}</div>
         </span>
       </div>
     </div>

@@ -14,12 +14,11 @@ module.exports = {
     main: APP_DIR + '/index.js'
   },
   target: 'web',
-  devtool: 'source-map',
   optimization: {
     splitChunks: {
       cacheGroups: {
         vendor: {
-          test: /preact|preact-compat|decko|react-ink|react-router-dom|whatsapp-chat-parser-alt/,
+          test: /preact-scroll-viewport|unistore|anchorme|preact-html|preact|preact-compat|decko|react-ink|react-router-dom|whatsapp-chat-parser-alt/,
           chunks: 'initial',
           name: 'vendor'
         }

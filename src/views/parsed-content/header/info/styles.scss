@@ -2,6 +2,8 @@
     .infoContainer {
         flex: 1;
         padding-bottom: 12px;
+
+        @media screen and (max-width: 640px) { padding-bottom: 8px; }
     }
 
     .iconWrapper {

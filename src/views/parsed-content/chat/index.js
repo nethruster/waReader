@@ -1,8 +1,10 @@
-import { h } from 'preact';
+import { h, Component } from 'preact';
 import { connect } from 'unistore/preact';
-import { COLOURS } from '../../../scripts/vars';
+import { bind } from 'decko';
+import ScrollViewport from 'preact-scroll-viewport';
 
 import { actions } from '../../../store/store';
+import { COLOURS } from '../../../scripts/vars';
 
 import UserMessage from './user-message';
 import SystemMessage from './system-message';
@@ -10,96 +12,70 @@ import DateChip from './date-chip';
 
 import style from './styles.scss';
 
-function renderMessage(
-  message,
-  isPreviousAuthor,
-  isNextAuthor,
-  userColour,
-  isNewDay,
-  isLastMessage
-) {
+function renderMessage(message, userColour, isNewDay) {
   if (message.author.toLowerCase() === 'system') {
     return <SystemMessage text={message.message} />;
   } else {
     return (
       <UserMessage
-        text={message.message}
-        time={message.time}
-        author={message.author}
-        isPreviousAuthor={isPreviousAuthor}
-        isNextAuthor={isNextAuthor}
         userColour={userColour}
+        message={message}
         isNewDay={isNewDay}
-        isLastMessage={isLastMessage}
       />
     );
   }
 }
 
-function renderChat(chatData) {
-  const messages = chatData.messages;
-  let timeLineDay = messages[0].dateDay;
-
-  let isNewDay = true;
-  let isPreviousAuthor = false;
-  let isNextAuthor = false;
-  let previousAuthor = '';
-  let nextAuthor = '';
-  let userAssignedColours = {};
-  let userColour = '';
-  let isLastMessage = false;
-
-  return messages.map((message, index) => {
-    isNewDay = index === 0 || message.dateDay != timeLineDay;
-    timeLineDay = message.dateDay;
-    isLastMessage = messages.length - 1 === index;
-
-    if (message.author.toLowerCase() !== 'system') {
-      if (!userAssignedColours[message.author]) {
-        userAssignedColours[message.author] =
-          COLOURS[Math.floor(Math.random() * COLOURS.length)];
-      }
-
-      userColour = userAssignedColours[message.author];
-
-      if (messages[index + 1]) {
-        previousAuthor = messages[index + 1].author;
-
-        isNextAuthor =
-          message.author.toLowerCase() === previousAuthor.toLowerCase();
-      }
-
-      if (messages[index - 1]) {
-        nextAuthor = messages[index - 1].author;
-
-        isPreviousAuthor =
-          message.author.toLowerCase() === nextAuthor.toLowerCase();
-      }
-    }
-
-    return (
-      <span>
-        {isNewDay && <DateChip dateText={message.dateString} />}
-        {renderMessage(
-          message,
-          isPreviousAuthor,
-          isNextAuthor,
-          userColour,
-          isNewDay,
-          isLastMessage
-        )}
-      </span>
-    );
-  });
-}
-
 export default connect(
   'chat',
   actions
-)(function Chat({ chat }) {
-  return (
-    <div class={`flex flex-dc selectable-text ${style.messagesContainer}`}>
-      {renderChat(chat)}
-    </div>
-  );
-});
+)(
+  class Chat extends Component {
+    constructor(props) {
+      super(props);
+
+      this.userAssignedColours = [];
+      this.renderList = this.populateItemList();
+    }
+
+    componentWillMount() {
+      this.assignUserColours();
+      this.populateItemList();
+    }
+
+    assignUserColours() {
+      this.props.chat.authorList.forEach(author => {
+        this.userAssignedColours[author] =
+          COLOURS[Math.floor(Math.random() * COLOURS.length)];
+      });
+    }
+
+    populateItemList() {
+      const items = [];
+      let timeLineDay = this.props.chat.messages[0].dateDay;
+      let isNewDay = true;
+      let userColour = '';
+
+      this.props.chat.messages.map((message, index) => {
+        isNewDay = index === 0 || message.dateDay != timeLineDay;
+        timeLineDay = message.dateDay;
+        userColour = this.userAssignedColours[message.author];
+
+        if (isNewDay) {
+          items.push(<DateChip dateText={message.dateString} />);
+        }
+        items.push(renderMessage(message, userColour, isNewDay));
+      });
+
+      return items;
+    }
+
+    render() {
+      return (
+        <div class={`flex flex-dc selectable-text ${style.messagesContainer}`}>
+          <ScrollViewport rowHeight={67}>{this.renderList}</ScrollViewport>
+        </div>
+      );
+    }
+  }
+);
