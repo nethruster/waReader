@@ -1,7 +1,7 @@
 import { h, Component } from 'preact';
 import { connect } from 'unistore/preact';
 import { bind } from 'decko';
-import ScrollViewport from 'preact-scroll-viewport';
+import Observer from '@researchgate/react-intersection-observer';
 
 import { actions } from '../../../store/store';
 import { COLOURS } from '../../../scripts/vars';
@@ -12,20 +12,6 @@ import DateChip from './date-chip';
 
 import style from './styles.scss';
 
-function renderMessage(message, userColour, isNewDay) {
-  if (message.author.toLowerCase() === 'system') {
-    return <SystemMessage text={message.message} />;
-  } else {
-    return (
-      <UserMessage
-        userColour={userColour}
-        message={message}
-        isNewDay={isNewDay}
-      />
-    );
-  }
-}
-
 export default connect(
   'chat',
   actions
@@ -35,22 +21,24 @@ export default connect(
       super(props);
 
       this.userAssignedColours = [];
-      this.renderList = this.populateItemList();
     }
 
     componentWillMount() {
       this.assignUserColours();
-      this.populateItemList();
     }
 
     assignUserColours() {
-      this.props.chat.authorList.forEach(author => {
-        this.userAssignedColours[author] =
-          COLOURS[Math.floor(Math.random() * COLOURS.length)];
+      return new Promise((resolve, reject) => {
+        this.props.chat.authorList.forEach(author => {
+          this.userAssignedColours[author] =
+            COLOURS[Math.floor(Math.random() * COLOURS.length)];
+        });
+
+        resolve();
       });
     }
 
-    populateItemList() {
+    renderMessageList() {
       const items = [];
       let timeLineDay = this.props.chat.messages[0].dateDay;
       let isNewDay = true;
@@ -64,16 +52,33 @@ export default connect(
         if (isNewDay) {
           items.push(<DateChip dateText={message.dateString} />);
         }
-        items.push(renderMessage(message, userColour, isNewDay));
+        items.push(this.renderMessage(message, userColour, isNewDay));
       });
 
       return items;
     }
 
+    renderMessage(message, userColour, isNewDay) {
+      if (message.author.toLowerCase() === 'system') {
+        return <SystemMessage text={message.message} />;
+      } else {
+        return (
+          <UserMessage
+            userColour={userColour}
+            message={message}
+            isNewDay={isNewDay}
+          />
+        );
+      }
+    }
+
     render() {
       return (
-        <div class={`flex flex-dc selectable-text ${style.messagesContainer}`}>
-          <ScrollViewport rowHeight={67}>{this.renderList}</ScrollViewport>
+        <div
+          id="messages-container"
+          class={`flex flex-dc selectable-text ${style.messagesContainer}`}
+        >
+          {this.renderMessageList()}
         </div>
       );
     }

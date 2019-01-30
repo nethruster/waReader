@@ -29,6 +29,16 @@
         }
     }
 
+    .messagePlaceholder {
+        display: inline-block;
+        background-color: var(--color-tertiary);
+        color: var(--color-bg);
+        padding: 10px 12px;
+        border-radius: 12px;
+        position: relative;
+        font-size: .9em;
+    }
+
     .time {
         font-size: .8em;
         color: var(--color-quaternary);
