@@ -1,0 +1,46 @@
+:local {
+    .messageContainer {
+        display: inline-block;
+        background-color: var(--color-tertiary);
+        color: var(--color-bg);
+        padding: 10px 12px;
+        border-radius: 12px;
+        position: relative;
+
+        &::before {
+            content: '';
+            background-image: url(../../../../../assets/img/bubble-indicator.svg);
+            width: 30px;
+            height: 40px;
+            background-repeat: no-repeat;
+            position: absolute;
+            left: -15px;
+            bottom: -20px;
+        }
+
+        @media screen and (max-width: 640px) {
+            &::before { display: none; }
+        }
+    }
+
+    .messageWrapper {
+        margin-bottom: var(--message-separation);
+        max-width: 80%;
+        justify-content: flex-start;
+    
+        @media (max-width: 600px) {
+            max-width: 90%;
+        }
+    }
+
+
+    .sameAuthorMessageContainer {
+        margin-bottom: var(--continued-message-separation);
+        margin-left: 62px;
+
+        @media screen and (max-width: 640px) { margin-left: 0; }
+
+        .messageContainer::before { content: none; }
+    }
+
+}

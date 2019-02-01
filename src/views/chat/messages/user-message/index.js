@@ -2,10 +2,9 @@ import { h, Component } from 'preact';
 import Observer from '@researchgate/react-intersection-observer';
 import { bind } from 'decko';
 
-import htmlifyMessage from '../../../../scripts/htmlfy-message';
-import computeUserInitials from '../../../../scripts/compute-user-initials';
+import Message from './message';
 
-import style from './styles.scss';
+import MessagePlaceholder from './message-placeholder';
 
 export default class UserMessage extends Component {
   constructor(props) {
@@ -27,45 +26,17 @@ export default class UserMessage extends Component {
     return (
       <Observer onChange={this.handleChange} rootMargin="0px 0px 200px 0px">
         {this.state.visibility ? (
-          <div
-            class={`flex ${style.messageWrapper} ${
-              message.isNextAuthor ? style.sameAuthorMessageContainer : ''
-            }`}
-          >
-            {!message.isNextAuthor && (
-              <div class={style.authorPicture} style={{ color: userColour }}>
-                <p>{computeUserInitials(message.author).toUpperCase()}</p>
-              </div>
-            )}
-            <div class="flex flex-dc">
-              <span class={`flex ${style.messageContainer} `}>
-                <div class="flex flex-dc">
-                  {(!message.isPreviousAuthor || isNewDay) && (
-                    <span
-                      class={style.authorName}
-                      style={{ color: userColour }}
-                    >
-                      {message.author}
-                    </span>
-                  )}
-                  <span dir="ltr" class={style.message}>
-                    {htmlifyMessage(message.message)}
-                  </span>
-                </div>
-                <div class={style.time}>{message.time}</div>
-              </span>
-            </div>
-          </div>
+          <span>
+            <Message
+              message={message}
+              userColour={userColour}
+              isNewDay={isNewDay}
+            />
+          </span>
         ) : (
-          <div
-            class={`flex ${style.messageWrapper} ${
-              style.sameAuthorMessageContainer
-            }`}
-          >
-            <span class={`flex ${style.messagePlaceholder}`}>
-              Loading Message...
-            </span>
-          </div>
+          <span>
+            <MessagePlaceholder />
+          </span>
         )}
       </Observer>
     );

@@ -52,6 +52,11 @@ export default connect(
         if (isNewDay) {
           items.push(<DateChip dateText={message.dateString} />);
         }
+
+        // Idea: load first 1000 messages, and promt to load the next 1000
+        // if (index <= 1000) {
+        //    items.push(this.renderMessage(message, userColour, isNewDay));
+        // }
         items.push(this.renderMessage(message, userColour, isNewDay));
       });
 

@@ -1,0 +1,21 @@
+:local {
+    .placeholderWrapper {
+        margin-bottom: var(--message-separation);
+        max-width: 80%;
+        justify-content: flex-start;
+    
+        @media (max-width: 600px) {
+            max-width: 90%;
+        }
+    }
+
+    .messagePlaceholder {
+        display: inline-block;
+        background-color: var(--color-tertiary);
+        color: var(--color-bg);
+        padding: 10px 12px;
+        border-radius: 12px;
+        position: relative;
+        font-size: .9em;
+    }
+}

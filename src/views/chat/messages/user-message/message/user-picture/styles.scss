@@ -1,0 +1,17 @@
+:local {
+    .authorPicture  {
+        padding: 16px;
+        width: 46px;
+        height: 46px;
+        margin-right: 16px;
+        border-radius: 100%;
+        background-color: #f1f1f1;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        align-self: flex-end;
+        min-width: 46px;
+
+        @media screen and (max-width: 640px) { display: none; }
+    }
+}
