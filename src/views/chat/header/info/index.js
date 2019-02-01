@@ -11,7 +11,7 @@ import style from './styles.scss';
 export default connect(
   'chat',
   actions
-)(function HeaderInfo() {
+)(function HeaderInfo({ chat }) {
   return (
     <div class={`flex flex-sb flex-cross-center`}>
       <div class={`flex ${style.infoContainer}`}>
@@ -22,7 +22,7 @@ export default connect(
         </div>
         <div class="flex flex-dc flex-main-center">
           <p class={style.title}>Group Chat</p>
-          <p class={style.subtitle}>5 participants</p>
+          <p class={style.subtitle}>{chat.authorList.length} participants</p>
         </div>
       </div>
       <IconButton icon="printer" color="var(--color-accent)" />
