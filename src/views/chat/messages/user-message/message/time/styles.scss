@@ -6,5 +6,7 @@
         align-items: flex-end;
         margin-left: 12px;
         margin-bottom: -4px;
+
+        &[data-active="true"] { color: var(--color-tertiary); }
     }
 }

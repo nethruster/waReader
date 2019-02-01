@@ -10,7 +10,7 @@ export default function Button({
   disabled
 }) {
   return (
-    <button
+    <div
       title={text}
       aria-label={text}
       type={type}
@@ -19,6 +19,6 @@ export default function Button({
       disabled={disabled}
     >
       <span>{text}</span>
-    </button>
+    </div>
   );
 }

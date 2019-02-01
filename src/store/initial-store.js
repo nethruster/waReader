@@ -5,5 +5,6 @@ const initialStore = {
     isGroup: false
   },
   isChatLoaded: false,
-  activeTab: 'chat'
+  activeTab: 'chat',
+  activeUser: ''
 };

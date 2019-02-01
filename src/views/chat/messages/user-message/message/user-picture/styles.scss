@@ -12,6 +12,11 @@
         align-self: flex-end;
         min-width: 46px;
 
+        &[data-active="true"] {
+            margin-right: 0;
+            margin-left: 16px;
+        }
+
         @media screen and (max-width: 640px) { display: none; }
     }
 }

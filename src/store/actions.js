@@ -19,5 +19,10 @@ export default store => ({
     store.setState({
       activeTab: tab.toLowerCase()
     });
+  },
+  setActiveUser(sate, user = '') {
+    store.setState({
+      activeUser: user.toLowerCase()
+    });
   }
 });
