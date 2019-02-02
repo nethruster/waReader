@@ -23,7 +23,7 @@ export default connect(
       });
     }
 
-    render({ message, userColour, isNewDay, isActive }) {
+    render({ message, isNewDay, isActive, authorData }) {
       return (
         <div
           ref={el => {
@@ -36,7 +36,7 @@ export default connect(
           data-long-press-delay="100"
         >
           {!isActive && !message.isNextAuthor && (
-            <UserPicture name={message.author} isActive={isActive} />
+            <UserPicture user={authorData} isActive={isActive} />
           )}
           <div class="flex flex-dc">
             <span
@@ -47,7 +47,7 @@ export default connect(
                 {!isActive && (!message.isPreviousAuthor || isNewDay) && (
                   <UserName name={message.author} />
                 )}
-                <MessageContent content={message.message} />
+                <MessageContent content={message.message.html} />
               </div>
               <MessageTime isActive={isActive} time={message.time} />
             </span>

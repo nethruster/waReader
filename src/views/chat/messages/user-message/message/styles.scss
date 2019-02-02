@@ -31,6 +31,8 @@
             background-color: var(--color-accent);
             color: var(--color-primary);
             margin-right: 8px;
+
+            a { color: var(--color-tertiary); }
         }
 
         @media screen and (max-width: 640px) {

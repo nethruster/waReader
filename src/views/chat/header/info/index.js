@@ -22,7 +22,9 @@ export default connect(
         </div>
         <div class="flex flex-dc flex-main-center">
           <p class={style.title}>Group Chat</p>
-          <p class={style.subtitle}>{chat.authorList.length} participants</p>
+          <p class={style.subtitle}>
+            {Object.keys(chat.authorList).length} participants
+          </p>
         </div>
       </div>
       <IconButton icon="printer" color="var(--color-accent)" />

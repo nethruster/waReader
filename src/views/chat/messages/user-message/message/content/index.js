@@ -1,13 +1,12 @@
 import { h } from 'preact';
-
-import htmlifyMessage from '../../../../../../scripts/htmlfy-message';
+import html from 'preact-html';
 
 import style from './styles.scss';
 
 export default function MessageContent({ content }) {
   return (
     <span dir="ltr" class={style.message}>
-      {htmlifyMessage(content)}
+      {html(content)}
     </span>
   );
 }

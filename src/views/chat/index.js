@@ -14,7 +14,7 @@ export default connect(['isChatLoaded', 'activeTab'])(
       }
     }
 
-    render({ activeTab }) {
+    render() {
       return (
         <div class={style.contentWrapper}>
           <Header />

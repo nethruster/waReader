@@ -25,7 +25,7 @@ export default connect('activeUser')(
       });
     }
 
-    render({ userColour, message, isNewDay, activeUser }) {
+    render({ message, isNewDay, activeUser, authorData }) {
       let isActiveUser = activeUser === message.author.toLowerCase();
 
       return (
@@ -34,9 +34,9 @@ export default connect('activeUser')(
             <span class="flex" data-active-user={isActiveUser}>
               <Message
                 message={message}
-                userColour={userColour}
                 isNewDay={isNewDay}
                 isActive={isActiveUser}
+                authorData={authorData}
               />
             </span>
           ) : (
