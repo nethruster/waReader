@@ -9379,6 +9379,13 @@ vue-eslint-parser@^2.0.2:
     esquery "^1.0.0"
     lodash "^4.17.4"
 
+wareader-chat-parser@^4.4.4:
+  version "4.4.4"
+  resolved "https://registry.yarnpkg.com/wareader-chat-parser/-/wareader-chat-parser-4.4.4.tgz#6988540f80cf31a5e1bb8a841417b5fb01049a20"
+  integrity sha512-EEZ7EXmGiVC4VCqAugFd64GmU4D84ct/7xYZ1i8kpyuns9HS3rboMh4w4gmyOz1uoPNPoCkr+d9j2VrkQtXfpg==
+  dependencies:
+    anchorme "^1.1.2"
+
 warning@^3.0.0:
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/warning/-/warning-3.0.0.tgz#32e5377cb572de4ab04753bdf8821c01ed605b7c"
@@ -9532,11 +9539,6 @@ websocket-extensions@>=0.1.1:
   version "0.1.3"
   resolved "https://registry.yarnpkg.com/websocket-extensions/-/websocket-extensions-0.1.3.tgz#5d2ff22977003ec687a4b87073dfbbac146ccf29"
   integrity sha512-nqHUnMXmBzT0w570r2JpJxfiSD1IzoI+HGVdd3aZ0yNi3ngvQ4jv1dtHt5VGxfI2yj5yqImPhOK4vmIh2xMbGg==
-
-whatsapp-chat-parser-alt@^3.4.3:
-  version "3.4.3"
-  resolved "https://registry.yarnpkg.com/whatsapp-chat-parser-alt/-/whatsapp-chat-parser-alt-3.4.3.tgz#14b6c1dc9478e9660b00b81f31ecc64500d52c04"
-  integrity sha512-BFl/rEGf6HCAJDn8oVOZLH5X41vhnmsTqb1rHAQ/BEPYl/y/2FVnfNIMwFcOH39EpO4/9fCNDXAnDNJN0un2lg==
 
 which-module@^1.0.0:
   version "1.0.0"

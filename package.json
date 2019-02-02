@@ -57,6 +57,6 @@
     "preact-html": "^2.0.3",
     "react-router-dom": "^4.3.1",
     "unistore": "^3.2.1",
-    "whatsapp-chat-parser-alt": "^3.4.3"
+    "wareader-chat-parser": "^4.4.4"
   }
 }
