@@ -1,6 +1,8 @@
 # waReader
 > Whatsapp Message Reader
 
+#This project is being made from 0 in the 2.0 branch.
+
 ``` bash
 # install dependencies
 yarn install
