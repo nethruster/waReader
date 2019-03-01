@@ -1,8 +1,8 @@
 # waReader
-> Whatsapp Message Reader
+### This project is being made from scratch in the 2.0 branch.
 
-#This project is being made from 0 in the 2.0 branch.
-
+Old version Demo: https://wareader.nethruster.com
+# Build it youself
 ``` bash
 # install dependencies
 yarn install
