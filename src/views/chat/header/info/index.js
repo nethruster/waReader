@@ -8,6 +8,10 @@ import { actions } from '../../../../store/store';
 
 import style from './styles.scss';
 
+function windowPrint() {
+  window.print();
+}
+
 export default connect(
   'chat',
   actions
@@ -27,7 +31,11 @@ export default connect(
           </p>
         </div>
       </div>
-      <IconButton icon="printer" color="var(--color-accent)" />
+      <IconButton
+        onClickExecute={windowPrint}
+        icon="printer"
+        color="var(--color-accent)"
+      />
     </div>
   );
 });
