@@ -6,7 +6,7 @@ const style = require('./styles.scss');
 
 export default function QuickInfo() {
   return (
-    <div className={style.quickinfoWrapper}>
+    <div class={style.quickinfoWrapper}>
       <QuickInfoContent
         icon="secure"
         title="Does this respect my privacy?"

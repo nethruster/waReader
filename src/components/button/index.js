@@ -14,7 +14,7 @@ export default function Button({
       title={text}
       aria-label={text}
       type={type}
-      className={`${style.button} ${customClass ? customClass : ''}`}
+      class={`${style.button} ${customClass ? customClass : ''}`}
       onClick={onClickExecute}
       disabled={disabled}
     >

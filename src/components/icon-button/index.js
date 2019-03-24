@@ -16,7 +16,7 @@ export default function Button({
   return (
     <button
       type={type}
-      className={`${style.iconButton} ${customClass ? customClass : ''}`}
+      class={`${style.iconButton} ${customClass ? customClass : ''}`}
       onClick={onClickExecute}
       disabled={disabled}
     >

@@ -24,6 +24,11 @@ $content-top-spacing: 260px;
             transform: translate(-50%,-50%);
             top: 450px;
             pointer-events: none;
+
+            @media(min-width: 1020px) {
+                min-height: 100vh;
+                top: 60%;
+            }
         }
 
         &::after {
@@ -37,6 +42,11 @@ $content-top-spacing: 260px;
             background-size: 100% auto;
             top: 40px;
             pointer-events: none;
+
+            @media(min-width: 1020px) {
+                background-size: 75% auto;
+                background-repeat: repeat;
+            }
         }
     }
 
@@ -46,6 +56,7 @@ $content-top-spacing: 260px;
         width: 100%;
         overflow-x: hidden;
         overflow-y: auto;
+        align-items: flex-start;
     }
 
     .content {
@@ -81,4 +92,26 @@ $content-top-spacing: 260px;
         margin-top: 8px;
         font-size: .9em;
     }
+
+    @media(min-width: 1020px) {
+        .content {
+            width: 95%;
+            max-width: 1300px;
+            margin-top: 200px;
+            margin-left: auto;
+            margin-right: auto;
+            border-radius: 8px;
+            padding: 24px 18px;
+
+            &::after {
+                content: none;
+            }
+        }
+
+        .introDescription {
+            text-align: center;
+            font-size: 1.5em;
+        }
+    }
 }
+

@@ -1,53 +1,43 @@
 :local {
-    .wrapper { margin-top: 32px; }
+    .wrapper { 
+        margin-top: 32px;
+        border-top: 1px solid rgba(0,0,0,.1);
+        overflow: hidden;
+    }
 
     .howtoTitle { margin: 38px 0; }
 
-    .chooserWrapper { margin: 32px 0; }
-
-    .chooserTab {
-        border-radius: 50px;
-        background-color: #f2f2f2;
-        padding: 4px 28px;
-
-        &:not(:last-child) { margin-right: 16px; }
-
-        &:not(.active) { cursor: pointer; }
+    .platformTab {
+        opacity: 0;
+        pointer-events: none;
 
         &.active {
-            background-color: var(--color-accent);
-            color: var(--color-primary);
+            opacity: 1;
+            pointer-events: initial;
         }
+        
+
+        transition: opacity .3s ease-in-out;
     }
 
-    .instrucctionList {
-        counter-reset: dashedGreenNumbers;
-
-        li { margin-bottom: 2.5rem; }
+    .platformTabWrapper {
+        transition: transform .3s ease-in-out;
     }
 
-    .instructionText {
-        margin-bottom: 0;
+    .platformTabSelector {
+        padding: 6px 24px;
+        margin: 0 24px;
+        border-radius: 50px;
+        cursor: pointer;
 
-        &:before {
+        &:hover {
+            background-color: rgba(24, 185, 139, .1);
             color: var(--color-accent);
-            content: counter(dashedGreenNumbers)' - ';
-            counter-increment: dashedGreenNumbers;
-            min-width: 24px;
         }
-    }
-
-    .inlineImgInstruction {
-        display: flex;
-        align-items: center;
-
-        img { margin: 0 4px; }
-    }
-
-    .imgInstruction {
-        img {
-            margin-left: 24px;
-            margin-top: 8px;
+        
+        &.active {
+            background-color: rgba(24, 185, 139, .2);
+            color: var(--color-accent);
         }
     }
 }

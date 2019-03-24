@@ -20,6 +20,11 @@ export default store => ({
       activeTab: tab.toLowerCase()
     });
   },
+  setActiveHomeTab(sate, tab = 'android') {
+    store.setState({
+      activeHomeTab: tab.toLowerCase()
+    });
+  },
   setActiveUser(sate, user = '') {
     store.setState({
       activeUser: user.toLowerCase()

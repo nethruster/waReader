@@ -1,80 +1,120 @@
-import { h } from 'preact';
+import { h, Component } from 'preact';
+import { bind } from 'decko';
+import { connect } from 'unistore/preact';
+
+import AndroidHowTo from './platforms/android';
+import IOSHowTo from './platforms/iOS';
+
+import { actions } from '../../../store/store';
 
 const style = require('./styles.scss');
 
-export default function HowTo() {
-  return (
-    <div class={style.wrapper}>
-      <h4 class={`text-center ${style.howtoTitle}`}>How to use waReader?</h4>
-      <p>
-        In order to use our this tool you need to export your WhatsApp chat to a
-        text file.
-        <br />
-        <br />
-        Here's a step by step tutorial of how to export your chat:
-      </p>
-      <div class={`flex flex-main-center ${style.chooserWrapper}`}>
-        <span class={`text-center ${style.chooserTab} ${style.active}`}>
-          Android
-        </span>
-        <span class={`text-center ${style.chooserTab}`}>iOS</span>
-      </div>
-      <div>
-        <ol class={`${style.instrucctionList}`}>
-          <li>
-            <p class={style.instructionText}>
-              Go to WhatsApp in your mobile phone and select the desired group.
-            </p>
-          </li>
-          <li class={style.inlineImgInstruction}>
-            <p class={style.instructionText}>
-              Press the context menuin the top right corner.
-            </p>
-            <img
-              height="42"
-              width="28"
-              src="./assets/img/whatsapp-menu-button.png"
-            />
-          </li>
-          <li class={style.imgInstruction}>
-            <p class={style.instructionText}>
-              In the context menu, select the "More" item.
-            </p>
-            <img
-              width="160"
-              height="235"
-              src="./assets/img/whatsapp-more-menu.png"
-            />
-          </li>
-          <li class={style.imgInstruction}>
-            <p class={style.instructionText}>
-              In the new menu, choose "Export Chat".
-            </p>
-            <img
-              width="160"
-              height="195"
-              src="./assets/img/whatsapp-export-menu.png"
-            />
-          </li>
-          <li class={style.imgInstruction}>
-            <p class={style.instructionText}>
-              You should get a popup where you need to choose between exporting
-              with or without media.
-            </p>
-            <img
-              width="300"
-              height="118"
-              src="./assets/img/whatsapp-media-modal.png"
-            />
-          </li>
-          <li>
-            <p class={style.instructionText}>
-              That's the data you'll need for this app. The only ".txt" file is
-              the one you'll want to use.
-            </p>
-          </li>
-        </ol>
-      </div>
-    </div>
-  );
-}
+export default connect(
+  'activeHomeTab',
+  actions
+)(
+  class HowTo extends Component {
+    constructor(props) {
+      super(props);
+
+      this.state = {
+        tabContainerWith: 0,
+        tabContentWidth: 0,
+        tabAmmount: 0
+      };
+    }
+
+    @bind
+    handleSetActiveHomeTabFromTabClick(event) {
+      let tabName = event.target.dataset.triggers;
+      this.props.setActiveHomeTab(tabName);
+    }
+
+    componentDidMount() {
+      const tabContentWidth =
+        this.tabContentWrapper.getBoundingClientRect().width *
+        this.tabList.childElementCount;
+
+      this.setState({
+        tabContentWidth,
+        tabContainerWith: this.tabContentWrapper.getBoundingClientRect().width,
+        tabAmmount: this.tabList.childElementCount
+      });
+    }
+
+    render() {
+      return (
+        <div class={style.wrapper}>
+          <h4 class={`text-center ${style.howtoTitle}`}>
+            How to export a Whatsapp chat?
+          </h4>
+          <ul class="flex flex-main-center" ref={el => (this.tabList = el)}>
+            <li
+              data-triggers="android"
+              onClick={this.handleSetActiveHomeTabFromTabClick}
+              class={`${style.platformTabSelector} ${
+                this.props.activeHomeTab == 'android' ? style.active : ''
+              }`}
+            >
+              Android
+            </li>
+            <li
+              data-triggers="ios"
+              onClick={this.handleSetActiveHomeTabFromTabClick}
+              class={`${style.platformTabSelector} ${
+                this.props.activeHomeTab == 'ios' ? style.active : ''
+              }`}
+            >
+              iOS
+            </li>
+          </ul>
+          <div
+            class={`flex ${style.platformTabWrapper}`}
+            ref={el => (this.tabContentWrapper = el)}
+            style={{
+              transform: `translateX(-${
+                this.props.activeHomeTab == 'android'
+                  ? 0
+                  : this.state.tabContainerWith
+              }px)`,
+              width: `${
+                this.state.tabContentWidth
+                  ? this.state.tabContentWidth + 'px'
+                  : '100%'
+              }`
+            }}
+          >
+            <div
+              style={{
+                width: `${
+                  this.state.tabContainerWith
+                    ? this.state.tabContainerWith + 'px'
+                    : '100%'
+                }`
+              }}
+              class={`${style.platformTab} ${
+                this.props.activeHomeTab == 'android' ? style.active : ''
+              }`}
+            >
+              <AndroidHowTo />
+            </div>
+            <div
+              style={{
+                width: `${
+                  this.state.tabContainerWith
+                    ? this.state.tabContainerWith + 'px'
+                    : '100%'
+                }`
+              }}
+              class={`${style.platformTab} ${
+                this.props.activeHomeTab == 'ios' ? style.active : ''
+              }`}
+            >
+              <IOSHowTo />
+            </div>
+          </div>
+        </div>
+      );
+    }
+  }
+);

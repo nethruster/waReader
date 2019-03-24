@@ -3,5 +3,14 @@
         margin-top: 60px;
 
         path { fill: var(--color-accent); }
+
+          @media(min-width: 1020px) {
+            display: flex;
+            padding: 0 32px;
+            justify-content: space-evenly;
+            align-items: center;
+        }
     }
+
+    
 }

@@ -11,5 +11,10 @@ $logo-width: 250px;
     .headerLogo {
         height: auto;
         width: $logo-width;
+
+        @media(min-width: 1020px) {
+            width: $logo-width * 1.5;
+        }
     }
+    
 }

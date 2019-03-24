@@ -5,7 +5,7 @@ const style = require('./styles.scss');
 export default function FileInput({ id, label, customClass, onChangeExecute }) {
   return (
     <label
-      className={`${style.fileInput} ${customClass ? customClass : ''}`}
+      class={`${style.fileInput} ${customClass ? customClass : ''}`}
       for={id}
     >
       <span>{label}</span>

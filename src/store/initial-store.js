@@ -6,5 +6,6 @@ const initialStore = {
   },
   isChatLoaded: false,
   activeTab: 'chat',
-  activeUser: ''
+  activeUser: '',
+  activeHomeTab: 'android'
 };

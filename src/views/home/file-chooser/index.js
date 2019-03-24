@@ -40,7 +40,7 @@ export default connect(
 
     render() {
       return (
-        <form className={`text-center ${style.uploadForm}`}>
+        <form class={`text-center ${style.uploadForm}`}>
           <FileInput
             id="file-chooser"
             label="Select A File"
