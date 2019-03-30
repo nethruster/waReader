@@ -8,7 +8,7 @@ export default function AppRouter() {
   return (
     <BrowserRouter>
       <Switch>
-        <Route path="/" exact component={Chat} />
+        <Route path="/" exact component={Home} />
         <Route path="/chat" exact component={Chat} />
       </Switch>
     </BrowserRouter>

@@ -45,7 +45,10 @@ export default connect(
             >
               <div class="flex flex-dc">
                 {!isActive && (!message.isPreviousAuthor || isNewDay) && (
-                  <UserName name={message.author} />
+                  <UserName
+                    name={message.author}
+                    userColor={authorData.color}
+                  />
                 )}
                 <MessageContent content={message.message.html} />
               </div>

@@ -12,10 +12,17 @@
         align-self: flex-end;
         min-width: 46px;
         cursor: pointer;
+        color: #9b9b9b;
+        transition: background-color .1s ease-in-out, color .1s ease-in-out;
 
         &[data-active="true"] {
             margin-right: 0;
             margin-left: 16px;
+        }
+
+        &:hover {
+            background-color: var(--color-accent);
+            color: #fff;
         }
 
         @media screen and (max-width: 640px) { display: none; }
