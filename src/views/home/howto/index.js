@@ -2,10 +2,9 @@ import { h, Component } from 'preact';
 import { bind } from 'decko';
 import { connect } from 'unistore/preact';
 
-import AndroidHowTo from './platforms/android';
-import IOSHowTo from './platforms/iOS';
-
 import { actions } from '../../../store/store';
+
+import Platforms from './platforms';
 
 const style = require('./styles.scss');
 
@@ -18,28 +17,18 @@ export default connect(
       super(props);
 
       this.state = {
-        tabContainerWith: 0,
-        tabContentWidth: 0,
-        tabAmmount: 0
+        tabCount: 0
       };
+    }
+
+    componentDidMount() {
+      this.setState({ tabCount: this.tabList.childElementCount });
     }
 
     @bind
     handleSetActiveHomeTabFromTabClick(event) {
       let tabName = event.target.dataset.triggers;
       this.props.setActiveHomeTab(tabName);
-    }
-
-    componentDidMount() {
-      const tabContentWidth =
-        this.tabContentWrapper.getBoundingClientRect().width *
-        this.tabList.childElementCount;
-
-      this.setState({
-        tabContentWidth,
-        tabContainerWith: this.tabContentWrapper.getBoundingClientRect().width,
-        tabAmmount: this.tabList.childElementCount
-      });
     }
 
     render() {
@@ -68,51 +57,7 @@ export default connect(
               iOS
             </li>
           </ul>
-          <div
-            class={`flex ${style.platformTabWrapper}`}
-            ref={el => (this.tabContentWrapper = el)}
-            style={{
-              transform: `translateX(-${
-                this.props.activeHomeTab == 'android'
-                  ? 0
-                  : this.state.tabContainerWith
-              }px)`,
-              width: `${
-                this.state.tabContentWidth
-                  ? this.state.tabContentWidth + 'px'
-                  : '100%'
-              }`
-            }}
-          >
-            <div
-              style={{
-                width: `${
-                  this.state.tabContainerWith
-                    ? this.state.tabContainerWith + 'px'
-                    : '100%'
-                }`
-              }}
-              class={`${style.platformTab} ${
-                this.props.activeHomeTab == 'android' ? style.active : ''
-              }`}
-            >
-              <AndroidHowTo />
-            </div>
-            <div
-              style={{
-                width: `${
-                  this.state.tabContainerWith
-                    ? this.state.tabContainerWith + 'px'
-                    : '100%'
-                }`
-              }}
-              class={`${style.platformTab} ${
-                this.props.activeHomeTab == 'ios' ? style.active : ''
-              }`}
-            >
-              <IOSHowTo />
-            </div>
-          </div>
+          <Platforms tabCount={this.state.tabCount} />
         </div>
       );
     }

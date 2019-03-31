@@ -7,23 +7,6 @@
 
     .howtoTitle { margin: 38px 0; }
 
-    .platformTab {
-        opacity: 0;
-        pointer-events: none;
-
-        &.active {
-            opacity: 1;
-            pointer-events: initial;
-        }
-        
-
-        transition: opacity .3s ease-in-out;
-    }
-
-    .platformTabWrapper {
-        transition: transform .3s ease-in-out;
-    }
-
     .platformTabSelector {
         padding: 6px 24px;
         margin: 0 24px;
