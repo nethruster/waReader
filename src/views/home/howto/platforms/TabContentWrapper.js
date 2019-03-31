@@ -8,15 +8,14 @@ import style from './styles.scss';
 export default connect(
   'activeHomeTab',
   actions
-)(function({ children, containerWidth, activeTrigger }) {
+)(function TabContentWrapper({ children, containerWidth, activeTrigger }) {
+  const isActive = this.props.activeHomeTab == activeTrigger;
   return (
     <div
       style={{
-        width: `${containerWidth ? containerWidth + 'px' : '100%'}`
+        width: `100%`
       }}
-      class={`${style.platformTab} ${
-        this.props.activeHomeTab == activeTrigger ? style.active : ''
-      }`}
+      class={`${style.platformTab} ${isActive ? style.active : ''}`}
     >
       {children}
     </div>

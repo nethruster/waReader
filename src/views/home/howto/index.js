@@ -21,10 +21,6 @@ export default connect(
       };
     }
 
-    componentDidMount() {
-      this.setState({ tabCount: this.tabList.childElementCount });
-    }
-
     @bind
     handleSetActiveHomeTabFromTabClick(event) {
       let tabName = event.target.dataset.triggers;
@@ -37,7 +33,7 @@ export default connect(
           <h4 class={`text-center ${style.howtoTitle}`}>
             How to export a Whatsapp chat?
           </h4>
-          <ul class="flex flex-main-center" ref={el => (this.tabList = el)}>
+          <ul class="flex flex-main-center" ref={this.setTabCount}>
             <li
               data-triggers="android"
               onClick={this.handleSetActiveHomeTabFromTabClick}
@@ -57,7 +53,8 @@ export default connect(
               iOS
             </li>
           </ul>
-          <Platforms tabCount={this.state.tabCount} />
+          {/* Also ugly but whatever */}
+          <Platforms tabCount="2" />
         </div>
       );
     }

@@ -23,15 +23,20 @@ export default connect(
       };
     }
 
-    componentWillReceiveProps() {
-      const tabContentWidth =
-        this.tabContentWrapper.getBoundingClientRect().width *
-        this.props.tabCount;
+    componentDidMount() {
+      if (!this.state.tabContainerWith && !this.state.tabContentWidth) {
+        console.log(this.tabContentWrapper.getBoundingClientRect());
+        const tabContentWidth =
+          this.tabContentWrapper.getBoundingClientRect().width *
+          this.props.tabCount;
 
-      this.setState({
-        tabContentWidth,
-        tabContainerWith: this.tabContentWrapper.getBoundingClientRect().width
-      });
+        console.log(this.props.tabCount, tabContentWidth);
+
+        this.setState({
+          tabContentWidth,
+          tabContainerWith: this.tabContentWrapper.getBoundingClientRect().width
+        });
+      }
     }
 
     render() {
