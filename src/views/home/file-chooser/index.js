@@ -24,7 +24,6 @@ export default connect(
 
     @bind
     handleFileChange(event) {
-      console.log(event);
       let file = event.target.files[0];
       let fr = new FileReader();
 

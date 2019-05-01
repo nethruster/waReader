@@ -10,7 +10,7 @@ export default connect(['isChatLoaded', 'activeTab'])(
   class ParsedContent extends Component {
     componentWillMount() {
       if (!this.props.isChatLoaded) {
-        this.context.router.history.replace('/');
+        this.context.router.history.push('/');
       }
     }
 
@@ -18,7 +18,7 @@ export default connect(['isChatLoaded', 'activeTab'])(
       return (
         <div class={style.contentWrapper}>
           <Header />
-          <Messages />
+          {this.props.isChatLoaded && <Messages />}
         </div>
       );
     }
