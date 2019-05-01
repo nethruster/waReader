@@ -8,7 +8,7 @@ import style from './styles.scss';
 
 export default connect(['isChatLoaded', 'activeTab'])(
   class ParsedContent extends Component {
-    componentDidMount() {
+    componentWillMount() {
       if (!this.props.isChatLoaded) {
         this.context.router.history.replace('/');
       }

@@ -24,6 +24,7 @@ export default connect(
 
     @bind
     handleFileChange(event) {
+      console.log(event);
       let file = event.target.files[0];
       let fr = new FileReader();
 
@@ -38,6 +39,10 @@ export default connect(
       };
     }
 
+    resetInput(event) {
+      event.target.value = null; // reset input data to allow detection for the same file
+    }
+
     render() {
       return (
         <form class={`text-center ${style.uploadForm}`}>
@@ -46,6 +51,7 @@ export default connect(
             label="Select A File"
             customClass={style.inputButton}
             onChangeExecute={this.handleFileChange}
+            onClickExecute={this.resetInput}
           />
         </form>
       );

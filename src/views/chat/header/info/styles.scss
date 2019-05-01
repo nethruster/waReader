@@ -1,6 +1,9 @@
 :local {
+    .headerInfoWrapper { width: 100%; }
+
     .infoContainer {
         flex: 1;
+        margin: 0 8px;
 
         @media screen and (max-width: 640px) { padding-bottom: 8px; }
     }

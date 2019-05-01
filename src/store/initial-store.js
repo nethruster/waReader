@@ -1,7 +1,7 @@
 const initialStore = {
   chat: {
     messages: [],
-    authors: [],
+    authorList: [],
     isGroup: false
   },
   isChatLoaded: false,
@@ -9,3 +9,5 @@ const initialStore = {
   activeUser: '',
   activeHomeTab: 'android'
 };
+
+export default initialStore;

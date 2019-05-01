@@ -1,3 +1,5 @@
+import initialStore from './initial-store';
+
 export default store => ({
   setChatData(state, data) {
     store.setState({
@@ -7,11 +9,6 @@ export default store => ({
   },
   resetChatData(state) {
     store.setState({
-      chat: {
-        messages: [],
-        authors: [],
-        isGroup: false
-      },
       isChatLoaded: false
     });
   },

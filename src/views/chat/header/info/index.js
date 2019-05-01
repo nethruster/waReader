@@ -17,7 +17,7 @@ export default connect(
   actions
 )(function HeaderInfo({ chat }) {
   return (
-    <div class={`flex flex-sb flex-cross-center`}>
+    <div class={`flex flex-sb flex-cross-center ${style.headerInfoWrapper}`}>
       <div class={`flex ${style.infoContainer}`}>
         <div class={style.iconWrapper}>
           <span class={style.icon}>
