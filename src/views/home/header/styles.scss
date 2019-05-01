@@ -6,15 +6,16 @@ $logo-width: 250px;
         position: fixed;
         height: $header-height;
         width: 100%;
+
+        @media(min-width: 1020px) {
+            height: 124px;
+        }
     }
 
     .headerLogo {
         height: auto;
         width: $logo-width;
-
-        @media(min-width: 1020px) {
-            width: $logo-width * 1.5;
-        }
     }
-    
+
+   
 }

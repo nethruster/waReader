@@ -1,5 +1,6 @@
 import { h, Component } from 'preact';
 import { connect } from 'unistore/preact';
+import { bind } from 'decko';
 
 import { actions } from '../../../../store/store';
 
@@ -23,18 +24,29 @@ export default connect(
       };
     }
 
-    componentDidMount() {
-      if (!this.state.tabContainerWith && !this.state.tabContentWidth) {
-        console.log(this.tabContentWrapper.getBoundingClientRect());
-        const tabContentWidth =
-          this.tabContentWrapper.getBoundingClientRect().width *
-          this.props.tabCount;
+    @bind
+    handleResize() {
+      const parentContainer = document.querySelector('#wareader-howto');
+      const tabContentWidth =
+        parentContainer.getBoundingClientRect().width * this.props.tabCount;
 
-        console.log(this.props.tabCount, tabContentWidth);
+      this.setState({
+        tabContentWidth,
+        tabContainerWith: parentContainer.getBoundingClientRect().width
+      });
+    }
+
+    componentDidMount() {
+      window.addEventListener('resize', this.handleResize);
+
+      if (!this.state.tabContainerWith && !this.state.tabContentWidth) {
+        const parentContainer = document.querySelector('#wareader-howto');
+        const tabContentWidth =
+          parentContainer.getBoundingClientRect().width * this.props.tabCount;
 
         this.setState({
           tabContentWidth,
-          tabContainerWith: this.tabContentWrapper.getBoundingClientRect().width
+          tabContainerWith: parentContainer.getBoundingClientRect().width
         });
       }
     }
@@ -43,7 +55,6 @@ export default connect(
       return (
         <div
           class={`flex ${style.platformTabWrapper}`}
-          ref={el => (this.tabContentWrapper = el)}
           // This is ugly af
           style={{
             transform: `translateX(-${

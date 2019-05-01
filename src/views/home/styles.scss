@@ -97,11 +97,11 @@ $content-top-spacing: 260px;
         .content {
             width: 95%;
             max-width: 1300px;
-            margin-top: 200px;
+            margin-top: 16vh;
             margin-left: auto;
             margin-right: auto;
             border-radius: 8px;
-            padding: 24px 18px;
+            padding: 32px 24px;
 
             &::after {
                 content: none;

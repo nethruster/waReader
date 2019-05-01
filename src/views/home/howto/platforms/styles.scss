@@ -1,6 +1,9 @@
 :local {
-    .platformTabWrapper {
+    .platformTabWrapper { 
         transition: transform .3s ease-in-out;
+        margin-top: 32px;
+
+        ul, li { margin-bottom: 0; }
     }
 
     .platformTab {
@@ -11,8 +14,53 @@
             opacity: 1;
             pointer-events: initial;
         }
-        
 
         transition: opacity .3s ease-in-out;
+    }
+
+    .stepContainer {
+        width: 100%;
+
+        p { margin: 0; }
+
+        @media(max-width: 920px) {
+            flex-direction: column;
+
+            li { margin: 16px 0; }
+        }
+    }
+
+    .step {
+        line-height: 24px;
+        flex-wrap: wrap;
+
+        img {
+            flex: 1;
+            max-width: 142px;
+            margin-top: 24px;
+        }
+    }
+
+    .stepNumber {
+        background-color: var(--color-accent);
+        margin: 0 8px;
+        width: 24px;
+        height: 24px;
+        display: flex;
+        border-radius: 50%;
+        font-size: .85em;
+        color: #fff;
+        justify-content: center;
+        align-items: center;
+        line-height: 1px;
+    }
+
+    .stepText { font-size: .9em; }
+
+    .divider {
+        flex: .4;
+        margin: 0 16px;
+        height: 1px;
+        background-color: rgba(0,0,0,.1);
     }
 }

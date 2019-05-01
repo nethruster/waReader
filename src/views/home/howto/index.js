@@ -29,7 +29,7 @@ export default connect(
 
     render() {
       return (
-        <div class={style.wrapper}>
+        <div class={style.wrapper} id="wareader-howto">
           <h4 class={`text-center ${style.howtoTitle}`}>
             How to export a Whatsapp chat?
           </h4>
