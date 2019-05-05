@@ -15,6 +15,12 @@ export default connect(
   actions
 )(
   class Chat extends Component {
+    componentWillMount() {
+      if (this.props.chat.messages.length <= 0) {
+        this.props.chat = JSON.parse(sessionStorage.getItem('chat'));
+      }
+    }
+
     renderMessageList() {
       const items = [];
       let timeLineDay = this.props.chat.messages[0].dateDay;
@@ -45,6 +51,7 @@ export default connect(
       } else {
         return (
           <UserMessage
+            disableIntersectionObserver={this.props.disableIntersectionObserver}
             message={message}
             isNewDay={isNewDay}
             authorData={this.props.chat.authorList[message.author]}

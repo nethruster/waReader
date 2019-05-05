@@ -7,6 +7,8 @@
         border-radius: 12px;
         position: relative;
 
+        @media print { border: 1px solid rgba(0,0,0,.4); }
+
         &::before {
             @media print { content: none; }
 
@@ -33,6 +35,8 @@
             margin-right: 8px;
 
             a { color: var(--color-tertiary); }
+
+            @media print { color: var(--color-bg); }
         }
 
         @media screen and (max-width: 640px) {

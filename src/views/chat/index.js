@@ -9,16 +9,16 @@ import style from './styles.scss';
 export default connect(['isChatLoaded', 'activeTab'])(
   class ParsedContent extends Component {
     componentWillMount() {
-      if (!this.props.isChatLoaded) {
+      if (!this.props.isChatLoaded && !this.props.disableIntersectionObserver) {
         this.context.router.history.push('/');
       }
     }
 
-    render() {
+    render({ isChatLoaded, disableIntersectionObserver }) {
       return (
         <div class={style.contentWrapper}>
-          <Header />
-          {this.props.isChatLoaded && <Messages />}
+          {!disableIntersectionObserver && <Header />}
+          {(isChatLoaded || disableIntersectionObserver) && <Messages />}
         </div>
       );
     }

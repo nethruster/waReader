@@ -27,12 +27,14 @@
         align-items: center;
         margin: 0;
         font-weight: 500;
-        font-size: 1.1em;
+        font-size: 1em;
     }
 
     .subtitle {
-        font-size: .9em;
+        font-size: .8em;
         color: var(--color-secondary);
         margin: 0;
     }
+
+    .infoDetailsWrapper { line-height: 16px; }
 }
