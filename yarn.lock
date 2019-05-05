@@ -7446,6 +7446,11 @@ react-is@^16.8.1:
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-16.8.6.tgz#5bbc1e2d29141c9fbdfed456343fe2bc430a6a16"
   integrity sha512-aUk3bHfZ2bRSVFFbbeVS4i+lNPZr3/WM5jT2J5omUVV1zzcs1nAaf3l51ctA5FFvCRbhrH0bdAsRRQddFJZPtA==
 
+react-material-snackbar-custom-classname@^3.1.0:
+  version "3.1.0"
+  resolved "https://registry.yarnpkg.com/react-material-snackbar-custom-classname/-/react-material-snackbar-custom-classname-3.1.0.tgz#f87f1c2c58e7375351c48e5e35dd35cb13df9423"
+  integrity sha512-5RuN80PidgdW4/3E2txBHnyiUZ7nUzrewXWinjLmZza2H8lPnachPD6ZzKqA6wr6jd7F2+C+Wl3PrPeo54TMEw==
+
 react-router-dom@^4.3.1:
   version "4.3.1"
   resolved "https://registry.yarnpkg.com/react-router-dom/-/react-router-dom-4.3.1.tgz#4c2619fc24c4fa87c9fd18f4fb4a43fe63fbd5c6"

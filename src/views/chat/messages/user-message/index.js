@@ -32,7 +32,7 @@ export default connect('activeUser')(
       authorData,
       intersectionObserver
     }) {
-      if (!isActiveUser) {
+      if (!isActiveUser && JSON.parse(sessionStorage.getItem('activeUser'))) {
         activeUser = JSON.parse(sessionStorage.getItem('activeUser'));
       }
 

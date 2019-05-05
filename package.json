@@ -55,6 +55,7 @@
     "preact": "^8.3.1",
     "preact-compat": "^3.18.4",
     "preact-html": "^2.0.3",
+    "react-material-snackbar-custom-classname": "^3.1.0",
     "react-router-dom": "^4.3.1",
     "unistore": "^3.2.1",
     "wareader-chat-parser": "^4.4.4"

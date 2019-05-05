@@ -19,4 +19,21 @@
 
         input { display: none; }
     }
+
+    .toast {
+        z-index: 40;
+        transform: translateY(0) !important;
+
+        transition: transform .3s ease-in-out;
+
+        p {
+            margin: 0;
+            padding: 0;
+        }
+
+        button {
+            margin-left: 12px;
+            padding: 2px;
+        }
+    }
 }

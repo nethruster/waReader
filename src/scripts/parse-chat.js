@@ -7,7 +7,7 @@ export function getParsedChatObject(fileContents) {
     .then(result => {
       // Assign user colours
       for (let author in result.authorList) {
-        const userColorNumber = Math.floor(Math.random() * (19 - 1 + 1)) + 1;
+        const userColorNumber = Math.floor(Math.random() * 19) + 1;
         const userColor = USER_COLORS[userColorNumber];
 
         result.authorList[author].color = userColor;
@@ -16,6 +16,6 @@ export function getParsedChatObject(fileContents) {
       return result;
     })
     .catch(err => {
-      console.error(err);
+      throw err;
     });
 }
