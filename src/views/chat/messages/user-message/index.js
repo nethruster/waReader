@@ -30,15 +30,28 @@ export default connect('activeUser')(
       isNewDay,
       activeUser,
       authorData,
-      intersectionObserver
+      disableIntersectionObserver
     }) {
       if (!isActiveUser && JSON.parse(sessionStorage.getItem('activeUser'))) {
         activeUser = JSON.parse(sessionStorage.getItem('activeUser'));
       }
 
-      let isActiveUser = activeUser === message.author.toLowerCase();
+      const isActiveUser = activeUser === message.author.toLowerCase();
 
-      if (intersectionObserver) {
+      if (disableIntersectionObserver) {
+        return (
+          <div>
+            <span class="flex" data-active-user={isActiveUser}>
+              <Message
+                message={message}
+                isNewDay={isNewDay}
+                isActive={isActiveUser}
+                authorData={authorData}
+              />
+            </span>
+          </div>
+        );
+      } else {
         return (
           <Observer onChange={this.handleChange} rootMargin="0px 0px 200px 0px">
             {this.state.visibility ? (
@@ -56,19 +69,6 @@ export default connect('activeUser')(
               </span>
             )}
           </Observer>
-        );
-      } else {
-        return (
-          <div>
-            <span class="flex" data-active-user={isActiveUser}>
-              <Message
-                message={message}
-                isNewDay={isNewDay}
-                isActive={isActiveUser}
-                authorData={authorData}
-              />
-            </span>
-          </div>
         );
       }
     }

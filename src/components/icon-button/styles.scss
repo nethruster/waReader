@@ -3,6 +3,7 @@
     display: inline-flex;
     border-radius: 100%;
     cursor: pointer;
+    position: relative;
 
     &:hover { background-color: var(--color-tertiary); }
 }

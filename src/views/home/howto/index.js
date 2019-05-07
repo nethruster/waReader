@@ -23,7 +23,7 @@ export default connect(
 
     @bind
     handleSetActiveHomeTabFromTabClick(event) {
-      let tabName = event.target.dataset.triggers;
+      const tabName = event.target.dataset.triggers;
       this.props.setActiveHomeTab(tabName);
     }
 

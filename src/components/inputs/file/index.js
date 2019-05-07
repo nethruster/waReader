@@ -1,4 +1,5 @@
 import { h } from 'preact';
+import Ink from 'react-ink';
 
 const style = require('./styles.scss');
 
@@ -21,6 +22,7 @@ export default function FileInput({
         type="file"
         onClick={onClickExecute}
       />
+      <Ink />
     </label>
   );
 }

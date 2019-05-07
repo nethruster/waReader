@@ -44,10 +44,13 @@ export default connect(
               <p class={style.title}>
                 {participantCount > 2 ? 'Group Chat' : 'Chat'}
               </p>
-              <p class={style.subtitle}>{participantCount} participants</p>
-              <p class={style.subtitle}>
-                {Object.keys(chat.messages).length} messages
-              </p>
+              <div class="flex">
+                <p class={style.subtitle}>{participantCount} participants</p>
+                &nbsp;·&nbsp;
+                <p class={style.subtitle}>
+                  {Object.keys(chat.messages).length} messages
+                </p>
+              </div>
             </div>
           </div>
           <IconButton

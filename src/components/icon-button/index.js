@@ -1,4 +1,5 @@
 import { h } from 'preact';
+import Ink from 'react-ink';
 
 import Icon from '../icon';
 
@@ -21,6 +22,7 @@ export default function Button({
       disabled={disabled}
     >
       <Icon name={icon} size={size} color={color} />
+      <Ink />
     </button>
   );
 }

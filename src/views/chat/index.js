@@ -16,9 +16,13 @@ export default connect(['isChatLoaded', 'activeTab'])(
 
     render({ isChatLoaded, disableIntersectionObserver }) {
       return (
-        <div class={style.contentWrapper}>
+        <div>
           {!disableIntersectionObserver && <Header />}
-          {(isChatLoaded || disableIntersectionObserver) && <Messages />}
+          {(isChatLoaded || disableIntersectionObserver) && (
+            <Messages
+              disableIntersectionObserver={disableIntersectionObserver}
+            />
+          )}
         </div>
       );
     }

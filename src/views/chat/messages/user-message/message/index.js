@@ -18,8 +18,12 @@ export default connect(
   class Message {
     componentDidMount() {
       this.messageElement.addEventListener('long-press', event => {
-        let newUser = this.props.message.author.toLowerCase();
-        this.props.setActiveUser(newUser);
+        const newUser = this.props.message.author.toLowerCase();
+        const isNewUserTheCurrentUser = newUser === this.props.activeUser;
+
+        isNewUserTheCurrentUser
+          ? this.props.setActiveUser('')
+          : this.props.setActiveUser(newUser);
       });
     }
 

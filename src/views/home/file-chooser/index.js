@@ -44,7 +44,7 @@ export default connect(
 
     @bind
     handleFileChange(event) {
-      let file = event.target.files[0];
+      const file = event.target.files[0];
 
       if (file.size / 1024 / 1024 > 1) {
         this.showToast('The chat is too large');
@@ -52,12 +52,12 @@ export default connect(
         return;
       }
 
-      let fr = new FileReader();
+      const fr = new FileReader();
 
       fr.readAsText(file);
 
       fr.onload = event => {
-        let fileContents = event.target.result;
+        const fileContents = event.target.result;
 
         if (!fileContents.trim()) {
           this.showToast('The file is empty');

@@ -13,8 +13,12 @@ export default connect(
   class UserPicture extends Component {
     @bind
     handleUserPictureClick(event) {
-      let newUser = this.props.user.name.toLowerCase();
-      this.props.setActiveUser(newUser);
+      const newUser = this.props.user.name.toLowerCase();
+      const isNewUserTheCurrentUser = newUser === this.props.activeUser;
+
+      isNewUserTheCurrentUser
+        ? this.props.setActiveUser('')
+        : this.props.setActiveUser(newUser);
     }
 
     render({ user, isActive }) {

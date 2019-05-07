@@ -9,6 +9,7 @@ import HowTo from './howto';
 const style = require('./styles.scss');
 
 export default function Home() {
+  window.scrollTo(0, 0);
   return (
     <div class={`flex flex-main-center ${style.wrapper}`}>
       <div class={style.backgroundContainer} />

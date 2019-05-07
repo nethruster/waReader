@@ -4,17 +4,17 @@
     .infoContainer {
         flex: 1;
         margin: 0 8px;
-
-        @media screen and (max-width: 640px) { padding-bottom: 8px; }
     }
 
     .iconWrapper {
-        margin-right: 42px;
+        margin-right: 16px;
         display: inline-flex;
         align-items: center;
         border-radius: 100%;
         background-color: var(--color-accent);
         padding: 12px;
+
+        @media(max-width: 640px) { display: none; }
     }
 
     .icon {
@@ -36,5 +36,8 @@
         margin: 0;
     }
 
-    .infoDetailsWrapper { line-height: 16px; }
+    .infoDetailsWrapper { 
+        line-height: 16px;
+        justify-content: space-evenly;
+    }
 }

@@ -1,7 +1,0 @@
-:local {
-    .contentWrapper { 
-        padding-top: var(--header-height);
-
-        @media print { padding-top: 0; }
-    }
-}
