@@ -2,6 +2,7 @@ const path = require('path');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractCssChunks = require('extract-css-chunks-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 const isProduction = process.env.NODE_ENV === 'production'; // Check if we are in production mode
 
@@ -103,6 +104,12 @@ module.exports = {
         minifyJS: true
       },
       template: APP_DIR + '/index.html'
-    })
+    }),
+    new CopyWebpackPlugin([
+      {
+        from: path.join(APP_DIR, 'assets'),
+        to: path.join(BUILD_DIR, 'assets')
+      }
+    ])
   ]
 };

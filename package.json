@@ -46,8 +46,9 @@
     "stylelint-scss": "^3.4.0",
     "webpack": "^4.26.1",
     "webpack-cli": "^3.1.2",
-    "webpack-dev-server": "^3.1.11"
-  },
+    "webpack-dev-server": "^3.1.11",
+    "copy-webpack-plugin": "^5.0.4"
+    },
   "dependencies": {
     "@researchgate/react-intersection-observer": "^0.7.4",
     "anchorme": "^1.1.2",
