@@ -7,4 +7,9 @@
 
 ## Using offline 
 
-You can use waReader offline by following the [release instructions](https://github.com/nethruster/waReader/releases/tag/2.0.0).
+You can use waReader offline by using the [release](https://github.com/nethruster/waReader/releases).
+
+- Install http-server via npm `npm i -g http-server@0.9.0`
+- Extract release zip
+- Use `hs` in your terminal of choice where you extracted the files
+- Your waReader will be ready to use at the address indicated by the terminal
