@@ -21,7 +21,8 @@ export default connect(
 
       this.state = {
         showToast: false,
-        toastContent: ''
+        toastContent: '',
+        ignoreFileSizeLimit: false
       };
 
       this.toastTimeout = 300000;
@@ -46,7 +47,7 @@ export default connect(
     handleFileChange(event) {
       const file = event.target.files[0];
 
-      if (file.size / 1024 / 1024 > 1) {
+      if (!this.state.ignoreFileSizeLimit && file.size / 1024 / 1024 > 1) {
         this.showToast('The chat is too large');
 
         return;
@@ -91,6 +92,13 @@ export default connect(
       });
     }
 
+    @bind
+    onSizeLimitInput(event) {
+      this.setState({
+        ignoreFileSizeLimit: !this.state.ignoreFileSizeLimit
+      });
+    }
+
     render() {
       return (
         <form class={`text-center ${style.uploadForm}`}>
@@ -114,6 +122,17 @@ export default connect(
             onChangeExecute={this.handleFileChange}
             onClickExecute={this.resetInput}
           />
+          <div>
+            <input
+              onChange={this.onSizeLimitInput}
+              checked={this.state.ignoreFileSizeLimit}
+              id="skipFileSizeLimit"
+              type="checkbox"
+            />
+            <label for="skipFileSizeLimit">
+              &nbsp;&nbsp;<small>Ignore chat size warning</small>
+            </label>
+          </div>
         </form>
       );
     }
